@@ -1,6 +1,5 @@
 package login;
 
-import com.jfoenix.controls.JFXToggleNode;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
@@ -12,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -28,8 +28,6 @@ public class Controller {
     private Parent root;
     private Alert alert;
 
-    @FXML
-    private JFXToggleNode toggleButton ;
 
 //    @FXML
 //    private JFXButton btn_SignupQuit, btn_SignUpDone;
@@ -41,6 +39,9 @@ public class Controller {
     private TextField nameField;
     @FXML
     private PasswordField passwordField;
+
+    @FXML
+    private ComboBox Comboo;
 
     @FXML
     public void switchtoScene(ActionEvent event) throws IOException {
@@ -109,22 +110,17 @@ public class Controller {
             System.exit(0);
         });
 
+        }
 
-    }
     @FXML
-    public void onToggle(ActionEvent e){
+    public void initialize() {
+        Comboo.getItems().addAll("Admin", "User");
+        Comboo.getSelectionModel().select("Admin");
 
-        toggleButton.setOnAction(event ->{
-            toggleButton.setText("User");
-//                if(!toggleButton.getText().equals("User")){
-//                toggleButton.setText("User"); }
-//                else{
-//                    toggleButton.setText("Admin");
+    }
 
 
 
-
-        });
 
 
 
@@ -133,4 +129,4 @@ public class Controller {
 
     }
 
-}
+
