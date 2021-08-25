@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.Controller">
+
+    <children>
+        <AnchorPane id="rootStage" fx:id="rootStage" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="950.0" style="-fx-background-color: transparent;">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <children>
+                <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="526.0" prefWidth="935.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <children>
+                        <AnchorPane layoutX="391.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="525.0" minWidth="525.0" prefHeight="420.0" prefWidth="525.0" style="-fx-background-color: WHITE; -fx-background-radius: 0 10 10 0;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0">
+                            <children>
+                                <BorderPane layoutX="429.0" layoutY="10.0" prefHeight="400.0" prefWidth="489.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <bottom>
+                                        <VBox prefHeight="420.0" prefWidth="424.0" BorderPane.alignment="CENTER">
+                                            <children>
+                                                <Label prefHeight="26.0" prefWidth="107.0" text="Log In">
+                                                    <font>
+                                                        <Font name="Montserrat Bold" size="31.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets left="150.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="209.0" text="User Name / Email">
+                                                    <font>
+                                                        <Font name="Montserrat SemiBold" size="21.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="30.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <TextField id="nameField" fx:id="nameField" layoutX="10.0" layoutY="137.0" prefHeight="40.0" prefWidth="375.0" promptText="Enter your username or email" style="-fx-background-color: white;">
+                                                    <effect>
+                                                        <DropShadow height="15.0" radius="7.0" width="15.0">
+                                                            <color>
+                                                                <Color red="0.7157894968986511" green="0.7157894968986511" blue="0.7157894968986511" />
+                                                            </color>
+                                                        </DropShadow>
+                                                    </effect>
+                                                    <VBox.margin>
+                                                        <Insets right="50.0" top="5.0" />
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font size="18.0" />
+                                                    </font>
+                                                </TextField>
+                                                <Label layoutX="10.0" layoutY="159.0" prefHeight="21.0" prefWidth="131.0" text="Password">
+                                                    <font>
+                                                        <Font name="Montserrat SemiBold" size="21.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="10.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <PasswordField id="passwordField" fx:id="passwordField" prefHeight="40.0" prefWidth="459.0" promptText="Enter your password" style="-fx-background-color: white;">
+                                                    <effect>
+                                                        <DropShadow height="15.0" radius="7.0" width="15.0">
+                                                            <color>
+                                                                <Color red="0.7176470756530762" green="0.7176470756530762" blue="0.7176470756530762" />
+                                                            </color>
+                                                        </DropShadow>
+                                                    </effect>
+                                                    <VBox.margin>
+                                                        <Insets right="50.0" top="5.0" />
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font size="18.0" />
+                                                    </font>
+                                                </PasswordField>
+                                    <Label fx:id="forgotPass" prefHeight="30.0" prefWidth="130.0" text="Forgot Password ?" textFill="#5090ff" underline="true">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="260.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                                <JFXButton fx:id="LoginButton" onAction="#onClick" prefHeight="52.0" prefWidth="119.0" style="-fx-background-color: green;" text="Log In" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="22.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets left="110.0" />
+                                                    </VBox.margin>
+                                       <effect>
+                                          <DropShadow blurType="GAUSSIAN" height="0.0" radius="4.75">
+                                             <color>
+                                                <Color red="0.05000000074505806" green="0.048500001430511475" blue="0.048500001430511475" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                                </JFXButton>
+                                    <Label fx:id="SignUp" text="Sign Up Here." textFill="#5090ff">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" left="230.0" top="4.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="Don't have an account ?">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="60.0" top="-40.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                            </children>
+                                            <BorderPane.margin>
+                                                <Insets bottom="10.0" left="50.0" right="10.0" top="-15.0" />
+                                            </BorderPane.margin>
+                                        </VBox>
+                                    </bottom>
+                                    <right>
+                                        <JFXButton fx:id="close" onAction="#onQuit" prefHeight="38.0" prefWidth="48.0" style="-fx-background-color: red;" text="X" textFill="WHITE" BorderPane.alignment="CENTER">
+                                            <font>
+                                                <Font name="System Bold" size="22.0" />
+                                            </font>
+                                        </JFXButton>
+                                    </right>
+                                </BorderPane>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="13.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="390.0" minWidth="390.0" prefHeight="470.0" prefWidth="390.0" style="-fx-background-color: linear-gradient(to bottom,#2193b0,#6dd5ed); -fx-background-radius: 10;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="25.0">
+                            <children>
+                                <VBox layoutX="25.0" layoutY="25.0" prefHeight="470.0" prefWidth="390.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                    <children>
+                                        <Label prefHeight="43.0" prefWidth="351.0" text="Raccoon InnRoom" textAlignment="CENTER" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="35.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets left="40.0" />
+                                            </padding>
+                                        </Label>
+                                        <ImageView fitHeight="217.0" fitWidth="262.0">
+                                            <image>
+                                                <Image url="@Racoo00n.png" />
+                                            </image>
+                                            <VBox.margin>
+                                                <Insets left="40.0" top="60.0" />
+                                            </VBox.margin>
+                                        </ImageView>
+                              <ComboBox fx:id="Comboo" onMouseClicked="#initialize" prefHeight="49.0" prefWidth="109.0" promptText="Admin" style="-fx-background-color: ORANGE;" visibleRowCount="2">
+                                 <VBox.margin>
+                                    <Insets left="265.0" top="80.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+
+</AnchorPane>
