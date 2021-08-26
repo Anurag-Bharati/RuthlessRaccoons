@@ -160,7 +160,7 @@
                                                 <Insets left="40.0" top="60.0" />
                                             </VBox.margin>
                                         </ImageView>
-                              <ComboBox fx:id="Comboo" onMouseClicked="#initialize" prefHeight="49.0" prefWidth="109.0" promptText="Admin" style="-fx-background-color: ORANGE;" visibleRowCount="2">
+                              <ComboBox fx:id="comboBox" onMouseClicked="#initialize" prefHeight="49.0" prefWidth="109.0" promptText="Admin" style="-fx-background-color: ORANGE;" visibleRowCount="2">
                                  <VBox.margin>
                                     <Insets left="265.0" top="80.0" />
                                  </VBox.margin>

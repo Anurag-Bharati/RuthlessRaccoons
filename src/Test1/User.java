@@ -4,14 +4,15 @@ import java.time.LocalDate;
 
 public class User {
 
-    private String name, gmail, phone, gender, password,confirmPass, authCode;
+    private String name, gmail, gmailOld, phone, gender, password,confirmPass, authCode;
     private LocalDate dob;
     private boolean sent;
 
-    User(String name, String gmail, String phone,
+    User(String name, String gmail, String gmailOld, String phone,
          LocalDate dob, String gender, String authCode, String password, String confirmPass, Boolean sent){
         this.name = name;
         this.gmail = gmail;
+        this.gmailOld = gmailOld;
         this.phone = phone;
         this.dob = dob;
         this.gender = gender;
@@ -38,6 +39,14 @@ public class User {
 
     public void setGmail(String gmail) {
         this.gmail = gmail;
+    }
+
+    public String getGmailOld() {
+        return gmailOld;
+    }
+
+    public void setGmailOld(String gmailOld) {
+        this.gmailOld = gmailOld;
     }
 
     public String getPhone() {

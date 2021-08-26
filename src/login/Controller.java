@@ -28,7 +28,6 @@ public class Controller {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private Alert alert;
 
 
 //    @FXML
@@ -43,7 +42,7 @@ public class Controller {
     private PasswordField passwordField;
 
     @FXML
-    private ComboBox Comboo;
+    private ComboBox comboBox;
 
     @FXML
     public void switchtoScene(ActionEvent event) throws IOException {
@@ -128,8 +127,8 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        Comboo.getItems().addAll("Admin", "User");
-        Comboo.getSelectionModel().select("Admin");
+        comboBox.getItems().addAll("Admin", "User");
+        comboBox.getSelectionModel().select("Admin");
 
     }
 

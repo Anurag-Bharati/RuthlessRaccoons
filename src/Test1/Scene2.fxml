@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane id="rootStage" fx:id="rootStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="950.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Test1.SceneTwoController">
    <opaqueInsets>
       <Insets />
@@ -60,7 +65,7 @@
                               </JFXButton>
                            </center>
                            <top>
-                              <Label fx:id="validLabel" alignment="CENTER" prefHeight="18.0" prefWidth="400.0" text="Make sure you have provided valid gmail." textFill="#ff0000b8" BorderPane.alignment="CENTER">
+                              <Label fx:id="validLabel" alignment="CENTER" prefHeight="18.0" prefWidth="400.0" text="Make sure you have provided valid gmail" textFill="#ff0000b8" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -124,7 +129,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField id="emailField" fx:id="authField" layoutX="10.0" layoutY="252.0" onMouseClicked="#authAlert" prefHeight="40.0" prefWidth="386.0" promptText="Check your gmail for 5 digit auth code" style="-fx-background-color: white;">
+                              <TextField id="emailField" fx:id="authField" layoutX="10.0" layoutY="252.0" onMouseClicked="#authAlert" onMouseExited="#authAlert1" prefHeight="40.0" prefWidth="386.0" promptText="Check your gmail for 5 digit auth code" style="-fx-background-color: white;">
                                  <effect>
                                     <DropShadow height="15.0" radius="7.0" width="15.0">
                                        <color>

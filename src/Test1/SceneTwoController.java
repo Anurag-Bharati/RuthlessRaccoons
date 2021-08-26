@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +20,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class SceneTwoController {
 
@@ -33,6 +35,7 @@ public class SceneTwoController {
     private String confirmPass;
     private String gender;
     private String gmail;
+    private String gmailOld;
     private String phone;
     private LocalDate dob;
     private Boolean sent;
@@ -49,8 +52,14 @@ public class SceneTwoController {
     @FXML
     private AnchorPane rootStage;
 
+    @FXML
+    private Label validLabel;
+
 
     public void initUser(User user) {
+
+        /*This method saves data from scene one*/
+
         this.user = user;
         this.name = user.getName();
         this.gmail = user.getGmail();
@@ -61,6 +70,7 @@ public class SceneTwoController {
         this.confirmPass = user.getConfirmPass();
         this.authCode = user.getAuthCode();
         this.sent = user.isSent();
+        this.gmailOld = user.getGmailOld();
         if (password!=null&&password.equals(confirmPass)){
             passwordField.setText(password);
             confirmPassField.setText(confirmPass);
@@ -77,18 +87,19 @@ public class SceneTwoController {
 
     @FXML
     public void onDone() {
-        if ((passwordField.getText().equals(confirmPassField.getText()) && passwordField.getText()!=null)) {
+        /* This method runs when Done button is clicked. It also checks the auth code*/
+        if (checkFieldsTwo()){
             user.setPassword(passwordField.getText());
             password = passwordField.getText();
             confirmPass = confirmPassField.getText();
-            if (authField.getText().equals(authCodeSys)) {
+            if (authField.getText().strip().equals(authCodeSys)) {
                 System.out.println(name);
                 System.out.println(gmail);
                 System.out.println(phone);
                 System.out.println(dob);
                 System.out.println(gender);
                 System.out.println(password);
-            }
+            } else validLabel.setText("Auth code does not match");
         }
     }
 
@@ -96,6 +107,7 @@ public class SceneTwoController {
         user = new User();
         user.setName(name);
         user.setGmail(gmail);
+        user.setGmailOld(gmailOld);
         user.setPhone(phone);
         user.setDob(dob);
         user.setGender(gender);
@@ -149,16 +161,47 @@ public class SceneTwoController {
             System.exit(0);
         });
     }
+    public boolean checkFieldsTwo(){
+
+        /*This checks for the password validity made totally by anurag :) at 12AM 8/27/2021 */
+
+        if ((Objects.requireNonNull(passwordField.getText()).length() >= 8)){
+            if (passwordField.getText().equals(confirmPassField.getText())) {
+                if(checkPasswordStrength(passwordField.getText())){
+                    return true;
+                } else validLabel.setText("Password must contain at least one letter and number");
+                return false;
+            } else validLabel.setText("Password does not match on both fields");
+            return false;
+
+        }else validLabel.setText("Password must be at least 8 character long");
+        return false;
+    }
+    public boolean checkPasswordStrength(String password){
+
+        /* This is the password strength checker*/
+
+        boolean hasLetter = false;
+        boolean hasDigit = false;
+        for (int i = 0; i<password.length();i++){
+            char x = password.charAt(i);
+            if (Character.isLetter(x)){
+                hasLetter = true;
+            }
+            if (Character.isDigit(x)){
+                hasDigit = true;
+            }
+            if(hasDigit && hasLetter){
+                return true;
+            }
+        }
+        return false;
+    }
     public void authAlert(){
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION,"",ButtonType.OK);
-//        alert.initStyle(StageStyle.TRANSPARENT);
-//        alert.setTitle("Verification Code");
-//        alert.
-//        alert.setHeaderText(null);
-//        alert.setContentText("Verification Code\nHi"+name+", \nA code has been sent to: "+gmail+".\nMake sure the" +
-//                " gmail you have " +
-//                "provided is valid.");
-//        alert.showAndWait();
+        validLabel.setText("Check your Gmail for five-digit Auth code");
+    }
+    public void authAlert1(){
+        validLabel.setText("Make sure you have provided valid gmail");
     }
 
 }

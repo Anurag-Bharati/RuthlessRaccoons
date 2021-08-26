@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.String?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane id="rootStage" fx:id="rootStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="950.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Test1.SceneOneController">
    <opaqueInsets>
       <Insets />
@@ -21,23 +28,6 @@
             <AnchorPane layoutX="391.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="525.0" minWidth="525.0" prefHeight="420.0" prefWidth="525.0" style="-fx-background-color: White; -fx-background-radius: 0 10 10 0;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0">
                <children>
                   <BorderPane layoutX="429.0" layoutY="10.0" prefHeight="400.0" prefWidth="489.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                     <bottom>
-                        <JFXButton id="btn_SignUpDone" fx:id="btn_SignUpNext" onAction="#switchToScene2" prefHeight="38.0" prefWidth="96.0" ripplerFill="#ade1a0" style="-fx-background-color: #63c74d;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets bottom="30.0" top="5.0" />
-                           </BorderPane.margin>
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <effect>
-                              <DropShadow height="14.0" radius="6.5" width="14.0">
-                                 <color>
-                                    <Color red="0.378947377204895" green="0.0294736847281456" blue="0.052771929651498795" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </JFXButton>
-                     </bottom>
                      <right>
                         <JFXButton id="btn_SignupQuit" fx:id="btn_SignupQuit" onAction="#onQuit" prefHeight="35.0" prefWidth="35.0" ripplerFill="#ff939c" style="-fx-background-color: #e43b44;" text="X" textFill="WHITE" BorderPane.alignment="TOP_LEFT">
                            <font>
@@ -46,7 +36,7 @@
                         </JFXButton>
                      </right>
                      <center>
-                        <VBox prefHeight="420.0" prefWidth="394.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="338.0" prefWidth="394.0" BorderPane.alignment="CENTER">
                            <children>
                               <Label prefHeight="26.0" prefWidth="107.0" text="Sign up">
                                  <font>
@@ -61,7 +51,7 @@
                                     <Insets bottom="5.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField id="nameField" fx:id="nameField" prefHeight="40.0" prefWidth="386.0" promptText="Example: John Doe" style="-fx-background-color: white;">
+                              <TextField id="nameField" fx:id="nameField" prefHeight="40.0" prefWidth="394.0" promptText="Example: John Doe" style="-fx-background-color: white;">
                                  <effect>
                                     <DropShadow height="15.0" radius="7.0" width="15.0">
                                        <color>
@@ -179,12 +169,41 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </HBox>
+                              <Label fx:id="actionOutput" alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="394.0" text="Make sure to fill up all the fields" textAlignment="CENTER" textFill="#f77622">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
                            </children>
                            <BorderPane.margin>
                               <Insets bottom="10.0" left="50.0" right="10.0" top="10.0" />
                            </BorderPane.margin>
                         </VBox>
                      </center>
+                     <bottom>
+                        <BorderPane prefHeight="64.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <JFXButton id="btn_SignUpDone" fx:id="btn_SignUpNext" onAction="#switchToScene2" prefHeight="38.0" prefWidth="96.0" ripplerFill="#ade1a0" style="-fx-background-color: #63c74d;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow height="14.0" radius="6.5" width="14.0">
+                                       <color>
+                                          <Color red="0.378947377204895" green="0.0294736847281456" blue="0.052771929651498795" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <BorderPane.margin>
+                                    <Insets bottom="24.0" />
+                                 </BorderPane.margin>
+                              </JFXButton>
+                           </center>
+                        </BorderPane>
+                     </bottom>
                   </BorderPane>
                </children>
             </AnchorPane>
