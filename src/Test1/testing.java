@@ -1,7 +1,7 @@
 package Test1;
 
 public class testing {
-    final static String  gmail = "nice@gmail.com";
+    final static String  gmail = "nice@gmail.com ";
     public static void main(String[] args) {
         System.out.println(checkGmail());
     }
@@ -12,7 +12,10 @@ public class testing {
             char letter = gmail.charAt(i);
             if (letter=='@') {
                 for (int j = i; j < gmail.length(); j++) {
-                    checkDomain.append(gmail.charAt(j));
+                    if(gmail.charAt(j)!=' ') {
+                        checkDomain.append(gmail.charAt(j));
+                    }
+                    else j++;
                 }
                 if (checkDomain.toString().equals("@gmail.com")) {
                     return true;

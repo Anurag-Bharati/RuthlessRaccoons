@@ -40,7 +40,7 @@ public class MailVerify {
 
         assert message != null;
         Transport.send(message);
-        System.out.println("Message Sent and the code is " + OTP);
+        System.out.println("A message has been Sent and the code is " + OTP);
 
     }
     private static Message prepareMsg(Session session, String myAccountEmail, String recepient, int OTP, String name){
@@ -51,11 +51,11 @@ public class MailVerify {
             message.setRecipient(Message.RecipientType.TO,new InternetAddress(recepient));
             message.setSubject("Verification Code | RuthlessRaccoons - RaccoonsInnRooms");
             message.setText("Hello "+name+ "!\n" +OTP+ " is your verification code.\n" + "Thanks for using our " +
-                    "service \t -RuthlessRaccoons");
+                    "service.\n-RuthlessRaccoons");
             return message;
 
         } catch (SMTPAddressFailedException e){
-
+            e.printStackTrace();
         } catch (MessagingException e) {
             Logger.getLogger(MailVerify.class.getName()).log(Level.SEVERE, null, e);
         }

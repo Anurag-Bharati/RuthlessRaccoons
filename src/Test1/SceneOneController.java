@@ -142,17 +142,19 @@ public class SceneOneController {
     public boolean checkGmail(String gMail){
         StringBuilder checkDomain= new StringBuilder();
 
-        for(int i = 0; i<gMail.length();i++){
+        for(int i = 0; i<gMail.length();i++) {
             char letter = gMail.charAt(i);
-            if (letter=='@') {
+            if (letter == '@') {
                 for (int j = i; j < gMail.length(); j++) {
-                    checkDomain.append(gMail.charAt(j));
+                    if (gMail.charAt(j) != ' ') {
+                        checkDomain.append(gMail.charAt(j));
+                    } else j++;
+                    if (checkDomain.toString().equals("@gmail.com")) {
+                        return true;
+                    }
                 }
-                if (checkDomain.toString().equals("@gmail.com")) {
-                    return true;
-                }
-            }
 
+            }
         }
         return false;
     }
