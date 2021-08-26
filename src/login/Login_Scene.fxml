@@ -108,7 +108,7 @@
                                           </DropShadow>
                                        </effect>
                                                 </JFXButton>
-                                    <Label fx:id="SignUp" text="Sign Up Here." textFill="#5090ff">
+                                    <Label fx:id="SignUp" onMouseClicked="#switchtoSignUp" text="Sign Up Here." textFill="#5090ff">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

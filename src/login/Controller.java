@@ -22,6 +22,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+import static Test1.Test1.stageDragable;
+
 public class Controller {
     private Stage stage;
     private Scene scene;
@@ -49,6 +51,18 @@ public class Controller {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         scene.setFill(Color.WHITE);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @FXML
+    public void switchtoSignUp(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stageDragable(root,stage);
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
