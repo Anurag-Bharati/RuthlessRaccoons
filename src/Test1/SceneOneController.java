@@ -12,13 +12,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.net.UnknownHostException;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -67,9 +69,9 @@ public class SceneOneController {
             if (checkFields()) {
                 user = new User();
                 user.setName(nameField.getText());
-                user.setGmail(gmailField.getText());
-                user.setGmailOld(gmailField.getText());
-                user.setPhone(phoneField.getText());
+                user.setGmail(gmailField.getText().strip());
+                user.setGmailOld(gmailField.getText().strip());
+                user.setPhone(phoneField.getText().strip());
                 user.setDob(dobPicker.getValue());
                 user.setGender(genderSelect.getValue());
                 user.setPassword(password);
@@ -77,7 +79,7 @@ public class SceneOneController {
                 user.setAuthCode(authCode);
                 user.setSent(sent);
 
-                if (sendIt(user.getName(), user.getGmail())) {
+                if (sendIt(user.getName(), user.getGmail().strip())) {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
                     root = fxmlLoader.load();
@@ -103,7 +105,7 @@ public class SceneOneController {
     }
 
     @FXML
-    public void onQuit(ActionEvent actionEvent) throws IOException {
+    public void onQuit(ActionEvent actionEvent){
 
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(.4), rootStage);
@@ -190,7 +192,7 @@ public class SceneOneController {
         } else if (Objects.requireNonNull(phoneField.getText()).length() < 1) {
             actionOutput.setText("Please, provide your phone number");
             return false;
-        } else if (Objects.requireNonNull(phoneField.getText()).length() != 10) {
+        } else if (Objects.requireNonNull(phoneField.getText().strip()).length() != 10) {
             actionOutput.setText("Please, provide a valid phone number");
             return false;
         } else if (dobPicker.getValue() == null) {
@@ -199,9 +201,9 @@ public class SceneOneController {
         } else if (genderSelect.getValue() == null) {
             actionOutput.setText("Please, select your gender");
             return false;
-        } else if (!actionOutput.getText().equals("All the requirements has been satisfied. Press Confirm to proceed" +
+        } else if (!actionOutput.getText().equals("All the requirements have been satisfied. Press Confirm to proceed" +
                 ".")){
-            actionOutput.setText("All the requirements has been satisfied. Press Confirm to proceed.");
+            actionOutput.setText("All the requirements have been satisfied. Press Confirm to proceed.");
             actionOutput.setTextFill(Color.web("#3e8948"));
             btn_SignUpNext.setText("CONFIRM");
             return false;
@@ -212,9 +214,9 @@ public class SceneOneController {
 
         /*This method sends gmail to the provided address only if the user is connected to an internet */
 
-        if (!Objects.equals(gmailField.getText(), gmailOld)){
+        if (!Objects.equals(gmailField.getText().strip(), gmailOld)){
             user.setSent(false);
-            user.setGmailOld(gmailField.getText());
+            user.setGmailOld(gmailField.getText().strip());
         }
 
         if (!user.isSent()) {

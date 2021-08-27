@@ -75,7 +75,7 @@ public class SceneTwoController {
             passwordField.setText(password);
             confirmPassField.setText(confirmPass);
         }
-        if (authCode!=null&&authCode.length()==authCodeSys.length()){
+        if (authCode!=null&&authCode.strip().length()==authCodeSys.length()){
             authField.setText(authCode);
         }
     }
@@ -135,7 +135,7 @@ public class SceneTwoController {
 
 
     @FXML
-    public void onQuit(ActionEvent actionEvent) throws IOException {
+    public void onQuit(ActionEvent actionEvent){
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(.4), rootStage);
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(.4), rootStage);
