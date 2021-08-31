@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="rootStage" fx:id="rootStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="950.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Test1.SceneTwoController">
+<AnchorPane id="rootStage" fx:id="rootStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="950.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.registration.SceneTwoController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -165,7 +165,7 @@
             </AnchorPane>
             <ImageView fitHeight="256.0" fitWidth="291.0" layoutX="65.0" layoutY="125.0">
                <image>
-                  <Image url="/Test1/Rac.png" />
+                  <Image url="@../images/logo.png" />
                </image>
             </ImageView>
          </children>

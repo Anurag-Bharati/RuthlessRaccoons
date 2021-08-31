@@ -1,4 +1,4 @@
-package Test1;
+package main.java.registration;
 
 import com.sun.mail.smtp.SMTPAddressFailedException;
 

@@ -1,6 +1,7 @@
-package Test1;
+package main;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,7 +11,7 @@ import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
-public class Test1 extends Application {
+public class Main extends Application {
 
     static double  xOffset, yOffset;
     public static Scene scene;
@@ -23,7 +24,8 @@ public class Test1 extends Application {
     public void start(Stage stage) {
         try{
 
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Scene1.fxml")));
+            Parent root = FXMLLoader.load((Objects.requireNonNull(
+                    getClass().getResource("/main/resource/login/Login_Scene.fxml"))));
             scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
@@ -36,6 +38,8 @@ public class Test1 extends Application {
 
         catch (Exception e){
             e.printStackTrace();
+            Platform.exit();
+            System.exit(0);
         }
 
     }

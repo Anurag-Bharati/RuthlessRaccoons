@@ -1,4 +1,4 @@
-package Test1;
+package main.java.registration;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
@@ -119,7 +119,7 @@ public class SceneTwoController {
         user.setAuthCode(authField.getText());
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene1.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/registration/Scene1.fxml"));
         root = fxmlLoader.load();
 
         SceneOneController sceneOneController = fxmlLoader.getController();

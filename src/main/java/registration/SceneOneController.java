@@ -1,4 +1,4 @@
-package Test1;
+package main.java.registration;
 
 import com.jfoenix.controls.JFXButton;
 import com.sun.mail.util.MailConnectException;
@@ -81,7 +81,7 @@ public class SceneOneController {
 
                 if (sendIt(user.getName(), user.getGmail().strip())) {
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/registration/Scene2.fxml"));
                     root = fxmlLoader.load();
 
                     SceneTwoController sceneTwoController = fxmlLoader.getController();

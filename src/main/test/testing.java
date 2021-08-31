@@ -1,4 +1,4 @@
-package Test1;
+package main.test;
 
 public class testing {
     final static String  gmail = "nice@gmail.com ";
