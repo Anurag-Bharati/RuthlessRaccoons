@@ -1,5 +1,6 @@
 package main.java.login;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
@@ -11,18 +12,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import main.java.db.DatabaseManager;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static main.java.registration.Test1.stageDragable;
@@ -31,24 +34,18 @@ public class Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     public Parent root;
+    DatabaseManager databaseManager = new DatabaseManager();
 
     @FXML private AnchorPane rootStage;
 
-    @FXML private TextField nameField;
+    @FXML private TextField gmailField;
     @FXML private PasswordField passwordField;
     @FXML private Label actionOutput;
+    @FXML private JFXButton LoginButton;
+    @FXML private Button SignUpHere;
 
     @FXML private ComboBox comboBox;
 
-    @FXML
-    public void switchToScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login_Scene1.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        scene.setFill(Color.WHITE);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @FXML
     public void switchToSignUp(ActionEvent event) throws IOException {
@@ -67,19 +64,32 @@ public class Controller implements Initializable {
     }
     @FXML
     public Boolean onDone() {
-        if (nameField.getLength() != 0) {
-            System.out.println(nameField.getText());
-            System.out.println(passwordField.getText());
+        if (gmailField.getLength() != 0) {
             return true;
         } else
-            actionOutput.setText("Please, Provide a valid gmail");
+            actionOutput.setText("Please, Provide your Gmail");
             return false;
     }
 
     @FXML
-    public void onClick(ActionEvent click) throws IOException{
+    public void onClick(ActionEvent e) throws SQLException {
         if (onDone()) {
-            switchToScene(click);
+            if(checkGmail(gmailField.getText().toLowerCase(Locale.ROOT))){
+                if(checkPass()){
+                    SignUpHere.setDisable(true);
+                    LoginButton.setDisable(true);
+                    actionOutput.setTextFill(Color.web("#3e8948"));
+                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(.3), actionOutput);
+                    fadeTransition.setFromValue(1.0);
+                    fadeTransition.setToValue(0.0);
+                    fadeTransition.setCycleCount(6);
+                    fadeTransition.setAutoReverse(true);;
+                    fadeTransition.setCycleCount(10);
+                    fadeTransition.play();
+                    actionOutput.setText("Access Granted!");
+                } else actionOutput.setText("Incorrect login credential. Please, try again");
+            }
+            else actionOutput.setText("Please, Provide a valid Gmail");
         }
 
     }
@@ -114,6 +124,51 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBox.getItems().addAll("Admin", "User");
         comboBox.getSelectionModel().select("Admin");
+    }
+    public boolean checkGmail(String gMail) {
+
+        /*This function takes gmail as string and checks if the domain is gmail or not.
+        If not it returns false and true if it is.*/
+
+        StringBuilder checkDomain = new StringBuilder();
+
+        for (int i = 0; i < gMail.length(); i++) {
+            char letter = gMail.charAt(i);
+            if (letter == '@') {
+                for (int j = i; j < gMail.length(); j++) {
+                    if (gMail.charAt(j) != ' ') {
+                        checkDomain.append(gMail.charAt(j));
+                    } else j++;
+                    if (checkDomain.toString().equals("@gmail.com")) {
+                        return true;
+                    }
+                }
+
+            }
+        }
+        return false;
+    }private boolean checkPass() throws SQLException {
+        Connection connection = databaseManager.connect();
+
+        PreparedStatement checkGmail = connection.prepareStatement(
+                "SELECT gmail FROM CustomerDetail WHERE gmail = ?");
+        checkGmail.setString(1, gmailField.getText().toLowerCase(Locale.ROOT));
+        ResultSet result = checkGmail.executeQuery();
+        if (result.next()){
+            if(gmailField.getText().strip().toLowerCase(Locale.ROOT).equals(
+                    result.getString("gmail"))){
+                PreparedStatement checkPass = connection.prepareStatement("SELECT pass FROM CustomerDetail " +
+                        "WHERE gmail = ?");
+                checkPass.setString(1, gmailField.getText().toLowerCase(Locale.ROOT));
+                ResultSet result0 = checkPass.executeQuery();
+                if(result0.next()){
+                    return passwordField.getText().equals(result0.getString("pass"));
+                }
+                return false;
+            }
+
+        }
+        return false;
     }
 }
 

@@ -152,22 +152,29 @@
             </AnchorPane>
             <AnchorPane layoutX="13.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="390.0" minWidth="390.0" prefHeight="470.0" prefWidth="390.0" style="-fx-background-color: linear-gradient(to bottom, #e43b44, #eb4a3d, #f05935, #f4672c, #f77622)linear-gradient(to bottom, #e43b44, #eb4a3d, #f05935, #f4672c, #f77622); -fx-background-color: linear-gradient(to bottom,#2193b0,#6dd5ed); -fx-background-radius: 10;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="25.0">
                <children>
-                  <AnchorPane prefHeight="136.0" prefWidth="390.0">
+                  <AnchorPane prefHeight="136.0" prefWidth="390.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-19.0" layoutY="-21.0" prefHeight="79.0" prefWidth="369.0" text="RUTHLESS RACCOONS" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="142.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="Dubai Bold" size="32.0" />
-                           </font>
-                        </Label>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="350.0" text="Raccoon InnRoom" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="35.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="217.0" fitWidth="256.0">
+                                 <image>
+                                    <Image url="@../images/logo.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <ImageView fitHeight="256.0" fitWidth="291.0" layoutX="65.0" layoutY="125.0">
-               <image>
-                  <Image url="@../images/logo.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
    </children>
