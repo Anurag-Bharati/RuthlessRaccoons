@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dashboard_1.controller">
+   <children>
+      <AnchorPane layoutX="9.0" layoutY="8.0" prefHeight="392.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <BorderPane prefHeight="34.0" prefWidth="680.0" style="-fx-background-color: linear-gradient(to right,#7C83FD,#96BAFF);">
+               <left>
+                  <Label prefHeight="22.0" prefWidth="202.0" text="Raccoons InnRoom" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets left="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </left></BorderPane>
+            <BorderPane layoutY="33.0" prefHeight="397.0" prefWidth="146.0" style="-fx-background-color: linear-gradient(to bottom,#96BAFF,#7C83FD);" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="33.0">
+               <top>
+                  <Label prefHeight="70.0" prefWidth="214.0" text="        Dashboard" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <VBox prefHeight="309.0" prefWidth="146.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="150.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text=" Overview" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="146.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text="Booking" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="146.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text="Rooms" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="146.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text="  Amneities" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="146.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text="Foods" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="146.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text="Invoice" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="146.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text="Staffs" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="146.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text="Guests" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="146.0" ripplerFill="#53d1e7" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-border-color: black;" text="Setting" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" prefHeight="47.0" prefWidth="144.0" ripplerFill="#53d1e7" style="-fx-background-color: FF3F00; -fx-border-color: black;" text="Log out" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="146.0" layoutY="33.0" prefHeight="74.0" prefWidth="535.0" style="-fx-background-color: linear-gradient(to right,#5D64E8,#7C83FD);" AnchorPane.rightAnchor="0.0">
+               <center>
+                  <AnchorPane prefHeight="76.0" prefWidth="530.0" style="-fx-background-color: linear-gradient(to right,#5D64E8,#CE66FC);" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="268.0" layoutY="9.0" prefHeight="27.0" prefWidth="257.0" text="MASSIVE DISCOUNT THIS WEEKEND!" textFill="WHITE" AnchorPane.bottomAnchor="45.0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="298.0" layoutY="25.0" prefHeight="23.0" prefWidth="215.0" text="Get upto 50% off on your first booking." textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="11.5" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="391.0" layoutY="48.0" prefHeight="23.0" prefWidth="122.0" ripplerFill="#c18e8e" style="-fx-background-color: linear-gradient(to right,#96BAFF,#7DEDFF);" text="BOOK NOW!" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="45.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="145.0" layoutY="109.0" prefHeight="322.0" prefWidth="535.0">
+               <top>
+                  <Pane prefHeight="41.0" prefWidth="535.0" style="-fx-background-color: C9CCD5;" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField layoutX="25.0" layoutY="7.0" prefHeight="25.0" prefWidth="185.0" promptText="Search Here" />
+                        <ImageView fitHeight="24.0" fitWidth="39.0" layoutX="216.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 100%;">
+                           <image>
+                              <Image url="/Dashboard_1/Image/Search.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="216.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: transparent;" />
+                     </children>
+                  </Pane>
+               </top>
+               <left>
+                  <Pane prefHeight="283.0" prefWidth="535.0" style="-fx-background-color: FEF7DC;" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="104.0" fitWidth="146.0" layoutX="20.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/Dashboard_1/Image/163BR-18.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="104.0" fitWidth="146.0" layoutX="185.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/Dashboard_1/Image/163BR-54.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="104.0" fitWidth="146.0" layoutX="353.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/Dashboard_1/Image/163BR-58.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="104.0" fitWidth="146.0" layoutX="20.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/Dashboard_1/Image/IMG_0063.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="104.0" fitWidth="146.0" layoutX="185.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/Dashboard_1/Image/IMG_0107.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="104.0" fitWidth="146.0" layoutX="353.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/Dashboard_1/Image/163BR-69.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="133.0" layoutY="28.0" prefHeight="34.0" prefWidth="33.0" style="-fx-background-color: FF3F00;" text="\$9.99" textFill="WHITE">
+                           <font>
+                              <Font name="Britannic Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="466.0" layoutY="28.0" prefHeight="34.0" prefWidth="33.0" style="-fx-background-color: FFD523;" text="\$6.49" textFill="WHITE">
+                           <font>
+                              <Font name="Britannic Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="298.0" layoutY="158.0" prefHeight="34.0" prefWidth="33.0" style="-fx-background-color: FFD523;" text="\$6.49" textFill="WHITE">
+                           <font>
+                              <Font name="Britannic Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="298.0" layoutY="28.0" prefHeight="34.0" prefWidth="33.0" style="-fx-background-color: FFD523;" text="\$6.49" textFill="WHITE">
+                           <font>
+                              <Font name="Britannic Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="133.0" layoutY="160.0" prefHeight="34.0" prefWidth="33.0" style="-fx-background-color: FFD523;" text="\$6.49" textFill="WHITE">
+                           <font>
+                              <Font name="Britannic Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="466.0" layoutY="158.0" prefHeight="34.0" prefWidth="33.0" style="-fx-background-color: #96BAFF;" text="\$6.49" textFill="WHITE">
+                           <font>
+                              <Font name="Britannic Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <ScrollBar layoutX="521.0" orientation="VERTICAL" prefHeight="280.0" prefWidth="14.0" />
+                     </children>
+                  </Pane>
+               </left>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="663.0" prefHeight="43.0" prefWidth="37.0" style="-fx-background-color: FF3F00; -fx-background-radius: 5;" AnchorPane.bottomAnchor="409.2" AnchorPane.leftAnchor="655.6" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="9.0">
+         <children>
+            <JFXButton buttonType="RAISED" layoutX="16.0" layoutY="24.0" prefHeight="43.0" prefWidth="38.0" ripplerFill="WHITE" text="X" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Calibri Bold" size="17.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </JFXButton>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
