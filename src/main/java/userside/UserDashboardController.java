@@ -31,6 +31,7 @@ public class UserDashboardController implements Initializable {
     protected static Parent root;
     static User user;
     static FXMLLoader fxmlLoader = new FXMLLoader();
+    static UserDashboardController userDashboardController;
 
     private @FXML AnchorPane rootStageUser;
     private @FXML AnchorPane rootScene;
@@ -55,6 +56,8 @@ public class UserDashboardController implements Initializable {
     static LocalDate dob;
     static String gender;
     static String password;
+    static ScaleTransition scaleTransitionLoadBar;
+    static TranslateTransition translateTransitionRootScene;
     static ScaleTransition scaleTransitionApplyUser;
     static FadeTransition fadeTransitionIndicator;
 
@@ -120,18 +123,20 @@ public class UserDashboardController implements Initializable {
             root.setDisable(true);
             animateLoading("userside.fxml", actionEvent);
         }
-        System.out.println("onActionEnd");
     }
 
     private void switchToSubScene(String fxml, ActionEvent actionEvent) throws IOException {
 
-        // TODO: 9/24/2021 Solve Major Memory Leak (100MB)
+        // FIXED MAJOR MEMORY LEAK (~100MB) ISSUE WAS CAUSED BY ANIMATION IN ANIMATION LOADING
+
         fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/userside/"+fxml));
         root = fxmlLoader.load();
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = ((Node) actionEvent.getSource()).getScene();
-        UserDashboardController userDashboardController = fxmlLoader.getController();
-        userDashboardController.initUser(user);
+        userDashboardController = fxmlLoader.getController();
+        if (user!=null) {
+            userDashboardController.initUser(user);
+        }
         scene.setRoot(root);
         root.setDisable(false);
 
@@ -139,12 +144,11 @@ public class UserDashboardController implements Initializable {
 
     @FXML
     private void applyUser(){
-        System.out.println(user.getName());
         if (user!=null) {
-            System.out.println("Inside applyUser");
             userName.setText(user.getName().strip().toUpperCase());
             userStatus.setText("Online");
             onlineIndicator.setFill(Color.web("#74BE3D"));
+
             scaleTransitionApplyUser = new ScaleTransition(Duration.seconds(.5), onlineIndicator);
             scaleTransitionApplyUser.setInterpolator(Interpolator.EASE_BOTH);
             scaleTransitionApplyUser.setByX(1);
@@ -159,8 +163,8 @@ public class UserDashboardController implements Initializable {
             fadeTransitionIndicator.setCycleCount(Animation.INDEFINITE);
             fadeTransitionIndicator.setInterpolator(Interpolator.EASE_BOTH);
             fadeTransitionIndicator.play();
+
         } else this.userName.setText("ANURAG");
-        System.out.println("applyUserEnd");
     }
 
 
@@ -194,17 +198,19 @@ public class UserDashboardController implements Initializable {
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = ((Node) actionEvent.getSource()).getScene();
 
-        final ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(.6), loadBar);
-        scaleTransition.setByX(400);
-        scaleTransition.setInterpolator(Interpolator.EASE_BOTH);
+        scaleTransitionLoadBar = new ScaleTransition(Duration.seconds(1), loadBar);
 
-        final TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(.2), rootScene);
-        translateTransition.setInterpolator(Interpolator.EASE_IN);
-        translateTransition.setToY(stage.getHeight());
+        scaleTransitionLoadBar.setByX(300);
+        scaleTransitionLoadBar.setInterpolator(Interpolator.EASE_BOTH);
 
-        scaleTransition.play();
-        translateTransition.play();
-        scaleTransition.setOnFinished(e->{
+        translateTransitionRootScene = new TranslateTransition(Duration.seconds(.3), rootScene);
+        translateTransitionRootScene.setInterpolator(Interpolator.EASE_IN);
+        translateTransitionRootScene.setToY(stage.getHeight());
+
+        scaleTransitionLoadBar.play();
+        translateTransitionRootScene.play();
+
+        scaleTransitionLoadBar.setOnFinished(e->{
                     try {
                         switchToSubScene(fxml,actionEvent);
                     } catch (IOException ex) {
