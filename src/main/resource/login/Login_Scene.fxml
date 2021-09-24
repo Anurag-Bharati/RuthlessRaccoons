@@ -77,7 +77,7 @@
                                                   <Insets top="5.0" />
                                               </VBox.margin>
                                           </Label>
-                                          <PasswordField id="passwordField" fx:id="passwordField" prefHeight="40.0" prefWidth="459.0" promptText="Enter your password" style="-fx-background-color: white;">
+                                          <PasswordField id="passwordField" fx:id="passwordField" onAction="#onClick" prefHeight="40.0" prefWidth="459.0" promptText="Enter your password" style="-fx-background-color: white;">
                                               <effect>
                                                   <DropShadow height="15.0" radius="7.0" width="15.0">
                                                       <color>

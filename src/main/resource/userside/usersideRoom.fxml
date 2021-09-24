@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootStageUser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.userside.UserDashboardController">
+   <children>
+      <AnchorPane prefHeight="30.0" prefWidth="979.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <Label layoutX="5.0" layoutY="6.0" prefHeight="20.0" prefWidth="281.0" text="HOTELNAME/USER/HOME/ROOM" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="10.0" prefWidth="200.0" style="-fx-background-color: #eec99f;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Region fx:id="loadBar" prefHeight="20.0" prefWidth="10.0" style="-fx-background-color: #6fba3b; -fx-background-radius: 0 2 2 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="rootScene" layoutX="217.0" layoutY="30.0" prefHeight="690.0" prefWidth="980.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <AnchorPane layoutX="2.0" layoutY="29.0" prefHeight="150.0" prefWidth="980.0" style="-fx-background-color: White;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="318.0" prefHeight="55.0" prefWidth="57.0" style="-fx-background-color: #dc473c; -fx-border-color: white; -fx-background-radius: 10 0 0 10;" text="\$N/A" textFill="WHITE" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="141.0" style="-fx-background-color: #F0C04C; -fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 0 10 10 0; -fx-background-radius: 0 10 10 0;" text="BOOK NOW!" textFill="WHITE" AnchorPane.bottomAnchor="80.0" AnchorPane.rightAnchor="18.00000000000003" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <Label prefHeight="27.0" prefWidth="735.0" text="Short Description about this room" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="45.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="roomBack" layoutX="830.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAction" prefHeight="46.0" prefWidth="141.0" style="-fx-background-color: #dc473c; -fx-border-color: white; -fx-background-radius: 10;" text="GO BACK" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="18.00000000000003" AnchorPane.topAnchor="80.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="30.0" layoutY="22.0" prefHeight="7.0" prefWidth="735.0" text="ROOM TYPE-ROOM NAME" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutX="23.0" layoutY="25.0" prefHeight="35.0" prefWidth="735.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="75.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #6a3328; -fx-border-color: white;" text="Tags:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Red: Unavailable | Green : Available">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #dc473c; -fx-border-color: white;" text="AC" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Air Conditioning">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #dc473c; -fx-border-color: white;" text="🚽" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Attached Bathroom">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="176.0" layoutY="10.0" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #dc473c; -fx-border-color: white;" text="📶" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Wifi">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="222.0" layoutY="10.0" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #dc473c; -fx-border-color: white;" text="☎" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Phone">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #2c89af; -fx-border-color: white;" text="F1" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Floor Number">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="58.0" style="-fx-background-color: #783a29; -fx-border-color: white;" text="🌟10" textFill="#fffb76">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip text="Rating">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="182.0" prefHeight="510.0" prefWidth="981.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+               <children>
+                  <ScrollPane fitToWidth="true" prefHeight="691.0" prefWidth="980.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <VBox prefHeight="1106.0" prefWidth="966.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="400.0" prefWidth="980.0" spacing="25.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="25.0" prefHeight="250.0" prefWidth="980.0" spacing="25.0">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="291.0" prefHeight="250.0" prefWidth="980.0" spacing="25.0">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="556.0" prefHeight="250.0" prefWidth="980.0" spacing="25.0">
+                                 <VBox.margin>
+                                    <Insets bottom="30.0" top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="26.0" prefHeight="694.0" prefWidth="300.0" style="-fx-background-color: #2d2c33;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutY="30.0" prefHeight="180.0" prefWidth="300.0" style="-fx-border-width: 1 0 1 0; -fx-border-color: #40404a;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+               <children>
+                  <AnchorPane layoutX="11.0" layoutY="97.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="70.0">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D height="60.0" width="60.0" />
+                           </viewport>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <Label fx:id="userName" alignment="TOP_LEFT" layoutX="84.0" layoutY="74.0" prefHeight="45.0" prefWidth="202.0" text="USERNAME" textFill="WHITE" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="63.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Circle fx:id="onlineIndicator" fill="DODGERBLUE" layoutX="89.0" layoutY="110.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="109.0" />
+                  <Label fx:id="userStatus" layoutX="105.0" layoutY="92.0" prefHeight="30.0" prefWidth="95.0" text="Fetching..." textFill="WHITE" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="96.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="BASELINE_LEFT" layoutX="14.0" layoutY="12.0" prefHeight="52.0" prefWidth="300.0" text="HOTEL NAME" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="Arial Bold" size="41.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+                  <Region layoutX="12.0" layoutY="153.0" prefHeight="20.0" prefWidth="167.0" style="-fx-background-color: white; -fx-background-radius: 0em .5em .5em 0em;" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="140.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="457.0" prefWidth="291.0" style="-fx-background-color: #2d2c33; -fx-background-color: #25242a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="211.0">
+               <children>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="490.0" prefWidth="300.0" style="-fx-background-color: #25242a;" styleClass="edge-to-edge" stylesheets="@scrollbar.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <VBox prefHeight="490.0" prefWidth="300.0" style="-fx-background-color: #25242a;">
+                           <children>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #25242a; -fx-border-color: #25242a; -fx-border-width: 6;" text="HOME" textFill="#eeebe0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #25242a; -fx-border-color: #25242a; -fx-border-width: 6;" text="MyBOOKING" textFill="#eeebe0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #25242a; -fx-border-color: #25242a; -fx-border-width: 6;" text="ORDER FOOD" textFill="#eeebe0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #25242a; -fx-border-color: #25242a; -fx-border-width: 6;" text="SERVICES" textFill="#eeebe0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #25242a; -fx-border-color: #25242a; -fx-border-width: 6;" text="INVOICES" textFill="#eeebe0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #25242a; -fx-border-color: #25242a; -fx-border-width: 6;" text="SETTINGS" textFill="#eeebe0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #25242a; -fx-border-color: #25242a; -fx-border-width: 6;" text="FEEDBACK" textFill="#eeebe0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="682.0" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #25242a; -fx-border-color: #25242a; -fx-border-width: 6;" text="LOGOUT" textFill="#eeebe0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #2d2c33;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="Quit" alignment="CENTER" layoutX="902.0" layoutY="1.0" onAction="#onAction" onMouseEntered="#setOnHover" onMouseExited="#setDefault" prefHeight="30.0" prefWidth="40.0" ripplerFill="#ff8282" text="X" textFill="WHITE" AnchorPane.bottomAnchor="0.2" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Minimize" alignment="CENTER" layoutX="852.0" layoutY="5.0" onAction="#onAction" onMouseEntered="#setOnHover" onMouseExited="#setDefault" prefHeight="30.0" prefWidth="40.0" ripplerFill="#ffd980" text="l" textFill="WHITE" AnchorPane.bottomAnchor="0.2" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Expand" alignment="CENTER" contentDisplay="CENTER" layoutX="859.0" layoutY="10.0" onAction="#onAction" onMouseEntered="#setOnHover" onMouseExited="#setDefault" prefHeight="30.0" prefWidth="40.0" ripplerFill="#ff9980" text="II" textFill="WHITE" AnchorPane.bottomAnchor="0.2" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Label alignment="BASELINE_LEFT" layoutX="19.0" layoutY="3.0" prefHeight="26.0" prefWidth="28.0" text="RUTHLESS RACCOONS" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <ImageView cache="true" fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="1260.0" AnchorPane.topAnchor="5.0">
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

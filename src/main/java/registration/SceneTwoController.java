@@ -6,6 +6,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -28,6 +29,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@SuppressWarnings("All")
 public class SceneTwoController {
 
     protected Stage stage;
@@ -38,6 +40,7 @@ public class SceneTwoController {
 
     private String name;
     private String password;
+
     private String authCode;
     private String confirmPass;
     private String gender;
@@ -88,15 +91,16 @@ public class SceneTwoController {
     }
 
     @FXML
-    public void onDone() throws SQLException {
+    public void onDone(ActionEvent actionEvent) throws SQLException {
 
         /* This method runs when Done button is clicked. It also checks the auth code*/
+
         if (checkFieldsTwo()){
             user.setPassword(passwordField.getText());
             password = passwordField.getText();
             confirmPass = confirmPassField.getText();
             if (authField.getText().strip().equals(authCodeSys)) {
-                System.out.println(name+" "+gmail+" "+phone+" "+dob+" "+gender+" "+password);
+//                System.out.println(name+" "+gmail+" "+phone+" "+dob+" "+gender+" "+password);
                 if (NoExistence()){
                     addNewUser();
                     confirmPassField.clear();
@@ -114,18 +118,25 @@ public class SceneTwoController {
                     fadeTransition.setFromValue(1.0);
                     fadeTransition.setToValue(0.0);
                     fadeTransition.setCycleCount(6);
-                    fadeTransition.setAutoReverse(true);;
+                    fadeTransition.setAutoReverse(true);
                     fadeTransition.setCycleCount(10);
                     fadeTransition.play();
                     validLabel.setText("User Added Successfully! Now Redirecting...");
+                    fadeTransition.setOnFinished(e->{
+                        try {
+                            switchToLogin(actionEvent);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
 
                 }
                 else validLabel.setText("User Already Exists! Please, Provide a new Gmail");
             } else validLabel.setText("Auth code does not match");
         }
     }
-
-    public void switchToScene1(ActionEvent event) throws IOException {
+    @FXML
+    private void switchToScene1(ActionEvent event) throws IOException {
 
         user = new User();
         user.setName(name);
@@ -154,9 +165,24 @@ public class SceneTwoController {
         Test1.stageDragable(root,stage);
         stage.show();
     }
+    @FXML
+    private void switchToLogin(Event event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/login/Login_Scene.fxml"));
+        root = fxmlLoader.load();
+
+//        SceneOneController sceneOneController = fxmlLoader.getController();
+
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        Test1.stageDragable(root,stage);
+        stage.show();
+    }
 
     @FXML
-    public void onQuit(ActionEvent actionEvent){
+    private void onQuit(ActionEvent actionEvent){
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(.4), rootStage);
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(.4), rootStage);

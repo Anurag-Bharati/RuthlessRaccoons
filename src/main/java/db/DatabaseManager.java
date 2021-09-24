@@ -16,6 +16,7 @@ public class DatabaseManager {
 
             } catch (SQLException throwable) {
                 throwable.printStackTrace();
+                System.out.println("[DATABASE] NO CONNECTION!");
             }
         }
         return connection;

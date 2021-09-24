@@ -22,7 +22,7 @@ public class User {
         this.sent = sent;
     }
 
-    User(){
+    public User(){
 
     }
     public String getName() {
