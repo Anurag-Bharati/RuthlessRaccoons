@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -48,7 +47,6 @@ public class UserDashboardController implements Initializable {
 
     private @FXML Label userName, userStatus, hotelName;
     private @FXML Circle onlineIndicator;
-    private @FXML StackPane roomAParent;
 
     static String name;
     static String gmail;
@@ -199,8 +197,7 @@ public class UserDashboardController implements Initializable {
         scene = ((Node) actionEvent.getSource()).getScene();
 
         scaleTransitionLoadBar = new ScaleTransition(Duration.seconds(1), loadBar);
-
-        scaleTransitionLoadBar.setByX(300);
+        scaleTransitionLoadBar.setByX(stage.getWidth()*0.20);
         scaleTransitionLoadBar.setInterpolator(Interpolator.EASE_BOTH);
 
         translateTransitionRootScene = new TranslateTransition(Duration.seconds(.3), rootScene);
@@ -212,7 +209,10 @@ public class UserDashboardController implements Initializable {
 
         scaleTransitionLoadBar.setOnFinished(e->{
                     try {
+                        scaleTransitionLoadBar.stop();
+                        translateTransitionRootScene.stop();
                         switchToSubScene(fxml,actionEvent);
+                        Runtime.getRuntime().gc();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
