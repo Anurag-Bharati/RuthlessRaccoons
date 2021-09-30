@@ -23,6 +23,7 @@ import javafx.util.Duration;
 
 import java.net.UnknownHostException;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -65,12 +66,12 @@ public class SceneOneController {
     @FXML
     public void switchToScene2(ActionEvent event) throws Exception {
         actionOutput.setTextFill(Color.web("#f77622"));
-        if (checkGmail(gmailField.getText())) {
+        if (checkGmail(gmailField.getText().toLowerCase(Locale.ROOT))) {
             if (checkFields()) {
                 user = new User();
                 user.setName(nameField.getText());
-                user.setGmail(gmailField.getText().strip());
-                user.setGmailOld(gmailField.getText().strip());
+                user.setGmail(gmailField.getText().strip().toLowerCase(Locale.ROOT));
+                user.setGmailOld(gmailField.getText().strip().toLowerCase(Locale.ROOT));
                 user.setPhone(phoneField.getText().strip());
                 user.setDob(dobPicker.getValue());
                 user.setGender(genderSelect.getValue());
@@ -79,7 +80,7 @@ public class SceneOneController {
                 user.setAuthCode(authCode);
                 user.setSent(sent);
 
-                if (sendIt(user.getName(), user.getGmail().strip())) {
+                if (sendIt(user.getName(), user.getGmail().strip().toLowerCase(Locale.ROOT))) {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/registration/Scene2.fxml"));
                     root = fxmlLoader.load();
@@ -170,7 +171,6 @@ public class SceneOneController {
                         return true;
                     }
                 }
-
             }
         }
         return false;
@@ -220,10 +220,12 @@ public class SceneOneController {
         }
 
         if (!user.isSent()) {
+
             try {
                 user.setSent(true);
                 MailVerify.sendMail(name, mail);
-                return true; // 30
+                return true;
+
             } catch (UnknownHostException | MailConnectException e) {
                 System.out.println("Please connect to a network and then proceed");
                 return false;
@@ -231,5 +233,7 @@ public class SceneOneController {
         }
         return true;
     }
+
+
 }
 

@@ -1,0 +1,18 @@
+# RUTHLESS RACCOONS DATABASE QUERIES
+# COPY AND RUNIT IN WORKBENCH
+
+CREATE DATABASE Raccoons;
+USE Raccoons;
+
+CREATE TABLE CustomerDetail(
+    CID int auto_increment,
+    name varchar(30) not null,
+    gmail varchar(100) not null unique,
+    phone varchar(10) not null,
+    dob date not null,
+    gender varchar(25) not null,
+    pass varchar(30) not null,
+    CONSTRAINT pk_customerID PRIMARY KEY(CID)
+);
+
+select * from CustomerDetail;
