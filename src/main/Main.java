@@ -29,7 +29,7 @@ public class Main extends Application {
         try{
 
             Parent root = FXMLLoader.load((Objects.requireNonNull(
-                    getClass().getResource(LOGIN))));
+                    getClass().getResource(USERSIDE))));
             scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
