@@ -171,7 +171,6 @@ public class SceneOneController {
                         return true;
                     }
                 }
-
             }
         }
         return false;
