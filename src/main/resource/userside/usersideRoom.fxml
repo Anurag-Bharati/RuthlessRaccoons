@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane fx:id="rootStageUser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.userside.UserDashboardController">
+   <children>
+      <AnchorPane fx:id="roomPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="30.0" prefWidth="979.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+               <children>
+                  <Label layoutX="5.0" layoutY="6.0" prefHeight="20.0" prefWidth="281.0" text="HOTELNAME/USER/HOME/ROOM" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="10.0" prefWidth="200.0" style="-fx-background-color: #eec99f;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+               <children>
+                  <Region fx:id="loadBar" prefHeight="20.0" prefWidth="10.0" style="-fx-background-color: #6fba3b; -fx-background-radius: 0 2 2 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-10.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="rootScene" prefHeight="690.0" prefWidth="980.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+               <children>
+                  <AnchorPane layoutX="2.0" layoutY="29.0" prefHeight="150.0" prefWidth="980.0" style="-fx-background-color: White;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <JFXButton fx:id="gotoBook" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAction" prefHeight="46.0" prefWidth="141.0" style="-fx-background-color: #F0C04C; -fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 0 10 10 0; -fx-background-radius: 0 10 10 0;" text="BOOK NOW!" textFill="WHITE" AnchorPane.bottomAnchor="80.0" AnchorPane.rightAnchor="18.00000000000003" AnchorPane.topAnchor="15.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <Label fx:id="roomPrice" alignment="CENTER" layoutX="318.0" prefHeight="55.0" prefWidth="57.0" style="-fx-background-color: #dc473c; -fx-border-color: white; -fx-background-radius: 10 0 0 10;" text="\$N/A" textFill="WHITE" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="15.0">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="roomDesc" prefHeight="27.0" prefWidth="735.0" text="Short Description about this room" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="45.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="roomBack" layoutX="830.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAction" prefHeight="46.0" prefWidth="141.0" style="-fx-background-color: #dc473c; -fx-border-color: white; -fx-background-radius: 10;" text="GO BACK" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="18.00000000000003" AnchorPane.topAnchor="80.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <Label layoutX="30.0" layoutY="22.0" prefHeight="7.0" prefWidth="735.0" text="ROOM TYPE-ROOM NAME" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="18.0">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <HBox layoutX="23.0" layoutY="25.0" prefHeight="35.0" prefWidth="735.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="75.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #6a3328; -fx-border-color: white;" text="Tags:" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Red: Unavailable | Green : Available">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Label>
+                              <Label fx:id="amenity_ac" alignment="CENTER" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #dc473c; -fx-border-color: white;" text="AC" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Air Conditioning">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Label>
+                              <Label fx:id="amenity_attached" alignment="CENTER" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #dc473c; -fx-border-color: white;" text="🚽" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Attached Bathroom">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Label>
+                              <Label fx:id="amenity_wifi" alignment="CENTER" layoutX="176.0" layoutY="10.0" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #dc473c; -fx-border-color: white;" text="📶" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Wifi">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Label>
+                              <Label fx:id="amenity_landline" alignment="CENTER" layoutX="222.0" layoutY="10.0" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #dc473c; -fx-border-color: white;" text="☎" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Phone">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="45.0" style="-fx-background-color: #2c89af; -fx-border-color: white;" text="F1" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Floor Number">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Label>
+                              <Label fx:id="amenity_rating" alignment="CENTER" prefHeight="34.0" prefWidth="58.0" style="-fx-background-color: #783a29; -fx-border-color: white;" text="🌟10" textFill="#fffb76">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Rating">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="182.0" prefHeight="510.0" prefWidth="981.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+                     <children>
+                        <ScrollPane fx:id="roomScrollPane" fitToWidth="true" prefHeight="691.0" prefWidth="980.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <VBox prefHeight="1361.0" prefWidth="965.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="400.0" prefWidth="980.0" spacing="25.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <children>
+                                          <FlowPane alignment="CENTER" hgap="10.0" prefHeight="389.0" prefWidth="900.0" vgap="10.0">
+                                             <children>
+                                                <ImageView fitHeight="366.0" fitWidth="501.0" pickOnBounds="true">
+                                                   <image>
+                                                      <Image url="@../images/room/room.png" />
+                                                   </image>
+                                                   <FlowPane.margin>
+                                                      <Insets />
+                                                   </FlowPane.margin>
+                                                </ImageView>
+                                                <FlowPane hgap="10.0" orientation="VERTICAL" prefHeight="368.0" prefWidth="342.0" vgap="10.0">
+                                                   <children>
+                                                      <ImageView fitHeight="178.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../images/room/bed.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="178.0" fitWidth="226.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../images/room/bathroom.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="178.0" fitWidth="226.0" layoutX="188.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../images/room/window.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="178.0" fitWidth="226.0" layoutX="10.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../images/room/room1.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                   <FlowPane.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </FlowPane.margin>
+                                                </FlowPane>
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" fillHeight="false" layoutX="10.0" layoutY="25.0" prefHeight="152.0" prefWidth="965.0" spacing="25.0">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <FlowPane alignment="CENTER" hgap="40.0" prefHeight="153.0" prefWidth="882.0" vgap="10.0">
+                                             <children>
+                                                <VBox prefHeight="170.0" prefWidth="418.0">
+                                                   <children>
+                                                      <Label prefHeight="40.0" prefWidth="430.0" style="-fx-border-width: 3 0 0 0; -fx-border-color: black;" text="DESCRIPTION">
+                                                         <font>
+                                                            <Font name="System Bold" size="30.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextFlow prefHeight="114.0" prefWidth="418.0" style="-fx-border-color: grey; -fx-border-width: 0 0 2 0;">
+                                                         <children>
+                                                            <Label alignment="TOP_LEFT" prefHeight="126.0" prefWidth="422.0" text="Perched atop a quaint hill, The Treehouse is surrounded by the spectacular landscapes of  Sahayadri, offering an epic panorama of the valley of Marayoor. Close to the Sandalwood forest and Chinnar Wildlife Sanctuary, The Mudhouse offers a tranquil escape from reality.Here, time moves unhurriedly, slowly painting the sky a different hue each passing hour.  The eco-friendly constructed tree and mud cottages reflect barefoot luxury, helping you stay rooted to Earth but still be close to Heaven." textAlignment="JUSTIFY" wrapText="true" />
+                                                         </children>
+                                                      </TextFlow>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="156.0" prefWidth="423.0" style="-fx-background-color: #EEEBE0;">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="48.0" prefWidth="471.0" style="-fx-background-color: white;" text="AMENITIES">
+                                                         <font>
+                                                            <Font name="System Bold" size="30.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <HBox alignment="BOTTOM_CENTER" prefHeight="94.0" prefWidth="403.0" spacing="5.0">
+                                                         <children>
+                                                            <Label alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #dc473c;" text="⛄" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="AC" />
+                                                               </tooltip>
+                                                            </Label>
+                                                            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #F0C04C;" text="🛌" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="Furniture" />
+                                                               </tooltip>
+                                                            </Label>
+                                                            <Label alignment="CENTER" layoutX="70.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #6FBA3B;" text="📶" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="Wifi" />
+                                                               </tooltip>
+                                                            </Label>
+                                                            <Label alignment="CENTER" layoutX="130.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #2FB6C3;" text="🚽" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="Attached Bathroom" />
+                                                               </tooltip>
+                                                            </Label>
+                                                            <Label alignment="CENTER" layoutX="190.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #9F20C0;" text="🍔" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="Room Delivery" />
+                                                               </tooltip>
+                                                            </Label>
+                                                            <Label alignment="CENTER" layoutX="250.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #FF51CF;" text="☎" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="Phone" />
+                                                               </tooltip>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="19.0" prefWidth="423.0">
+                                                         <children>
+                                                            <Label alignment="TOP_CENTER" prefHeight="19.0" prefWidth="424.0" text="These are the feature or facility of this room">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <Label alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="12.0" prefWidth="423.0" text="Note: Grey means not avaliable. Hover on the icon to know more">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="5.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="291.0" prefHeight="465.0" prefWidth="965.0" spacing="25.0">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <FlowPane alignment="CENTER" hgap="20.0" prefHeight="721.0" prefWidth="882.0" vgap="20.0">
+                                             <children>
+                                                <VBox prefHeight="690.0" prefWidth="429.0" spacing="20.0">
+                                                   <children>
+                                                      <HBox prefHeight="206.0" prefWidth="429.0">
+                                                         <children>
+                                                            <VBox alignment="CENTER" prefHeight="206.0" prefWidth="206.0" spacing="15.0" style="-fx-background-color: White; -fx-background-radius: 0em 0em 2em 0em; -fx-border-color: grey; -fx-border-width: 2; -fx-border-radius: 0em 0em 2em 0em;">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefHeight="82.0" prefWidth="145.0" style="-fx-background-color: #EEEBE0; -fx-background-radius: .25em .25em .25em .25em; -fx-border-color: #D2CFC5; -fx-border-radius: .25em .25em .25em .25em;" text="10🌟">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="47.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label alignment="CENTER" layoutX="43.0" layoutY="78.0" prefHeight="51.0" prefWidth="140.0" style="-fx-background-color: #EEEBE0; -fx-background-radius: .25em .25em .25em .25em; -fx-border-color: #D2CFC5; -fx-border-radius: .25em .25em .25em .25em;" text="GOOD">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="25.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="165.0" prefWidth="235.0" spacing="15.0" style="-fx-background-color: #EEEBE0; -fx-background-radius: 0em 0em 2em 0em; -fx-border-color: grey; -fx-border-width: 2 2 2 0; -fx-border-radius: 0em 0em 2em 0em;">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #6fba3b; -fx-background-radius: 0em .25em .25em 0em;" text="Quality - Excellent">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="15.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="85.0" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #f0c04c; -fx-background-radius: 0em .25em .25em 0em;" text="Space - Medium">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="15.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="106.0" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #6fba3b; -fx-background-radius: 0em .25em .25em 0em;" text="Services - Outstanding">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="15.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="20.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox alignment="CENTER" prefHeight="114.0" prefWidth="418.0" spacing="15.0" style="-fx-background-color: #EEEBE0; -fx-background-radius: 0em 0em 2em 0em; -fx-border-color: grey; -fx-border-width: 1; -fx-border-radius: 0em 0em 2em 0em;">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="116.0" prefWidth="408.0" spacing="10.0">
+                                                               <VBox.margin>
+                                                                  <Insets right="20.0" />
+                                                               </VBox.margin>
+                                                               <children>
+                                                                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <viewport>
+                                                                        <Rectangle2D height="512.0" width="512.0" />
+                                                                     </viewport>
+                                                                     <image>
+                                                                        <Image url="@../images/unknownComment.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <VBox prefHeight="110.0" prefWidth="266.0">
+                                                                     <children>
+                                                                        <Label prefHeight="23.0" prefWidth="266.0" text="John Doe">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="20.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="83.0" prefWidth="266.0" text="LOVED IT! The experience was very good. I'm impressed by the hospitality. Hygienic food.. " wrapText="true">
+                                                                           <font>
+                                                                              <Font size="13.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets bottom="10.0" top="10.0" />
+                                                                     </HBox.margin>
+                                                                  </VBox>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER" layoutX="10.0" layoutY="236.0" prefHeight="114.0" prefWidth="418.0" spacing="15.0" style="-fx-background-color: #EEEBE0; -fx-background-radius: 0em 0em 2em 0em; -fx-border-color: grey; -fx-border-width: 1; -fx-border-radius: 0em 0em 2em 0em;">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="116.0" prefWidth="408.0" spacing="10.0">
+                                                               <VBox.margin>
+                                                                  <Insets right="20.0" />
+                                                               </VBox.margin>
+                                                               <children>
+                                                                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <viewport>
+                                                                        <Rectangle2D height="512.0" width="512.0" />
+                                                                     </viewport>
+                                                                     <image>
+                                                                        <Image url="@../images/unknownComment.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <VBox prefHeight="110.0" prefWidth="266.0">
+                                                                     <children>
+                                                                        <Label prefHeight="23.0" prefWidth="266.0" text="John Doe">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="20.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="83.0" prefWidth="266.0" text="LOVED IT! The experience was very good. I'm impressed by the hospitality. Hygienic food.. " wrapText="true">
+                                                                           <font>
+                                                                              <Font size="13.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets bottom="10.0" top="10.0" />
+                                                                     </HBox.margin>
+                                                                  </VBox>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER" layoutX="10.0" layoutY="371.0" prefHeight="114.0" prefWidth="418.0" spacing="15.0" style="-fx-background-color: #EEEBE0; -fx-background-radius: 0em 0em 2em 0em; -fx-border-color: grey; -fx-border-width: 1; -fx-border-radius: 0em 0em 2em 0em;">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="116.0" prefWidth="408.0" spacing="10.0">
+                                                               <VBox.margin>
+                                                                  <Insets right="20.0" />
+                                                               </VBox.margin>
+                                                               <children>
+                                                                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <viewport>
+                                                                        <Rectangle2D height="512.0" width="512.0" />
+                                                                     </viewport>
+                                                                     <image>
+                                                                        <Image url="@../images/unknownComment.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <VBox prefHeight="110.0" prefWidth="266.0">
+                                                                     <children>
+                                                                        <Label prefHeight="23.0" prefWidth="266.0" text="John Doe">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="20.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="83.0" prefWidth="266.0" text="LOVED IT! The experience was very good. I'm impressed by the hospitality. Hygienic food.. " wrapText="true">
+                                                                           <font>
+                                                                              <Font size="13.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets bottom="10.0" top="10.0" />
+                                                                     </HBox.margin>
+                                                                  </VBox>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER" layoutX="10.0" layoutY="505.0" prefHeight="114.0" prefWidth="418.0" spacing="15.0" style="-fx-background-color: #EEEBE0; -fx-background-radius: 0em 0em 2em 0em; -fx-border-color: grey; -fx-border-width: 1; -fx-border-radius: 0em 0em 2em 0em;">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="116.0" prefWidth="408.0" spacing="10.0">
+                                                               <VBox.margin>
+                                                                  <Insets right="20.0" />
+                                                               </VBox.margin>
+                                                               <children>
+                                                                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <viewport>
+                                                                        <Rectangle2D height="512.0" width="512.0" />
+                                                                     </viewport>
+                                                                     <image>
+                                                                        <Image url="@../images/unknownComment.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <VBox prefHeight="110.0" prefWidth="266.0">
+                                                                     <children>
+                                                                        <Label prefHeight="23.0" prefWidth="266.0" text="John Doe">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="20.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="83.0" prefWidth="266.0" text="LOVED IT! The experience was very good. I'm impressed by the hospitality. Hygienic food.. " wrapText="true">
+                                                                           <font>
+                                                                              <Font size="13.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets bottom="10.0" top="10.0" />
+                                                                     </HBox.margin>
+                                                                  </VBox>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                   <FlowPane.margin>
+                                                      <Insets />
+                                                   </FlowPane.margin>
+                                                </VBox>
+                                                <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="426.0" style="-fx-border-color: grey; -fx-background-radius: 0 0  .5em  .5em; -fx-border-radius: 0 0  .5em .5em; -fx-background-color: #EEEBE0;">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="59.0" prefWidth="466.0" style="-fx-background-color: White;" text="BOOK THIS ROOM">
+                                                         <font>
+                                                            <Font name="System Bold" size="30.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox alignment="CENTER" prefHeight="79.0" prefWidth="425.0" spacing="8.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="189.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="94.0" style="-fx-background-color: #229443; -fx-background-radius: .25em 0 0  .25em;" text="CHECK IN" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <DatePicker fx:id="checkIn" prefHeight="40.0" prefWidth="109.0" promptText="Arrival &gt;" style="-fx-background-color: white;" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="208.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="113.0" style="-fx-background-color: #f0c04c; -fx-background-radius: .25em 0 0  .25em;" text="CHECK OUT" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <DatePicker fx:id="checkOut" prefHeight="40.0" prefWidth="113.0" promptText="Departure &gt;" style="-fx-background-color: white;" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="425.0" style="-fx-background-color: White;">
+                                                         <children>
+                                                            <Label alignment="CENTER" prefHeight="34.0" prefWidth="402.0" text="DETAILS">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="BOTTOM_CENTER" prefHeight="67.0" prefWidth="425.0" spacing="20.0">
+                                                         <children>
+                                                            <Label alignment="CENTER" prefHeight="45.6" prefWidth="205.0" style="-fx-background-color: #229443; -fx-background-radius: .5em .5em 0 0;" text="ARRIVAL" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label alignment="CENTER" prefHeight="45.6" prefWidth="205.0" style="-fx-background-color: #f0c04c; -fx-background-radius: .5em .5em 0 0;" text="DEPARTURE" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets right="10.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="11.0" layoutY="301.0" prefHeight="57.0" prefWidth="425.0" spacing="20.0">
+                                                         <children>
+                                                            <Label prefHeight="45.6" prefWidth="205.0" style="-fx-background-color: #97d948; -fx-background-radius: 0 0  .5em  .5em;">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #f4d66e; -fx-background-radius: 0 0  .5em .5em;">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets right="10.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="BOTTOM_CENTER" layoutX="11.0" layoutY="195.0" prefHeight="58.0" prefWidth="425.0" spacing="20.0">
+                                                         <children>
+                                                            <Label alignment="CENTER" prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #86482f; -fx-background-radius: .5em .5em 0 0;" text="DAY" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label alignment="CENTER" prefHeight="45.6" prefWidth="205.0" style="-fx-background-color: #2a5684; -fx-background-radius: .5em .5em 0 0;" text="NIGHT" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets right="10.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="11.0" layoutY="229.0" prefHeight="57.0" prefWidth="425.0" spacing="20.0">
+                                                         <children>
+                                                            <Label prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #e1a17e; -fx-background-radius: 0 0  .5em  .5em;">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #2c89af; -fx-background-radius: 0 0  .5em .5em;">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets right="10.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="11.0" layoutY="149.0" prefHeight="43.0" prefWidth="425.0" style="-fx-background-color: White;">
+                                                         <children>
+                                                            <Label alignment="CENTER" prefHeight="34.0" prefWidth="402.0" text="INVOICE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="30.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="BOTTOM_CENTER" layoutX="11.0" layoutY="70.0" prefHeight="65.0" prefWidth="425.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #dc473c; -fx-background-radius: .25em 0 0  .25em;" text="PRICE" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #ec6a45; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="208.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #f0c04c; -fx-background-radius: .25em 0 0  .25em;" text="TAX" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #f4d66e; -fx-background-radius: 0 .25em .25em 0;" text="0%" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="11.0" layoutY="367.0" prefHeight="48.0" prefWidth="425.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="189.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #2778a1; -fx-background-radius: .25em 0 0  .25em;" text="OFF" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #54cfd8; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="208.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #229443; -fx-background-radius: .25em 0 0  .25em;" text="TOTAL" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #97d948; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="17.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                      </HBox>
+                                                      <JFXButton fx:id="bookRoom" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAction" prefHeight="74.0" prefWidth="411.0" style="-fx-background-color: #6fba3b; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: .5em; -fx-background-radius: .6em;" text="BOOK NOW!" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="27.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </JFXButton>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="694.0" prefWidth="300.0" style="-fx-background-color: #2d2c33;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane layoutY="30.0" prefHeight="180.0" prefWidth="300.0" style="-fx-border-width: 1 0 1 0; -fx-border-color: #40404a;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                     <children>
+                        <AnchorPane layoutX="11.0" layoutY="97.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white; -fx-background-radius: 5em 5em 5em 5em;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <viewport>
+                                    <Rectangle2D height="512.0" width="512.0" />
+                                 </viewport>
+                                 <image>
+                                    <Image url="@../images/unknownComment.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="userName" alignment="TOP_LEFT" layoutX="84.0" layoutY="74.0" prefHeight="45.0" prefWidth="202.0" text="USERNAME" textFill="WHITE" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="63.0">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Circle fx:id="onlineIndicator" fill="DODGERBLUE" layoutX="89.0" layoutY="110.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="109.0" />
+                        <Label fx:id="userStatus" layoutX="105.0" layoutY="92.0" prefHeight="30.0" prefWidth="95.0" text="Fetching..." textFill="WHITE" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="96.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="hotelName" alignment="BASELINE_LEFT" layoutX="14.0" layoutY="12.0" prefHeight="52.0" prefWidth="300.0" text="HOTEL NAME" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                           <font>
+                              <Font name="Arial Bold" size="41.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="7.0" />
+                           </padding>
+                        </Label>
+                        <Region layoutX="12.0" layoutY="153.0" prefHeight="20.0" prefWidth="167.0" style="-fx-background-color: white; -fx-background-radius: .5em .5em .5em 0em;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="457.0" prefWidth="291.0" style="-fx-background-color: #2d2c33; -fx-background-color: #25242a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="211.0">
+                     <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="490.0" prefWidth="300.0" style="-fx-background-color: #25242a;" styleClass="edge-to-edge" stylesheets="@scrollbar.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <VBox prefHeight="490.0" prefWidth="300.0" style="-fx-background-color: #25242a;">
+                                 <children>
+                                    <JFXButton fx:id="home" alignment="BASELINE_LEFT" onAction="#onAction" prefHeight="56.0" prefWidth="298.0" text="HOME" textFill="#eeebe0" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="myBooking" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="MyBOOKING" textFill="#eeebe0" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="orderFood" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="ORDER FOOD" textFill="#eeebe0" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="services" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="SERVICES" textFill="#eeebe0" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="invoice" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="INVOICES" textFill="#eeebe0" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="settings" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="SETTINGS" textFill="#eeebe0" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="feedback" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="FEEDBACK" textFill="#eeebe0" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="logout" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="682.0" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="LOGOUT" textFill="#eeebe0" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #2d2c33;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="Quit" alignment="CENTER" layoutX="902.0" layoutY="1.0" onAction="#onAction" onMouseEntered="#setOnHover" onMouseExited="#setDefault" prefHeight="30.0" prefWidth="40.0" ripplerFill="#ff8282" text="X" textFill="WHITE" AnchorPane.bottomAnchor="0.2" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="Minimize" alignment="CENTER" layoutX="852.0" layoutY="5.0" onAction="#onAction" onMouseEntered="#setOnHover" onMouseExited="#setDefault" prefHeight="30.0" prefWidth="40.0" ripplerFill="#ffd980" text="l" textFill="WHITE" AnchorPane.bottomAnchor="0.2" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="Expand" alignment="CENTER" contentDisplay="CENTER" layoutX="859.0" layoutY="10.0" onAction="#onAction" onMouseEntered="#setOnHover" onMouseExited="#setDefault" prefHeight="30.0" prefWidth="40.0" ripplerFill="#ff9980" text="II" textFill="WHITE" AnchorPane.bottomAnchor="0.2" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <Label alignment="BASELINE_LEFT" layoutX="19.0" layoutY="3.0" prefHeight="26.0" prefWidth="28.0" text="RUTHLESS RACCOONS" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <ImageView cache="true" fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="1260.0" AnchorPane.topAnchor="5.0">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <image>
+                        <Image url="@../images/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
