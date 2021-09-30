@@ -1,4 +1,4 @@
-package login;
+package Dashboard_1;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,27 +10,26 @@ import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
-public class Login_run extends Application {
+public class main extends Application {
     double xOffset;
     double yOffset;
-
+    Parent root;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-
+    public void start(Stage stage) throws Exception {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login_Scene.fxml")));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Dashboard_1/main.fxml")));
             Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT);
-            primaryStage.setScene(scene);
-//            primaryStage.setHeight(400);
-//            primaryStage.setWidth(600);
-            //  primaryStage.setTitle("Hello Siri");
-            primaryStage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.WHITE);
+            stage.setScene(scene);
+//            stage.setHeight(400);
+//            stage.setWidth(600);
+            stage.setTitle("Hello Siri");
+            stage.initStyle(StageStyle.TRANSPARENT);
 
             root.setOnMousePressed(mouseEvent -> {
                 xOffset = mouseEvent.getSceneX();
@@ -38,17 +37,14 @@ public class Login_run extends Application {
             });
 
             root.setOnMouseDragged(mouseEvent -> {
-                primaryStage.setX(mouseEvent.getScreenX()-xOffset);
-                primaryStage.setY(mouseEvent.getScreenY()-yOffset);
+                stage.setX(mouseEvent.getScreenX() - xOffset);
+                stage.setY(mouseEvent.getScreenY() - yOffset);
             });
 
 
-
-            primaryStage.show();
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 }

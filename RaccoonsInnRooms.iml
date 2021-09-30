@@ -7,5 +7,59 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../javafx-sdk-16/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../javafx-sdk-16/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../javafx-sdk-16/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../javafx-sdk-16/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Mail/javax.activation-1.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Mail/javax.mail.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Jfoenix/jfoenix-9.0.10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../javafx-sdk-16/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../javafx-sdk-16/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../javafx-sdk-16/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../javafx-sdk-16/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="mysql-connector-java-8.0.26" level="project" />
   </component>
 </module>
