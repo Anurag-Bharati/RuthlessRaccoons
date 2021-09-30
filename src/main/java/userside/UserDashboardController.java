@@ -10,7 +10,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -22,7 +25,10 @@ import main.java.registration.User;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
+
+@SuppressWarnings("All")
 
 public class UserDashboardController implements Initializable {
     protected static Stage stage;
@@ -31,21 +37,39 @@ public class UserDashboardController implements Initializable {
     static User user;
     static FXMLLoader fxmlLoader = new FXMLLoader();
     static UserDashboardController userDashboardController;
+    LocalDateTime dateTime;
 
     private @FXML AnchorPane rootStageUser;
     private @FXML AnchorPane rootScene;
+
+    private @FXML ScrollPane roomScrollPane;
 
 
     private  @FXML JFXButton Quit;
     private  @FXML JFXButton Minimize;
     private  @FXML JFXButton Expand;
+    private  @FXML JFXButton home, myBooking, orderFood, services, invoice, settings, feedback, logout;
 
-    private @FXML JFXButton roomA;
+    private @FXML JFXButton roomA, roomB, roomC, roomD, roomE, roomF, roomG, roomH, roomI, roomJ, rookK,roomL;
     private @FXML JFXButton roomBack;
+    private @FXML JFXButton gotoBook;
+    private @FXML JFXButton bookRoom;
 
     private @FXML Region loadBar;
 
     private @FXML Label userName, userStatus, hotelName;
+    // Room
+    private @FXML Label roomName, roomDesc, roomPrice, roomRating, roomFloor;
+    // Amenity
+    private @FXML Label amenity_ac, amenity_attached, amenity_wifi,amenity_landline;
+    // BookRoom
+    private @FXML DatePicker checkIn, checkOut;
+    // Details
+    private @FXML Label arrival, departure, day, night;
+    // Invoice
+    private @FXML Label roomPriceInvoice, tax, off, total;
+
+
     private @FXML Circle onlineIndicator;
 
     static String name;
@@ -107,20 +131,72 @@ public class UserDashboardController implements Initializable {
                 System.exit(0);
             });
         }
-        if (actionEvent.getSource().equals(Minimize)){
+        else if (actionEvent.getSource().equals(Minimize)){
             stage.setIconified(!stage.isIconified());
         }
-        if (actionEvent.getSource().equals(Expand)){
+        else if (actionEvent.getSource().equals(Expand)){
             stage.setMaximized(!stage.isMaximized());
         }
-        if (actionEvent.getSource().equals(roomA)){
+        else if (actionEvent.getSource().equals(roomA)){
             root.setDisable(true);
             animateLoading("usersideRoom.fxml",actionEvent);
+
         }
-        if (actionEvent.getSource().equals(roomBack)){
-            root.setDisable(true);
-            animateLoading("userside.fxml", actionEvent);
+        else if (actionEvent.getSource().equals(roomBack)|| actionEvent.getSource().equals(home)){
+            if(rootStageUser.getChildren().get(0).getId().equals("homePane")){
+                return;
+            } else {
+                root.setDisable(true);
+                roomScrollPane.setVvalue(0.0);
+                animateLoading("adminside.fxml", actionEvent);
+            }
         }
+        else if (actionEvent.getSource().equals(gotoBook)){
+            roomScrollPane.setVvalue(0.7);
+        }
+        else if (actionEvent.getSource().equals(bookRoom)){
+           if(checkBooking()){
+               System.out.println("Pass");
+
+           }
+        }
+    }
+
+    private boolean checkBooking(){
+
+        if (checkIn.getValue()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.showAndWait();
+            return false;
+        }
+        else if (checkOut.getValue()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.showAndWait();
+            return false;
+        }
+        LocalDate checkInDate = checkIn.getValue();
+        LocalDate checkOutDate = checkOut.getValue();
+        LocalDate currentDate = LocalDate.now();
+        int restult1 = checkInDate.compareTo(currentDate);
+        int restult2 = checkOutDate.compareTo(checkInDate);
+        int restult3 = checkOutDate.compareTo(currentDate);
+
+        if (restult1 <= 0){
+            System.out.println("Booking Must be done 1 day prior");
+            return false;
+        }
+
+        if (restult2<=0){
+            if (restult3 <0){
+                System.out.println("Invalid CheckOut Date");
+                return false;
+            }
+            System.out.println("Invalid CheckIn Date");
+            return false;
+        }
+
+
+       return true;
     }
 
     private void switchToSubScene(String fxml, ActionEvent actionEvent) throws IOException {
@@ -222,6 +298,11 @@ public class UserDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
     }
 }
 

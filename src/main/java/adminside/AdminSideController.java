@@ -11,31 +11,47 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@SuppressWarnings("All")
 public class AdminSideController implements Initializable {
     protected Stage stage;
     protected Scene scene;
     protected Parent root;
 
     private @FXML AnchorPane rootStageUser;
+    private  @FXML JFXButton Quit;
+    private  @FXML JFXButton Minimize;
+    private  @FXML JFXButton Expand;
+    private  @FXML JFXButton home, myBooking, orderFood, services, invoice, settings, feedback, logout;
 
-    private @FXML JFXButton Quit;
-    private @FXML JFXButton Minimize;
-    private @FXML JFXButton Expand;
+    private @FXML JFXButton roomA, roomB, roomC, roomD, roomE, roomF, roomG, roomH, roomI, roomJ, rookK,roomL;
+    private @FXML JFXButton roomBack;
+    private @FXML JFXButton gotoBook;
+    private @FXML JFXButton bookRoom;
+
+    private @FXML
+    Region loadBar;
 
     private @FXML Label userName, userStatus, hotelName;
-    private @FXML Circle onlineIndicator;
-    private @FXML StackPane roomAParent;
+    // Room
+    private @FXML Label roomName, roomDesc, roomPrice, roomRating, roomFloor;
+    // Amenity
+    private @FXML Label amenity_ac, amenity_attached, amenity_wifi,amenity_landline;
+    // BookRoom
+    private @FXML
+    DatePicker checkIn, checkOut;
+    // Details
+    private @FXML Label arrival, departure, day, night;
+    // Invoice
+    private @FXML Label roomPriceInvoice, tax, off, total;
 
     @FXML
     private void onAction(ActionEvent actionEvent){
