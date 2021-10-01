@@ -46,7 +46,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="141.0" style="-fx-background-color: #F0C04C; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10;" text="BOOK NOW!" textFill="WHITE" AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="18.00000000000003" AnchorPane.topAnchor="80.0">
+                        <JFXButton fx:id="BOOK_NOW" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAction" prefHeight="46.0" prefWidth="141.0" style="-fx-background-color: #F0C04C; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10;" text="BOOK NOW!" textFill="WHITE" AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="18.00000000000003" AnchorPane.topAnchor="80.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

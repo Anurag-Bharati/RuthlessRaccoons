@@ -19,6 +19,7 @@ public class Main extends Application {
     protected Stage stage;
     final String LOGIN = "/main/resource/login/Login_Scene.fxml";
     final String USERSIDE = "/main/resource/userside/userside.fxml";
+    final String BOOKINGS = "/main/resource/userside/myBookings.fxml";
 
     public static void main(String[] args) {
         launch(args);
@@ -29,7 +30,7 @@ public class Main extends Application {
         try{
 
             Parent root = FXMLLoader.load((Objects.requireNonNull(
-                    getClass().getResource(USERSIDE))));
+                    getClass().getResource(LOGIN))));
             scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);

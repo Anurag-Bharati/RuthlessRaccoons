@@ -24,9 +24,10 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
-@SuppressWarnings("All")
+//@SuppressWarnings("All")
 
 public class UserDashboardController implements Initializable {
     protected static Stage stage;
@@ -35,6 +36,7 @@ public class UserDashboardController implements Initializable {
     static User user;
     static FXMLLoader fxmlLoader = new FXMLLoader();
     static UserDashboardController userDashboardController;
+    static MyBookingsController myBookingsController;
     static LocalDateTime dateTime;
     static Alert alert;
 
@@ -50,6 +52,7 @@ public class UserDashboardController implements Initializable {
     private  @FXML JFXButton home, myBooking, orderFood, services, invoice, settings, feedback, logout;
 
     private @FXML JFXButton roomA, roomB, roomC, roomD, roomE, roomF, roomG, roomH, roomI, roomJ, rookK,roomL;
+    private @FXML JFXButton BOOK_NOW;
     private @FXML JFXButton roomBack;
     private @FXML JFXButton gotoBook;
     private @FXML JFXButton bookRoom;
@@ -72,12 +75,6 @@ public class UserDashboardController implements Initializable {
 
     private @FXML Circle onlineIndicator;
 
-    static String name;
-    static String gmail;
-    static String phone;
-    static LocalDate dob;
-    static String gender;
-    static String password;
     static ScaleTransition scaleTransitionLoadBar;
     static TranslateTransition translateTransitionRootScene;
     static ScaleTransition scaleTransitionApplyUser;
@@ -88,12 +85,6 @@ public class UserDashboardController implements Initializable {
 
         /*This method saves data from scene one*/
         UserDashboardController.user = new User();
-        name = user.getName();
-        gmail = user.getGmail();
-        phone = user.getPhone();
-        dob = user.getDob();
-        gender = user.getGender();
-        password = user.getPassword();
         UserDashboardController.user.setName(user.getName());
         UserDashboardController.user.setGmail(user.getGmail());
         UserDashboardController.user.setPhone(user.getPhone());
@@ -137,7 +128,7 @@ public class UserDashboardController implements Initializable {
         else if (actionEvent.getSource().equals(Expand)){
             stage.setMaximized(!stage.isMaximized());
         }
-        else if (actionEvent.getSource().equals(roomA)){
+        else if (actionEvent.getSource().equals(roomA) || actionEvent.getSource().equals(BOOK_NOW)){
             root.setDisable(true);
             animateLoading("userside/usersideRoom.fxml",actionEvent);
 
@@ -158,15 +149,20 @@ public class UserDashboardController implements Initializable {
             if (checkBooking()){
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText("Booking Confirmation");
-                alert.setContentText("Please confirm your booking");
+                alert.setContentText("Are you sure to book this room?\nYour Total: $"+totalPrice);
                 alert.showAndWait();
-                if(alert.getResult().equals(alert.getResult().OK)){
-
+                if(alert.getResult().equals(ButtonType.OK)){
+                    // TODO: 10/1/2021 Send Booking Data to DB
+                    System.out.println("Nice");
                 }
-                else if(alert.getResult().equals(alert.getResult().CANCEL)){
-
+                else if(alert.getResult().equals(ButtonType.CANCEL)){
+                    System.out.println("Booking Process Purged!");
                 }
             }
+        }
+        else if (actionEvent.getSource().equals(myBooking)){
+            root.setDisable(true);
+            animateLoading("userside/myBookings.fxml", actionEvent);
         }
     }
     @FXML
@@ -184,9 +180,9 @@ public class UserDashboardController implements Initializable {
             day.setText(String.valueOf(int_day+1));
             night.setText(String.valueOf(int_day));
             roomPriceInvoice.setText("$"+roomPrice.getText());
-
             totalPrice = int_day*Float.parseFloat(String.valueOf(roomPrice.getText()));
-            total.setText(String.valueOf(totalPrice));
+            totalPrice = (float) Math.round(totalPrice * 100)/100;
+            total.setText("$"+totalPrice);
             bookRoom.setDisable(false);
         }
     }
@@ -194,19 +190,27 @@ public class UserDashboardController implements Initializable {
 
     private void switchToSubScene(String fxml, ActionEvent actionEvent) throws IOException {
 
-        // FIXED MAJOR MEMORY LEAK (~100MB) ISSUE WAS CAUSED BY ANIMATION IN ANIMATION LOADING
-
         fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/"+fxml));
         root = fxmlLoader.load();
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = ((Node) actionEvent.getSource()).getScene();
-        userDashboardController = fxmlLoader.getController();
-        if (user!=null) {
-            userDashboardController.initUser(user);
+        if (Objects.equals(fxml, "userside/userside.fxml") || Objects.equals(fxml, "userside/usersideRoom.fxml")) {
+            userDashboardController = fxmlLoader.getController();
+            if (user != null) {
+                userDashboardController.initUser(user);
+            }
+        }
+        else {
+            if (Objects.equals(fxml,"userside/myBookings.fxml")){
+                myBookingsController = fxmlLoader.getController();
+                myBookingsController.initUser(user);
+            }
+            else if (Objects.equals(fxml,"userside/invoice.fxml")){
+                // TODO: 10/1/2021  
+            }
         }
         scene.setRoot(root);
         root.setDisable(false);
-
     }
 
     @FXML
@@ -293,10 +297,7 @@ public class UserDashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
+
     @FXML
     private void enableCheckOut(){
         if (checkIn.getValue()==null) {
