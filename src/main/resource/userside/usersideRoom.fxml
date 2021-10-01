@@ -45,7 +45,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <Label fx:id="roomPrice" alignment="CENTER" layoutX="318.0" prefHeight="55.0" prefWidth="57.0" style="-fx-background-color: #dc473c; -fx-border-color: white; -fx-background-radius: 10 0 0 10;" text="\$N/A" textFill="WHITE" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="15.0">
+                        <Label fx:id="roomPrice" alignment="CENTER" layoutX="318.0" prefHeight="55.0" prefWidth="57.0" style="-fx-background-color: #dc473c; -fx-border-color: white; -fx-background-radius: 10 0 0 10;" text="9.99" textFill="WHITE" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="15.0">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
@@ -157,7 +157,7 @@
                   </AnchorPane>
                   <AnchorPane layoutY="182.0" prefHeight="510.0" prefWidth="981.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
                      <children>
-                        <ScrollPane fx:id="roomScrollPane" fitToWidth="true" prefHeight="691.0" prefWidth="980.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane fx:id="roomScrollPane" fitToWidth="true" prefHeight="691.0" prefWidth="980.0" vvalue="0.75" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
                               <VBox prefHeight="1361.0" prefWidth="965.0">
                                  <children>
@@ -542,7 +542,7 @@
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <DatePicker fx:id="checkIn" prefHeight="40.0" prefWidth="109.0" promptText="Arrival &gt;" style="-fx-background-color: white;" />
+                                                                  <DatePicker fx:id="checkIn" editable="false" onHidden="#enableCheckOut" prefHeight="40.0" prefWidth="109.0" promptText="Arrival &gt;" style="-fx-background-color: white;" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="208.0">
@@ -552,7 +552,7 @@
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <DatePicker fx:id="checkOut" prefHeight="40.0" prefWidth="113.0" promptText="Departure &gt;" style="-fx-background-color: white;" />
+                                                                  <DatePicker fx:id="checkOut" disable="true" editable="false" onHidden="#calculate" prefHeight="40.0" prefWidth="113.0" promptText="Fill CheckIN" style="-fx-background-color: white;" />
                                                                </children>
                                                             </HBox>
                                                          </children>
@@ -591,7 +591,7 @@
                                                       </HBox>
                                                       <HBox alignment="CENTER" layoutX="11.0" layoutY="301.0" prefHeight="57.0" prefWidth="425.0" spacing="20.0">
                                                          <children>
-                                                            <Label prefHeight="45.6" prefWidth="205.0" style="-fx-background-color: #97d948; -fx-background-radius: 0 0  .5em  .5em;">
+                                                            <Label fx:id="arrival" alignment="CENTER" prefHeight="45.6" prefWidth="205.0" style="-fx-background-color: #97d948; -fx-background-radius: 0 0  .5em  .5em;" text="N/A">
                                                                <font>
                                                                   <Font name="System Bold" size="30.0" />
                                                                </font>
@@ -599,7 +599,7 @@
                                                                   <Insets left="10.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #f4d66e; -fx-background-radius: 0 0  .5em .5em;">
+                                                            <Label fx:id="departure" alignment="CENTER" prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #f4d66e; -fx-background-radius: 0 0  .5em .5em;" text="N/A">
                                                                <font>
                                                                   <Font name="System Bold" size="30.0" />
                                                                </font>
@@ -631,7 +631,7 @@
                                                       </HBox>
                                                       <HBox alignment="CENTER" layoutX="11.0" layoutY="229.0" prefHeight="57.0" prefWidth="425.0" spacing="20.0">
                                                          <children>
-                                                            <Label prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #e1a17e; -fx-background-radius: 0 0  .5em  .5em;">
+                                                            <Label fx:id="day" alignment="CENTER" prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #e1a17e; -fx-background-radius: 0 0  .5em  .5em;" text="N/A">
                                                                <font>
                                                                   <Font name="System Bold" size="30.0" />
                                                                </font>
@@ -639,7 +639,7 @@
                                                                   <Insets left="10.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #2c89af; -fx-background-radius: 0 0  .5em .5em;">
+                                                            <Label fx:id="night" alignment="CENTER" prefHeight="46.0" prefWidth="205.0" style="-fx-background-color: #2c89af; -fx-background-radius: 0 0  .5em .5em;" text="N/A">
                                                                <font>
                                                                   <Font name="System Bold" size="30.0" />
                                                                </font>
@@ -670,7 +670,7 @@
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #ec6a45; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
+                                                                  <Label fx:id="roomPriceInvoice" alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #ec6a45; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
                                                                      <font>
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
@@ -684,7 +684,7 @@
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #f4d66e; -fx-background-radius: 0 .25em .25em 0;" text="0%" textFill="WHITE">
+                                                                  <Label fx:id="tax" alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #f4d66e; -fx-background-radius: 0 .25em .25em 0;" text="0%" textFill="WHITE">
                                                                      <font>
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
@@ -705,7 +705,7 @@
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #54cfd8; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
+                                                                  <Label fx:id="off" alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #54cfd8; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
                                                                      <font>
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
@@ -719,7 +719,7 @@
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <Label alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #97d948; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
+                                                                  <Label fx:id="total" alignment="CENTER" layoutX="10.0" layoutY="30.0" prefHeight="40.0" prefWidth="105.0" style="-fx-background-color: #97d948; -fx-background-radius: 0 .25em .25em 0;" text="\$0" textFill="WHITE">
                                                                      <font>
                                                                         <Font name="System Bold" size="17.0" />
                                                                      </font>
@@ -731,7 +731,7 @@
                                                             <Insets />
                                                          </opaqueInsets>
                                                       </HBox>
-                                                      <JFXButton fx:id="bookRoom" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAction" prefHeight="74.0" prefWidth="411.0" style="-fx-background-color: #6fba3b; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: .5em; -fx-background-radius: .6em;" text="BOOK NOW!" textFill="WHITE">
+                                                      <JFXButton fx:id="bookRoom" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onAction" prefHeight="74.0" prefWidth="411.0" style="-fx-background-color: #6fba3b; -fx-border-color: white; -fx-border-width: 5; -fx-border-radius: .5em; -fx-background-radius: .6em;" text="BOOK NOW!" textFill="WHITE">
                                                          <font>
                                                             <Font name="System Bold" size="27.0" />
                                                          </font>

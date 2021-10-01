@@ -10,10 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -26,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
 @SuppressWarnings("All")
@@ -37,7 +35,8 @@ public class UserDashboardController implements Initializable {
     static User user;
     static FXMLLoader fxmlLoader = new FXMLLoader();
     static UserDashboardController userDashboardController;
-    LocalDateTime dateTime;
+    static LocalDateTime dateTime;
+    static Alert alert;
 
     private @FXML AnchorPane rootStageUser;
     private @FXML AnchorPane rootScene;
@@ -68,6 +67,7 @@ public class UserDashboardController implements Initializable {
     private @FXML Label arrival, departure, day, night;
     // Invoice
     private @FXML Label roomPriceInvoice, tax, off, total;
+    Float totalPrice;
 
 
     private @FXML Circle onlineIndicator;
@@ -139,7 +139,7 @@ public class UserDashboardController implements Initializable {
         }
         else if (actionEvent.getSource().equals(roomA)){
             root.setDisable(true);
-            animateLoading("usersideRoom.fxml",actionEvent);
+            animateLoading("userside/usersideRoom.fxml",actionEvent);
 
         }
         else if (actionEvent.getSource().equals(roomBack)|| actionEvent.getSource().equals(home)){
@@ -148,62 +148,55 @@ public class UserDashboardController implements Initializable {
             } else {
                 root.setDisable(true);
                 roomScrollPane.setVvalue(0.0);
-                animateLoading("adminside.fxml", actionEvent);
+                animateLoading("userside/userside.fxml", actionEvent);
             }
         }
         else if (actionEvent.getSource().equals(gotoBook)){
             roomScrollPane.setVvalue(0.7);
         }
         else if (actionEvent.getSource().equals(bookRoom)){
-           if(checkBooking()){
-               System.out.println("Pass");
+            if (checkBooking()){
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Booking Confirmation");
+                alert.setContentText("Please confirm your booking");
+                alert.showAndWait();
+                if(alert.getResult().equals(alert.getResult().OK)){
 
-           }
-        }
-    }
+                }
+                else if(alert.getResult().equals(alert.getResult().CANCEL)){
 
-    private boolean checkBooking(){
-
-        if (checkIn.getValue()==null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.showAndWait();
-            return false;
-        }
-        else if (checkOut.getValue()==null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.showAndWait();
-            return false;
-        }
-        LocalDate checkInDate = checkIn.getValue();
-        LocalDate checkOutDate = checkOut.getValue();
-        LocalDate currentDate = LocalDate.now();
-        int restult1 = checkInDate.compareTo(currentDate);
-        int restult2 = checkOutDate.compareTo(checkInDate);
-        int restult3 = checkOutDate.compareTo(currentDate);
-
-        if (restult1 <= 0){
-            System.out.println("Booking Must be done 1 day prior");
-            return false;
-        }
-
-        if (restult2<=0){
-            if (restult3 <0){
-                System.out.println("Invalid CheckOut Date");
-                return false;
+                }
             }
-            System.out.println("Invalid CheckIn Date");
-            return false;
         }
-
-
-       return true;
     }
+    @FXML
+    private void calculate(){
+        total.setText("N/A");
+        day.setText("N/A");
+        night.setText("N/A");
+        arrival.setText("N/A");
+        departure.setText("N/A");
+        totalPrice = 0.0f;
+        if(checkBooking()){
+            arrival.setText(checkIn.getValue().toString());
+            departure.setText(checkOut.getValue().toString());
+            int int_day = Integer.parseInt(String.valueOf(checkIn.getValue().until(checkOut.getValue(), ChronoUnit.DAYS)));
+            day.setText(String.valueOf(int_day+1));
+            night.setText(String.valueOf(int_day));
+            roomPriceInvoice.setText("$"+roomPrice.getText());
+
+            totalPrice = int_day*Float.parseFloat(String.valueOf(roomPrice.getText()));
+            total.setText(String.valueOf(totalPrice));
+            bookRoom.setDisable(false);
+        }
+    }
+
 
     private void switchToSubScene(String fxml, ActionEvent actionEvent) throws IOException {
 
         // FIXED MAJOR MEMORY LEAK (~100MB) ISSUE WAS CAUSED BY ANIMATION IN ANIMATION LOADING
 
-        fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/userside/"+fxml));
+        fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/"+fxml));
         root = fxmlLoader.load();
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = ((Node) actionEvent.getSource()).getScene();
@@ -303,6 +296,91 @@ public class UserDashboardController implements Initializable {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
+    }
+    @FXML
+    private void enableCheckOut(){
+        if (checkIn.getValue()==null) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid CheckIn Date");
+            alert.setContentText("Please provide a checkIn date");
+            alert.showAndWait();
+
+        }
+        else if (checkIn.getValue().isBefore(LocalDate.now())) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid CheckIn Date");
+            alert.setContentText("Can not book for past date");
+            alert.showAndWait();
+
+        }
+        else if (checkIn.getValue().isEqual(LocalDate.now())){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid CheckIn Date");
+            alert.setContentText("Booking MUST be done one day prior");
+            alert.showAndWait();
+            checkIn.setValue(null);
+
+        } else {
+            bookRoom.setDisable(true);
+            checkOut.setValue(null);
+            checkOut.setPromptText("Departure>");
+            checkOut.setDisable(false);
+        }
+    }
+
+    private boolean checkBooking(){
+
+        if (checkIn.getValue()==null){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid CheckIn Date");
+            alert.setContentText("Please provide a checkIn date");
+
+            alert.showAndWait();
+            return false;
+        }
+        else if (checkOut.getValue()==null){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid CheckOut Date");
+            alert.setContentText("Please provide a checkOut date");
+            alert.showAndWait();
+            return false;
+        }
+        LocalDate checkInDate = checkIn.getValue();
+        LocalDate checkOutDate = checkOut.getValue();
+        LocalDate currentDate = LocalDate.now();
+
+        if (checkInDate.isBefore(currentDate)||checkInDate.isEqual(currentDate)){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid CheckIn Date");
+            alert.setContentText("Booking Must be done one day prior");
+            alert.showAndWait();
+            System.out.println("Booking Must be done one day prior");
+            checkIn.setValue(null);
+
+            return false;
+        }
+
+        else if (checkOutDate.isBefore(checkInDate)){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid CheckOut Date");
+            alert.setContentText("Can not book past the check in date");
+            alert.showAndWait();
+            System.out.println("Invalid CheckOut Date");
+            checkOut.setValue(null);
+            return false;
+        }
+
+        else if (checkOutDate.isEqual(checkInDate)){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid CheckOut Date");
+            alert.setContentText("Can not book on the check in date");
+            alert.showAndWait();
+            System.out.println("Invalid CheckOut Date");
+            checkOut.setValue(null);
+            return false;
+        }
+
+        return true;
     }
 }
 
