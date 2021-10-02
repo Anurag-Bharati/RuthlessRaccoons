@@ -110,8 +110,6 @@ public class Controller implements Initializable {
                         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                         openUserSide(fetchUser());
 
-                        System.out.println("NICE");
-
                     } else actionOutput.setText("Incorrect login credential. Please, try again");
                 } else actionOutput.setText("Please, Provide a valid Gmail");
             }

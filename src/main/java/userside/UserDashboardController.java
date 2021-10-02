@@ -6,11 +6,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -20,60 +20,53 @@ import javafx.util.Duration;
 import main.java.registration.User;
 
 import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 //@SuppressWarnings("All")
 
-public class UserDashboardController implements Initializable {
+public class UserDashboardController {
     protected static Stage stage;
     protected static Scene scene;
     protected static Parent root;
     static User user;
+
+
     static FXMLLoader fxmlLoader = new FXMLLoader();
-    static UserDashboardController userDashboardController;
+    static RoomController roomController;
     static MyBookingsController myBookingsController;
     static LocalDateTime dateTime;
     static Alert alert;
 
-    private @FXML AnchorPane rootStageUser;
-    private @FXML AnchorPane rootScene;
-
-    private @FXML ScrollPane roomScrollPane;
-
-
-    private  @FXML JFXButton Quit;
-    private  @FXML JFXButton Minimize;
-    private  @FXML JFXButton Expand;
-    private  @FXML JFXButton home, myBooking, orderFood, services, invoice, settings, feedback, logout;
-
-    private @FXML JFXButton roomA, roomB, roomC, roomD, roomE, roomF, roomG, roomH, roomI, roomJ, rookK,roomL;
-    private @FXML JFXButton BOOK_NOW;
-    private @FXML JFXButton roomBack;
-    private @FXML JFXButton gotoBook;
-    private @FXML JFXButton bookRoom;
-
-    private @FXML Region loadBar;
-
-    private @FXML Label userName, userStatus, hotelName;
-    // Room
-    private @FXML Label roomName, roomDesc, roomPrice, roomRating, roomFloor;
-    // Amenity
-    private @FXML Label amenity_ac, amenity_attached, amenity_wifi,amenity_landline;
-    // BookRoom
-    private @FXML DatePicker checkIn, checkOut;
-    // Details
-    private @FXML Label arrival, departure, day, night;
-    // Invoice
-    private @FXML Label roomPriceInvoice, tax, off, total;
-    Float totalPrice;
+    private @FXML
+    AnchorPane rootStageUser;
+    private @FXML
+    AnchorPane rootScene;
 
 
-    private @FXML Circle onlineIndicator;
+    private @FXML
+    JFXButton Quit;
+    private @FXML
+    JFXButton Minimize;
+    private @FXML
+    JFXButton Expand;
+    private @FXML
+    JFXButton home, myBooking, orderFood, services, invoice, settings, feedback, logout;
+
+    private @FXML
+    JFXButton roomA, roomB, roomC, roomD, roomE, roomF, roomG, roomH, roomI, roomJ, rookK, roomL;
+    private @FXML
+    JFXButton BOOK_NOW;
+
+    private @FXML
+    Region loadBar;
+
+    private @FXML
+    Label userName, userStatus, hotelName;
+
+    private @FXML
+    Circle onlineIndicator;
 
     static ScaleTransition scaleTransitionLoadBar;
     static TranslateTransition translateTransitionRootScene;
@@ -95,7 +88,7 @@ public class UserDashboardController implements Initializable {
     }
 
     @FXML
-    private void onAction(ActionEvent actionEvent){
+    private void onAction(ActionEvent actionEvent) throws SQLException {
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         root = stage.getScene().getRoot();
         if (actionEvent.getSource().equals(Quit)) {
@@ -121,91 +114,41 @@ public class UserDashboardController implements Initializable {
                 Platform.exit();
                 System.exit(0);
             });
-        }
-        else if (actionEvent.getSource().equals(Minimize)){
+        } else if (actionEvent.getSource().equals(Minimize)) {
             stage.setIconified(!stage.isIconified());
-        }
-        else if (actionEvent.getSource().equals(Expand)){
+        } else if (actionEvent.getSource().equals(Expand)) {
             stage.setMaximized(!stage.isMaximized());
-        }
-        else if (actionEvent.getSource().equals(roomA) || actionEvent.getSource().equals(BOOK_NOW)){
+        } else if (actionEvent.getSource().equals(roomA) || actionEvent.getSource().equals(BOOK_NOW)) {
             root.setDisable(true);
-            animateLoading("userside/usersideRoom.fxml",actionEvent);
+            animateLoading("userside/usersideRoom.fxml", actionEvent);
+        } else if (actionEvent.getSource().equals(home)) {
+            return;
 
-        }
-        else if (actionEvent.getSource().equals(roomBack)|| actionEvent.getSource().equals(home)){
-            if(rootStageUser.getChildren().get(0).getId().equals("homePane")){
-                return;
-            } else {
-                root.setDisable(true);
-                roomScrollPane.setVvalue(0.0);
-                animateLoading("userside/userside.fxml", actionEvent);
-            }
-        }
-        else if (actionEvent.getSource().equals(gotoBook)){
-            roomScrollPane.setVvalue(0.7);
-        }
-        else if (actionEvent.getSource().equals(bookRoom)){
-            if (checkBooking()){
-                alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setHeaderText("Booking Confirmation");
-                alert.setContentText("Are you sure to book this room?\nYour Total: $"+totalPrice);
-                alert.showAndWait();
-                if(alert.getResult().equals(ButtonType.OK)){
-                    // TODO: 10/1/2021 Send Booking Data to DB
-                    System.out.println("Nice");
-                }
-                else if(alert.getResult().equals(ButtonType.CANCEL)){
-                    System.out.println("Booking Process Purged!");
-                }
-            }
-        }
-        else if (actionEvent.getSource().equals(myBooking)){
+        } else if (actionEvent.getSource().equals(myBooking)) {
             root.setDisable(true);
             animateLoading("userside/myBookings.fxml", actionEvent);
         }
     }
-    @FXML
-    private void calculate(){
-        total.setText("N/A");
-        day.setText("N/A");
-        night.setText("N/A");
-        arrival.setText("N/A");
-        departure.setText("N/A");
-        totalPrice = 0.0f;
-        if(checkBooking()){
-            arrival.setText(checkIn.getValue().toString());
-            departure.setText(checkOut.getValue().toString());
-            int int_day = Integer.parseInt(String.valueOf(checkIn.getValue().until(checkOut.getValue(), ChronoUnit.DAYS)));
-            day.setText(String.valueOf(int_day+1));
-            night.setText(String.valueOf(int_day));
-            roomPriceInvoice.setText("$"+roomPrice.getText());
-            totalPrice = int_day*Float.parseFloat(String.valueOf(roomPrice.getText()));
-            totalPrice = (float) Math.round(totalPrice * 100)/100;
-            total.setText("$"+totalPrice);
-            bookRoom.setDisable(false);
-        }
-    }
 
+    private void switchToScene(String fxml, ActionEvent actionEvent) throws IOException, SQLException {
 
-    private void switchToSubScene(String fxml, ActionEvent actionEvent) throws IOException {
-
-        fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/"+fxml));
+        fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/" + fxml));
         root = fxmlLoader.load();
+
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = ((Node) actionEvent.getSource()).getScene();
-        if (Objects.equals(fxml, "userside/userside.fxml") || Objects.equals(fxml, "userside/usersideRoom.fxml")) {
-            userDashboardController = fxmlLoader.getController();
+
+        if (Objects.equals(fxml, "userside/usersideRoom.fxml")) {
             if (user != null) {
-                userDashboardController.initUser(user);
+                roomController = fxmlLoader.getController();
+                roomController.initUser(user);
+                roomController.getRoomDetails("ROOM101");
             }
-        }
-        else {
-            if (Objects.equals(fxml,"userside/myBookings.fxml")){
+        } else {
+            if (Objects.equals(fxml, "userside/myBookings.fxml")) {
                 myBookingsController = fxmlLoader.getController();
                 myBookingsController.initUser(user);
-            }
-            else if (Objects.equals(fxml,"userside/invoice.fxml")){
+            } else if (Objects.equals(fxml, "userside/invoice.fxml")) {
                 // TODO: 10/1/2021  
             }
         }
@@ -214,8 +157,8 @@ public class UserDashboardController implements Initializable {
     }
 
     @FXML
-    private void applyUser(){
-        if (user!=null) {
+    private void applyUser() {
+        if (user != null) {
             userName.setText(user.getName().strip().toUpperCase());
             userStatus.setText("Online");
             onlineIndicator.setFill(Color.web("#74BE3D"));
@@ -240,37 +183,39 @@ public class UserDashboardController implements Initializable {
 
 
     @FXML
-    private void setOnHover(){
+    private void setOnHover() {
         if (Quit.isHover()) {
             Quit.setStyle("-fx-background-color: #dc473c");
         }
-        if (Minimize.isHover()){
+        if (Minimize.isHover()) {
             Minimize.setStyle("-fx-background-color: #F0C04C");
         }
-        if (Expand.isHover()){
+        if (Expand.isHover()) {
             Expand.setStyle("-fx-background-color: #ec6a45");
         }
 
     }
+
     @FXML
-    private void setDefault(){
+    private void setDefault() {
         if (!Quit.isHover()) {
             Quit.setStyle("-fx-background-color: Transparent");
         }
-        if (!Minimize.isHover()){
+        if (!Minimize.isHover()) {
             Minimize.setStyle("-fx-background-color: Transparent");
         }
-        if (!Expand.isHover()){
+        if (!Expand.isHover()) {
             Expand.setStyle("-fx-background-color: Transparent");
         }
 
     }
-    private void animateLoading(String fxml, ActionEvent actionEvent){
+
+    private void animateLoading(String fxml, ActionEvent actionEvent) {
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = ((Node) actionEvent.getSource()).getScene();
 
         scaleTransitionLoadBar = new ScaleTransition(Duration.seconds(1), loadBar);
-        scaleTransitionLoadBar.setByX(stage.getWidth()*0.20);
+        scaleTransitionLoadBar.setByX(stage.getWidth() * 0.20);
         scaleTransitionLoadBar.setInterpolator(Interpolator.EASE_BOTH);
 
         translateTransitionRootScene = new TranslateTransition(Duration.seconds(.3), rootScene);
@@ -280,109 +225,18 @@ public class UserDashboardController implements Initializable {
         scaleTransitionLoadBar.play();
         translateTransitionRootScene.play();
 
-        scaleTransitionLoadBar.setOnFinished(e->{
+        scaleTransitionLoadBar.setOnFinished(e -> {
                     try {
                         scaleTransitionLoadBar.stop();
                         translateTransitionRootScene.stop();
-                        switchToSubScene(fxml,actionEvent);
+                        switchToScene(fxml, actionEvent);
+
                         Runtime.getRuntime().gc();
-                    } catch (IOException ex) {
+                    } catch (IOException | SQLException ex) {
                         ex.printStackTrace();
                     }
                 }
         );
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
-
-
-    @FXML
-    private void enableCheckOut(){
-        if (checkIn.getValue()==null) {
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid CheckIn Date");
-            alert.setContentText("Please provide a checkIn date");
-            alert.showAndWait();
-
-        }
-        else if (checkIn.getValue().isBefore(LocalDate.now())) {
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid CheckIn Date");
-            alert.setContentText("Can not book for past date");
-            alert.showAndWait();
-
-        }
-        else if (checkIn.getValue().isEqual(LocalDate.now())){
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid CheckIn Date");
-            alert.setContentText("Booking MUST be done one day prior");
-            alert.showAndWait();
-            checkIn.setValue(null);
-
-        } else {
-            bookRoom.setDisable(true);
-            checkOut.setValue(null);
-            checkOut.setPromptText("Departure>");
-            checkOut.setDisable(false);
-        }
-    }
-
-    private boolean checkBooking(){
-
-        if (checkIn.getValue()==null){
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid CheckIn Date");
-            alert.setContentText("Please provide a checkIn date");
-
-            alert.showAndWait();
-            return false;
-        }
-        else if (checkOut.getValue()==null){
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid CheckOut Date");
-            alert.setContentText("Please provide a checkOut date");
-            alert.showAndWait();
-            return false;
-        }
-        LocalDate checkInDate = checkIn.getValue();
-        LocalDate checkOutDate = checkOut.getValue();
-        LocalDate currentDate = LocalDate.now();
-
-        if (checkInDate.isBefore(currentDate)||checkInDate.isEqual(currentDate)){
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid CheckIn Date");
-            alert.setContentText("Booking Must be done one day prior");
-            alert.showAndWait();
-            System.out.println("Booking Must be done one day prior");
-            checkIn.setValue(null);
-
-            return false;
-        }
-
-        else if (checkOutDate.isBefore(checkInDate)){
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid CheckOut Date");
-            alert.setContentText("Can not book past the check in date");
-            alert.showAndWait();
-            System.out.println("Invalid CheckOut Date");
-            checkOut.setValue(null);
-            return false;
-        }
-
-        else if (checkOutDate.isEqual(checkInDate)){
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Invalid CheckOut Date");
-            alert.setContentText("Can not book on the check in date");
-            alert.showAndWait();
-            System.out.println("Invalid CheckOut Date");
-            checkOut.setValue(null);
-            return false;
-        }
-
-        return true;
-    }
 }
-
 

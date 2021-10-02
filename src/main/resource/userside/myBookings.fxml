@@ -54,10 +54,10 @@
                         <TableView fx:id="tableView" layoutX="66.0" layoutY="94.0" onMouseClicked="#selectBooking" prefHeight="435.0" prefWidth="980.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="booking_id" editable="false" prefWidth="40.0" text="Booking ID" visible="false" />
-                              <TableColumn fx:id="room_name" editable="false" prefWidth="122.0" text="Room Name" />
+                              <TableColumn fx:id="room_id" editable="false" prefWidth="122.0" text="Room Name" />
                               <TableColumn fx:id="arrival" editable="false" prefWidth="75.0" text="Arrival Date" />
                               <TableColumn fx:id="departure" editable="false" prefWidth="75.0" text="Departure Date" />
-                              <TableColumn fx:id="room_price" editable="false" prefWidth="75.0" text="Room Price" />
+                              <TableColumn fx:id="price" editable="false" prefWidth="75.0" text="Room Price" />
                               <TableColumn fx:id="total_price" editable="false" prefWidth="75.0" text="Total Price" />
                               <TableColumn fx:id="timestamp" editable="false" prefWidth="113.599853515625" text="Date Booked" />
                               <TableColumn fx:id="status" editable="false" prefWidth="126.4000244140625" text="Status" />

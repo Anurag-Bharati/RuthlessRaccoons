@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,25 +26,24 @@ import main.java.db.DatabaseManager;
 import main.java.registration.User;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 
-public class MyBookingsController implements Initializable {
+public class MyBookingsController{
 
     protected static Stage stage;
     protected static Scene scene;
     protected static Parent root;
     static User user;
+    int CID;
+
+    Connection connection;
 
     UserDashboardController userDashboardController;
 
     static FXMLLoader fxmlLoader = new FXMLLoader();
-    static LocalDateTime dateTime;
     static Alert alert;
 
     private  @FXML JFXButton Quit;
@@ -86,17 +84,16 @@ public class MyBookingsController implements Initializable {
 
     @FXML
     private TableColumn<MyBooking, Integer> booking_id;
-
     @FXML
     private TableColumn<MyBooking, String> arrival;
     @FXML
     private TableColumn<MyBooking, String> departure;
     @FXML
-    private TableColumn<MyBooking, Float> room_price;
+    private TableColumn<MyBooking, Float> price;
     @FXML
     private TableColumn<MyBooking, Float> total_price;
     @FXML
-    private TableColumn<MyBooking, String> room_name;
+    private TableColumn<MyBooking, String> room_id;
     @FXML
     private TableColumn<MyBooking, Timestamp> timestamp;
     @FXML
@@ -137,12 +134,10 @@ public class MyBookingsController implements Initializable {
             stage.setMaximized(!stage.isMaximized());
         }
         else if (actionEvent.getSource().equals(home)){
-            if(rootStageUser.getChildren().get(0).getId().equals("homePane")){
-                return;
-            } else {
-                root.setDisable(true);
-                animateLoading("userside/userside.fxml", actionEvent);
-            }
+
+            root.setDisable(true);
+            animateLoading("userside/userside.fxml", actionEvent);
+
         }
         else if (actionEvent.getSource().equals(myBookings_btn)){
             if(rootStageUser.getChildren().get(0).getId().equals("myBookingsPane")) {
@@ -167,9 +162,12 @@ public class MyBookingsController implements Initializable {
     @FXML
     public ObservableList<MyBooking> getMyBookings() throws SQLException {
         ObservableList<MyBooking> myBookings = FXCollections.observableArrayList();
-        Connection connection =databaseManager.connect();
-        preparedStatement = connection.prepareStatement("select * from myBookings where CID = ?");
-        preparedStatement.setInt(1,1);
+        connection =databaseManager.connect();
+
+        preparedStatement = connection.prepareStatement(
+                "select BID, arrival, departure, total_price, booked_date, status, myBookings.RID, price " +
+                        "from myBookings, Room where myBookings.RID = Room.RID and CID = ?");
+        preparedStatement.setInt(1,CID);
         try {
             resultSet = preparedStatement.executeQuery();
 
@@ -177,13 +175,13 @@ public class MyBookingsController implements Initializable {
 
                 myBooking = new MyBooking(
                         resultSet.getInt("BID"), resultSet.getString("arrival"),
-                        resultSet.getString("departure"), resultSet.getFloat("room_price"),
-                        resultSet.getFloat("total_price"), resultSet.getString("room_name"),
+                        resultSet.getString("departure"), resultSet.getFloat("price"),
+                        resultSet.getFloat("total_price"), resultSet.getString("RID"),
                         resultSet.getTimestamp("booked_date"), resultSet.getString("status"));
+                System.out.println(resultSet.getFloat("price"));
                 myBookings.add(myBooking);
             }
             resultSet.close();
-            connection.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -192,17 +190,18 @@ public class MyBookingsController implements Initializable {
     }
     public void showMyBookings() throws SQLException {
 
-        ObservableList<MyBooking> list = getMyBookings();
+        ObservableList<MyBooking> bookingList = getMyBookings();
 
-        booking_id.setCellValueFactory(new PropertyValueFactory<MyBooking, Integer>("booking_id"));
-        arrival.setCellValueFactory(new PropertyValueFactory<MyBooking, String>("arrival"));
-        departure.setCellValueFactory(new PropertyValueFactory<MyBooking, String>("departure"));
-        room_price.setCellValueFactory(new PropertyValueFactory<MyBooking, Float>("room_price"));
-        total_price.setCellValueFactory(new PropertyValueFactory<MyBooking, Float>("total_price"));
-        room_name.setCellValueFactory(new PropertyValueFactory<MyBooking, String>("room_name"));
-        timestamp.setCellValueFactory(new PropertyValueFactory<MyBooking, Timestamp>("timestamp"));
-        status.setCellValueFactory(new PropertyValueFactory<MyBooking, String>("status"));
-        tableView.setItems(list);
+        booking_id.setCellValueFactory(new PropertyValueFactory<>("booking_id"));
+        arrival.setCellValueFactory(new PropertyValueFactory<>("arrival"));
+        departure.setCellValueFactory(new PropertyValueFactory<>("departure"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        total_price.setCellValueFactory(new PropertyValueFactory<>("total_price"));
+        room_id.setCellValueFactory(new PropertyValueFactory<>("room_id"));
+        timestamp.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        tableView.setItems(bookingList);
     }
     @FXML
     private void selectBooking() {
@@ -226,7 +225,7 @@ public class MyBookingsController implements Initializable {
             if (!myBookingUpdate.isDisable()){
                 myBookingUpdate.setDisable(true);
             }
-            selected_roomName.setText(room_name.getCellData(index).toUpperCase(Locale.ROOT));
+            selected_roomName.setText(room_id.getCellData(index).toUpperCase(Locale.ROOT));
             selected_room_dates.setText("ROOM IS CHECKED IN");
         }
         else {
@@ -239,7 +238,7 @@ public class MyBookingsController implements Initializable {
                 myBookingUpdate.setDisable(false);
             }
 
-            selected_roomName.setText(room_name.getCellData(index).toUpperCase(Locale.ROOT));
+            selected_roomName.setText(room_id.getCellData(index).toUpperCase(Locale.ROOT));
             selected_room_dates.setText(arrival_departure.toUpperCase(Locale.ROOT));
 
         }
@@ -285,7 +284,6 @@ public class MyBookingsController implements Initializable {
                 userDashboardController.initUser(user);
             }
         }
-
         scene.setRoot(root);
         root.setDisable(false);
     }
@@ -316,16 +314,25 @@ public class MyBookingsController implements Initializable {
         }
 
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            showMyBookings();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    private boolean fetchUserID() throws SQLException {
+        connection = databaseManager.connect();
+        preparedStatement = connection.prepareStatement("Select CID from CustomerDetail where gmail = ?");
+        preparedStatement.setString(1,MyBookingsController.user.getGmail());
+        resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()){
+            CID = resultSet.getInt("CID");
+            System.out.println(CID);
+            resultSet.close();
+            preparedStatement.close();
+            return true;
+        } else {
+            resultSet.close();
+            preparedStatement.close();
+            return false;
         }
     }
-    public void initUser(User user) {
+
+    public void initUser(User user) throws SQLException {
         /*This method is used to pass object between scenes.*/
         MyBookingsController.user = new User();
         MyBookingsController.user.setName(user.getName());
@@ -334,8 +341,16 @@ public class MyBookingsController implements Initializable {
         MyBookingsController.user.setDob(user.getDob());
         MyBookingsController.user.setGender(user.getGender());
         MyBookingsController.user.setPassword(user.getPassword());
+        System.out.println(MyBookingsController.user.getGmail());
         applyUser();
-
+        if (fetchUserID()){
+            showMyBookings();
+        }
+        else{
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("USER NOT FOUND");
+            alert.setContentText("User ID not found in the database");
+        }
     }
 
     @FXML

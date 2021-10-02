@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="rootStageUser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.userside.UserDashboardController">
+<AnchorPane fx:id="rootStageUser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.userside.RoomController">
    <children>
       <AnchorPane fx:id="roomPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -157,7 +157,7 @@
                   </AnchorPane>
                   <AnchorPane layoutY="182.0" prefHeight="510.0" prefWidth="981.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
                      <children>
-                        <ScrollPane fx:id="roomScrollPane" fitToWidth="true" prefHeight="691.0" prefWidth="980.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane fx:id="roomScrollPane" fitToWidth="true" prefHeight="691.0" prefWidth="980.0" vvalue="0.46" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
                               <VBox prefHeight="1361.0" prefWidth="965.0">
                                  <children>
@@ -240,7 +240,7 @@
                                                       </Label>
                                                       <HBox alignment="BOTTOM_CENTER" prefHeight="94.0" prefWidth="403.0" spacing="5.0">
                                                          <children>
-                                                            <Label alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #dc473c;" text="⛄" textFill="WHITE">
+                                                            <Label fx:id="AC" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: grey;" text="⛄" textFill="WHITE">
                                                                <font>
                                                                   <Font name="System Bold" size="25.0" />
                                                                </font>
@@ -248,7 +248,7 @@
                                                                   <Tooltip text="AC" />
                                                                </tooltip>
                                                             </Label>
-                                                            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #F0C04C;" text="🛌" textFill="WHITE">
+                                                            <Label fx:id="FT" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: grey;" text="🛌" textFill="WHITE">
                                                                <font>
                                                                   <Font name="System Bold" size="25.0" />
                                                                </font>
@@ -256,7 +256,7 @@
                                                                   <Tooltip text="Furniture" />
                                                                </tooltip>
                                                             </Label>
-                                                            <Label alignment="CENTER" layoutX="70.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #6FBA3B;" text="📶" textFill="WHITE">
+                                                            <Label fx:id="WF" alignment="CENTER" layoutX="70.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: grey;" text="📶" textFill="WHITE">
                                                                <font>
                                                                   <Font name="System Bold" size="25.0" />
                                                                </font>
@@ -264,7 +264,7 @@
                                                                   <Tooltip text="Wifi" />
                                                                </tooltip>
                                                             </Label>
-                                                            <Label alignment="CENTER" layoutX="130.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #2FB6C3;" text="🚽" textFill="WHITE">
+                                                            <Label fx:id="AT" alignment="CENTER" layoutX="130.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: grey;" text="🚽" textFill="WHITE">
                                                                <font>
                                                                   <Font name="System Bold" size="25.0" />
                                                                </font>
@@ -272,7 +272,7 @@
                                                                   <Tooltip text="Attached Bathroom" />
                                                                </tooltip>
                                                             </Label>
-                                                            <Label alignment="CENTER" layoutX="190.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #9F20C0;" text="🍔" textFill="WHITE">
+                                                            <Label fx:id="RD" alignment="CENTER" layoutX="190.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: grey;" text="🍔" textFill="WHITE">
                                                                <font>
                                                                   <Font name="System Bold" size="25.0" />
                                                                </font>
@@ -280,7 +280,7 @@
                                                                   <Tooltip text="Room Delivery" />
                                                                </tooltip>
                                                             </Label>
-                                                            <Label alignment="CENTER" layoutX="250.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #FF51CF;" text="☎" textFill="WHITE">
+                                                            <Label fx:id="LL" alignment="CENTER" layoutX="250.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: grey;" text="☎" textFill="WHITE">
                                                                <font>
                                                                   <Font name="System Bold" size="25.0" />
                                                                </font>
