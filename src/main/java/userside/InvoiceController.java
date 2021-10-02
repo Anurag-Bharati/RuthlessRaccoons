@@ -11,7 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -24,11 +27,10 @@ import main.java.registration.User;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.Locale;
 import java.util.Objects;
 
 
-public class MyBookingsController{
+public class InvoiceController{
 
     protected static Stage stage;
     protected static Scene scene;
@@ -39,7 +41,7 @@ public class MyBookingsController{
     Connection connection;
 
     UserDashboardController userDashboardController;
-    InvoiceController invoiceController;
+    MyBookingsController myBookingsController;
 
     static FXMLLoader fxmlLoader = new FXMLLoader();
     static Alert alert;
@@ -47,17 +49,15 @@ public class MyBookingsController{
     private  @FXML JFXButton Quit;
     private  @FXML JFXButton Minimize;
     private  @FXML JFXButton Expand;
-    private  @FXML JFXButton home, myBookings_btn, orderFood, services, invoices, settings, feedback, logout;
+    private  @FXML JFXButton home, myBookings_btn, orderFood, services, invoice, settings, feedback, logout;
 
     private @FXML
     Circle onlineIndicator;
-
 
     static ScaleTransition scaleTransitionLoadBar;
     static TranslateTransition translateTransitionRootScene;
     static ScaleTransition scaleTransitionApplyUser;
     static FadeTransition fadeTransitionIndicator;
-
 
     private @FXML
     Region loadBar;
@@ -65,7 +65,6 @@ public class MyBookingsController{
     private @FXML Label userName, userStatus, hotelName;
 
     private @FXML Label selected_roomName, selected_room_dates;
-    private Integer selected_room_ID;
 
     private @FXML JFXButton myBookingDelete, myBookingUpdate;
 
@@ -99,7 +98,7 @@ public class MyBookingsController{
     private TableColumn<MyBooking, String> status;
 
     @FXML
-    private void onAction(ActionEvent actionEvent) throws SQLException {
+    private void onAction(ActionEvent actionEvent){
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         root = stage.getScene().getRoot();
         if (actionEvent.getSource().equals(Quit)) {
@@ -133,59 +132,15 @@ public class MyBookingsController{
             stage.setMaximized(!stage.isMaximized());
         }
         else if (actionEvent.getSource().equals(home)){
-
             root.setDisable(true);
             animateLoading("userside/userside.fxml", actionEvent);
         }
-        else if (actionEvent.getSource().equals(invoices)) {
+        else if (actionEvent.getSource().equals(myBookings_btn)){
             root.setDisable(true);
-            animateLoading("userside/invoice.fxml", actionEvent);
+            animateLoading("userside/myBookings.fxml", actionEvent);
         }
 
-        else if (actionEvent.getSource().equals(myBookingUpdate)){
-            alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("BOOKING UPDATE CONFIRMATION");
-            alert.setContentText("Are you sure to update " +selected_roomName.getText()+ "?");
-            alert.showAndWait();
 
-        }
-        else if (actionEvent.getSource().equals(myBookingDelete)){
-            alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("BOOKING DELETION CONFIRMATION");
-            alert.setContentText("Are you sure to delete "+ selected_roomName.getText()+"?");
-            alert.showAndWait();
-            if(alert.getResult().equals(ButtonType.OK)){
-                updateRoomStatus(selected_roomName.getText(),"NO");
-                if (deleteBooking()){
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText("SUCCESS");
-                    alert.setContentText("Successfully deleted "+ selected_roomName.getText());
-                    alert.showAndWait();
-                    showMyBookings();
-
-                }
-            }
-        }
-
-    }
-
-    private boolean deleteBooking() throws SQLException {
-        connection =databaseManager.connect();
-        preparedStatement = connection.prepareStatement("UPDATE myBookings SET status =? Where BID =?");
-        preparedStatement.setString(1,"PURGED");
-        preparedStatement.setInt(2,selected_room_ID);
-        int result = preparedStatement.executeUpdate();
-        return result>0;
-    }
-    private boolean updateRoomStatus(String RoomID, String status) throws SQLException {
-        connection = databaseManager.connect();
-        preparedStatement = connection.prepareStatement("UPDATE Room SET isBooked = ? WHERE RID=? ");
-        preparedStatement.setString(1,status);
-        preparedStatement.setString(2,RoomID);
-        int result  = preparedStatement.executeUpdate();
-        resultSet.close();
-        preparedStatement.close();
-        return result >0;
     }
 
     @FXML
@@ -195,9 +150,9 @@ public class MyBookingsController{
 
         preparedStatement = connection.prepareStatement(
                 "select BID, arrival, departure, total_price, booked_date, status, myBookings.RID, price " +
-                        "from myBookings, Room where myBookings.RID = Room.RID and CID = ? and status = ? ");
+                        "from myBookings, Room where myBookings.RID = Room.RID and CID = ? and not status = ?");
         preparedStatement.setInt(1,CID);
-        preparedStatement.setString(2, "BOOKED");
+        preparedStatement.setString(2,"BOOKED");
         try {
             resultSet = preparedStatement.executeQuery();
 
@@ -231,48 +186,6 @@ public class MyBookingsController{
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         tableView.setItems(bookingList);
-    }
-    @FXML
-    private void selectBooking() {
-        if (!myBookingDelete.isDisable()){
-            myBookingDelete.setDisable(true);
-        }
-        if (!myBookingUpdate.isDisable()){
-            myBookingUpdate.setDisable(true);
-        }
-
-
-        int index = tableView.getSelectionModel().getSelectedIndex();
-        if (index <= -1) {
-            selected_roomName.setText("NOT SELECTED");
-            selected_room_dates.setText("N/A");
-        }
-        else if (status.getCellData(index).equals("CHECKED IN")){
-            if (!myBookingDelete.isDisable()){
-                myBookingDelete.setDisable(true);
-            }
-            if (!myBookingUpdate.isDisable()){
-                myBookingUpdate.setDisable(true);
-            }
-            selected_roomName.setText(room_id.getCellData(index).toUpperCase(Locale.ROOT));
-            selected_room_dates.setText("ROOM IS CHECKED IN");
-        }
-        else {
-
-            String arrival_departure = arrival.getCellData(index) +" / "+ departure.getCellData(index);
-            if (myBookingDelete.isDisable()){
-                myBookingDelete.setDisable(false);
-            }
-            if (myBookingUpdate.isDisable()){
-                myBookingUpdate.setDisable(false);
-            }
-
-            selected_roomName.setText(room_id.getCellData(index).toUpperCase(Locale.ROOT));
-            selected_room_dates.setText(arrival_departure.toUpperCase(Locale.ROOT));
-            selected_room_ID = booking_id.getCellData(index);
-
-
-        }
     }
 
     private void animateLoading(String fxml, ActionEvent actionEvent){
@@ -315,10 +228,10 @@ public class MyBookingsController{
                 userDashboardController.initUser(user);
             }
         }
-        if (Objects.equals(fxml,"userside/invoice.fxml")) {
-            invoiceController = fxmlLoader.getController();
+        if (Objects.equals(fxml,"userside/myBookings.fxml")) {
+            myBookingsController = fxmlLoader.getController();
             if (user != null) {
-                invoiceController.initUser(user);
+                myBookingsController.initUser(user);
             }
         }
 
@@ -355,7 +268,7 @@ public class MyBookingsController{
     private boolean fetchUserID() throws SQLException {
         connection = databaseManager.connect();
         preparedStatement = connection.prepareStatement("Select CID from CustomerDetail where gmail = ?");
-        preparedStatement.setString(1,MyBookingsController.user.getGmail());
+        preparedStatement.setString(1,InvoiceController.user.getGmail());
         resultSet = preparedStatement.executeQuery();
         if (resultSet.next()){
             CID = resultSet.getInt("CID");
@@ -371,13 +284,13 @@ public class MyBookingsController{
 
     public void initUser(User user) throws SQLException {
         /*This method is used to pass object between scenes.*/
-        MyBookingsController.user = new User();
-        MyBookingsController.user.setName(user.getName());
-        MyBookingsController.user.setGmail(user.getGmail());
-        MyBookingsController.user.setPhone(user.getPhone());
-        MyBookingsController.user.setDob(user.getDob());
-        MyBookingsController.user.setGender(user.getGender());
-        MyBookingsController.user.setPassword(user.getPassword());
+        InvoiceController.user = new User();
+        InvoiceController.user.setName(user.getName());
+        InvoiceController.user.setGmail(user.getGmail());
+        InvoiceController.user.setPhone(user.getPhone());
+        InvoiceController.user.setDob(user.getDob());
+        InvoiceController.user.setGender(user.getGender());
+        InvoiceController.user.setPassword(user.getPassword());
         applyUser();
         if (fetchUserID()){
             showMyBookings();

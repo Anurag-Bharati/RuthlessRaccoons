@@ -47,6 +47,8 @@ public class RoomController implements Initializable {
 
     static FXMLLoader fxmlLoader = new FXMLLoader();
     static UserDashboardController userDashboardController;
+    static MyBookingsController myBookingsController;
+    static InvoiceController invoiceController;
 
     static LocalDateTime dateTime;
     static Alert alert;
@@ -60,7 +62,7 @@ public class RoomController implements Initializable {
     private  @FXML JFXButton Quit;
     private  @FXML JFXButton Minimize;
     private  @FXML JFXButton Expand;
-    private  @FXML JFXButton home, myBooking, orderFood, services, invoice, settings, feedback, logout;
+    private  @FXML JFXButton home, myBooking, orderFood, services, invoices, settings, feedback, logout;
 
     private @FXML JFXButton roomBack;
     private @FXML JFXButton gotoBook;
@@ -164,6 +166,9 @@ public class RoomController implements Initializable {
                     if (checkIfNotBooked(db_RID)) {
                         if (fetchUserID()) {
                             if (addBooking()) {
+                                if (updateRoomStatus(db_RID,"YES")){
+                                    System.out.println("[DATABASE] ROOM STATUS HAS BEEN UPDATED");
+                                }
                                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                                 alert.setHeaderText("SUCCESS");
                                 alert.setContentText("You have successfully booked this room");
@@ -178,12 +183,12 @@ public class RoomController implements Initializable {
                             alert.setHeaderText("USER NOT FOUND");
                             alert.setContentText("User ID not found in the database");
                         }
-                        alert.showAndWait();
                     } else {
                         alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("ROOM NOT AVAILABLE");
                         alert.setContentText("This room is already booked");
                     }
+                    alert.showAndWait();
 
                 }
                 else if(alert.getResult().equals(ButtonType.CANCEL)){
@@ -194,6 +199,10 @@ public class RoomController implements Initializable {
         else if (actionEvent.getSource().equals(myBooking)){
             root.setDisable(true);
             animateLoading("userside/myBookings.fxml", actionEvent);
+        }
+        else if (actionEvent.getSource().equals(invoices)){
+            root.setDisable(true);
+            animateLoading("userside/invoice.fxml", actionEvent);
         }
     }
     @FXML
@@ -231,6 +240,19 @@ public class RoomController implements Initializable {
                 userDashboardController.initUser(user);
             }
         }
+        if (Objects.equals(fxml, "userside/myBookings.fxml")){
+            myBookingsController = fxmlLoader.getController();
+            if (user != null) {
+                myBookingsController.initUser(user);
+            }
+        }
+        if (Objects.equals(fxml, "userside/invoice.fxml")){
+             invoiceController = fxmlLoader.getController();
+            if (user != null) {
+                invoiceController.initUser(user);
+            }
+        }
+
         scene.setRoot(root);
         root.setDisable(false);
     }
@@ -307,7 +329,6 @@ public class RoomController implements Initializable {
                         scaleTransitionLoadBar.stop();
                         translateTransitionRootScene.stop();
                         switchToScene(fxml,actionEvent);
-
                         Runtime.getRuntime().gc();
                     } catch (IOException | SQLException ex) {
                         ex.printStackTrace();
@@ -408,7 +429,6 @@ public class RoomController implements Initializable {
         resultSet = preparedStatement.executeQuery();
         if (resultSet.next()){
             CID = resultSet.getInt("CID");
-            System.out.println(CID);
             resultSet.close();
             preparedStatement.close();
             return true;
@@ -508,6 +528,16 @@ public class RoomController implements Initializable {
             }
 
         }
+    }
+    private boolean updateRoomStatus(String RoomID, String status) throws SQLException {
+        connection = databaseManager.connect();
+        preparedStatement = connection.prepareStatement("UPDATE Room SET isBooked = ? WHERE RID=? ");
+        preparedStatement.setString(1,status);
+        preparedStatement.setString(2,RoomID);
+        int result  = preparedStatement.executeUpdate();
+        resultSet.close();
+        preparedStatement.close();
+        return result >0;
     }
 
     public void getRoomDetails(String RoomID) throws SQLException {

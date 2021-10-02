@@ -163,7 +163,7 @@ public class Controller implements Initializable {
         stage.show();
     }
 
-    private void openUserSide(User user) throws IOException {
+    private void openUserSide(User user) throws IOException, SQLException {
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/userside/userside.fxml"));
         root = fxmlLoader.load();
