@@ -24,7 +24,7 @@
          <children>
             <AnchorPane prefHeight="30.0" prefWidth="979.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                <children>
-                  <Label layoutX="5.0" layoutY="6.0" prefHeight="30.0" prefWidth="399.0" text="HOTELNAME/ADMIN/HOME" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                  <Label layoutX="5.0" layoutY="6.0" prefHeight="30.0" prefWidth="399.0" text="HOTELNAME/ADMIN/INVOICES" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -38,62 +38,61 @@
             </AnchorPane>
             <AnchorPane fx:id="rootScene" prefHeight="690.0" prefWidth="980.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                <children>
-                  <TableView fx:id="tableView" layoutX="278.0" layoutY="64.0" onMouseClicked="#select" prefHeight="466.0" prefWidth="701.0" style="-fx-background-color: #ebf7fc#ebf7fc;">
+                  <TableView fx:id="tableView" layoutX="263.0" layoutY="63.0" onMouseClicked="#select" prefHeight="466.0" prefWidth="716.0" style="-fx-background-color: #ebf7fc#ebf7fc;">
                      <columns>
-                        <TableColumn fx:id="IDlist" prefWidth="59.47198486328125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Room ID" />
-                        <TableColumn fx:id="productlist" prefWidth="131.5279541015625" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Price" />
-                        <TableColumn fx:id="categorylist" prefWidth="149.65460205078125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Type" />
-                        <TableColumn fx:id="quantitylist" prefWidth="93.345458984375" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Floor" />
-                        <TableColumn fx:id="unitlist" prefWidth="111.54278564453125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Discount" />
-                        <TableColumn fx:id="unitlist1" prefWidth="187.4571533203125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Tags" />
+                        <TableColumn fx:id="IDlist" prefWidth="92.38543701171875" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Customer ID" />
+                        <TableColumn fx:id="productlist" prefWidth="166.614501953125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Customer Name" />
+                        <TableColumn fx:id="categorylist" prefWidth="153.4017333984375" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Date" />
+                        <TableColumn fx:id="quantitylist" prefWidth="153.863525390625" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Total Amount" />
+                        <TableColumn fx:id="unitlist" prefWidth="148.636474609375" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Status" />
                      </columns>
                   </TableView>
-                  <TextField fx:id="CategoryField" layoutX="13.0" layoutY="104.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff;">
+                  <TextField fx:id="CategoryField" layoutX="13.0" layoutY="104.0" prefHeight="39.0" prefWidth="226.0" style="-fx-background-color: #ffffff;">
                      <font>
                         <Font name="Montserrat Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="22.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
+                  <Text layoutX="22.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID">
                      <font>
                         <Font name="System Font" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="CategoryField1" layoutX="13.0" layoutY="191.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff #ffffff;">
+                  <TextField fx:id="CategoryField1" layoutX="13.0" layoutY="191.0" prefHeight="39.0" prefWidth="226.0" style="-fx-background-color: #ffffff #ffffff;">
                      <font>
                         <Font name="Montserrat Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <Text fill="#272727" layoutX="22.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+                  <Text fill="#272727" layoutX="22.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name">
                      <font>
                         <Font name="System Font" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="CategoryField11" layoutX="11.0" layoutY="275.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff #ffffff;">
+                  <TextField fx:id="CategoryField11" layoutX="11.0" layoutY="275.0" prefHeight="39.0" prefWidth="226.0" style="-fx-background-color: #ffffff #ffffff;">
                      <font>
                         <Font name="Montserrat Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="20.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Floor">
+                  <Text layoutX="20.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
                      <font>
                         <Font name="System Font" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="CategoryField111" layoutX="12.0" layoutY="359.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff #ffffff;">
+                  <TextField fx:id="CategoryField111" layoutX="12.0" layoutY="359.0" prefHeight="39.0" prefWidth="226.0" style="-fx-background-color: #ffffff #ffffff;">
                      <font>
                         <Font name="Montserrat Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="21.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount">
+                  <Text layoutX="21.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount">
                      <font>
                         <Font name="System Font" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="CategoryField1111" layoutX="11.0" layoutY="440.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff #ffffff;">
+                  <TextField fx:id="CategoryField1111" layoutX="11.0" layoutY="440.0" prefHeight="39.0" prefWidth="226.0" style="-fx-background-color: #ffffff #ffffff;">
                      <font>
                         <Font name="Montserrat Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <Text fill="#3b3b3b" layoutX="19.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tags">
+                  <Text fill="#3b3b3b" layoutX="19.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
                      <font>
                         <Font name="System Font" size="18.0" />
                      </font>
@@ -118,7 +117,7 @@
                         <Font name="Al Bayan Plain" size="16.0" />
                      </font>
                   </Button>
-                  <Text layoutX="420.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OUR ROOMS">
+                  <Text layoutX="461.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVOICES">
                      <font>
                         <Font size="35.0" />
                      </font>

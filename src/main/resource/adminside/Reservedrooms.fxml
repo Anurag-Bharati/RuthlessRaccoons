@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,7 +23,7 @@
          <children>
             <AnchorPane prefHeight="30.0" prefWidth="979.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                <children>
-                  <Label layoutX="5.0" layoutY="6.0" prefHeight="30.0" prefWidth="399.0" text="HOTELNAME/ADMIN/HOME" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                  <Label layoutX="5.0" layoutY="6.0" prefHeight="30.0" prefWidth="399.0" text="HOTELNAME/ADMIN/RESERVE ROOMS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -38,87 +37,27 @@
             </AnchorPane>
             <AnchorPane fx:id="rootScene" prefHeight="690.0" prefWidth="980.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                <children>
-                  <TableView fx:id="tableView" layoutX="278.0" layoutY="64.0" onMouseClicked="#select" prefHeight="466.0" prefWidth="701.0" style="-fx-background-color: #ebf7fc#ebf7fc;">
+                  <TableView fx:id="tableView" layoutX="30.0" layoutY="70.0" onMouseClicked="#select" prefHeight="466.0" prefWidth="932.0" style="-fx-background-color: #ebf7fc#ebf7fc;">
                      <columns>
-                        <TableColumn fx:id="IDlist" prefWidth="59.47198486328125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Room ID" />
-                        <TableColumn fx:id="productlist" prefWidth="131.5279541015625" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Price" />
-                        <TableColumn fx:id="categorylist" prefWidth="149.65460205078125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Type" />
-                        <TableColumn fx:id="quantitylist" prefWidth="93.345458984375" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Floor" />
-                        <TableColumn fx:id="unitlist" prefWidth="111.54278564453125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Discount" />
-                        <TableColumn fx:id="unitlist1" prefWidth="187.4571533203125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Tags" />
+                        <TableColumn fx:id="IDlist" prefWidth="90.5" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Reservation  ID" />
+                        <TableColumn fx:id="productlist" prefWidth="226.600830078125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Customer's Name" />
+                        <TableColumn fx:id="categorylist" prefWidth="165.399169921875" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Phone No." />
+                        <TableColumn fx:id="quantitylist" prefWidth="119.4345703125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Check In" />
+                        <TableColumn fx:id="unitlist" prefWidth="128.61456298828125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Check Out" />
+                        <TableColumn fx:id="unitlist1" prefWidth="202.27801513671875" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Total Price" />
                      </columns>
                   </TableView>
-                  <TextField fx:id="CategoryField" layoutX="13.0" layoutY="104.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff;">
-                     <font>
-                        <Font name="Montserrat Medium" size="15.0" />
-                     </font>
-                  </TextField>
-                  <Text layoutX="22.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
-                     <font>
-                        <Font name="System Font" size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="CategoryField1" layoutX="13.0" layoutY="191.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff #ffffff;">
-                     <font>
-                        <Font name="Montserrat Medium" size="15.0" />
-                     </font>
-                  </TextField>
-                  <Text fill="#272727" layoutX="22.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
-                     <font>
-                        <Font name="System Font" size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="CategoryField11" layoutX="11.0" layoutY="275.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff #ffffff;">
-                     <font>
-                        <Font name="Montserrat Medium" size="15.0" />
-                     </font>
-                  </TextField>
-                  <Text layoutX="20.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Floor">
-                     <font>
-                        <Font name="System Font" size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="CategoryField111" layoutX="12.0" layoutY="359.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff #ffffff;">
-                     <font>
-                        <Font name="Montserrat Medium" size="15.0" />
-                     </font>
-                  </TextField>
-                  <Text layoutX="21.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount">
-                     <font>
-                        <Font name="System Font" size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="CategoryField1111" layoutX="11.0" layoutY="440.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #ffffff #ffffff;">
-                     <font>
-                        <Font name="Montserrat Medium" size="15.0" />
-                     </font>
-                  </TextField>
-                  <Text fill="#3b3b3b" layoutX="19.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tags">
-                     <font>
-                        <Font name="System Font" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="AddBtn" layoutX="44.0" layoutY="504.0" mnemonicParsing="false" onAction="#add" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #4CAF50;" text="ADD" textFill="WHITE">
+                  <Button fx:id="AddBtn1" layoutX="236.0" layoutY="569.0" mnemonicParsing="false" onAction="#add" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #4CAF50;" text="APPROVE" textFill="WHITE">
                      <font>
                         <Font name="Al Bayan Plain" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="AddBtn1" layoutX="296.0" layoutY="562.0" mnemonicParsing="false" onAction="#add" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #4CAF50;" text="RESET" textFill="WHITE">
+                  <Button fx:id="AddBtn111" layoutX="629.0" layoutY="569.0" mnemonicParsing="false" onAction="#add" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #f44336;" text="DELETE" textFill="WHITE">
                      <font>
                         <Font name="Al Bayan Plain" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="AddBtn11" layoutX="537.0" layoutY="562.0" mnemonicParsing="false" onAction="#add" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #4CAF50;" text="UPDATE" textFill="WHITE">
-                     <font>
-                        <Font name="Al Bayan Plain" size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="AddBtn111" layoutX="769.0" layoutY="562.0" mnemonicParsing="false" onAction="#add" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #f44336;" text="DELETE" textFill="WHITE">
-                     <font>
-                        <Font name="Al Bayan Plain" size="16.0" />
-                     </font>
-                  </Button>
-                  <Text layoutX="420.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OUR ROOMS">
+                  <Text layoutX="364.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RESERVED ROOMS">
                      <font>
                         <Font size="35.0" />
                      </font>
