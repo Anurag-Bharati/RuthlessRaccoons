@@ -18,6 +18,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.java.db.DatabaseManager;
 import main.java.registration.User;
@@ -113,10 +114,11 @@ public class UserDashboardController {
     }
 
     @FXML
-    private void onAction(ActionEvent actionEvent) throws SQLException {
+    private void onAction(ActionEvent actionEvent) throws SQLException, IOException {
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         root = stage.getScene().getRoot();
         if (actionEvent.getSource().equals(Quit)) {
+            purgeConnection();
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(.4), rootStageUser);
             ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(.4), rootStageUser);
 
@@ -168,12 +170,35 @@ public class UserDashboardController {
             animateLoading("userside/invoice.fxml", actionEvent);
         }
         else if (actionEvent.getSource().equals(logout)) {
-            applyRoomDetails();
+            purgeConnection();
+            logOut();
         }
+
+    }
+
+    private void logOut() throws IOException {
+        stage.close();
+        Parent root = FXMLLoader.load((Objects.requireNonNull(
+                getClass().getResource("/main/resource/login/Login_Scene.fxml"))));
+        scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        ScreenDragable.stageDragable(root, stage);
+        stage.show();
+    }
+
+    private void purgeConnection() throws SQLException {
+        if (!(connection ==null)){
+            connection.close();
+
+        }
+        connection = null;
     }
 
     private void switchToScene(String fxml, ActionEvent actionEvent) throws IOException, SQLException {
-
+        purgeConnection();
         fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/" + fxml));
         root = fxmlLoader.load();
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -195,6 +220,7 @@ public class UserDashboardController {
                 invoiceController.initUser(user);
             }
         }
+
         scene.setRoot(root);
         root.setDisable(false);
     }
@@ -320,40 +346,40 @@ public class UserDashboardController {
         }
         if (roomCount==12) {
             ROOM101_name.setText(Rooms.get(0).getRID());
-            ROOM101_price.setText(String.valueOf(Rooms.get(0).getPrice()));
+            ROOM101_price.setText("$"+Rooms.get(0).getPrice());
 
             ROOM102_name.setText(Rooms.get(1).getRID());
-            ROOM102_price.setText(String.valueOf(Rooms.get(1).getPrice()));
+            ROOM102_price.setText("$"+Rooms.get(1).getPrice());
 
             ROOM103_name.setText(Rooms.get(2).getRID());
-            ROOM103_price.setText(String.valueOf(Rooms.get(2).getPrice()));
+            ROOM103_price.setText("$"+Rooms.get(2).getPrice());
 
             ROOM104_name.setText(Rooms.get(3).getRID());
-            ROOM104_price.setText(String.valueOf(Rooms.get(3).getPrice()));
+            ROOM104_price.setText("$"+Rooms.get(3).getPrice());
 
             ROOM105_name.setText(Rooms.get(4).getRID());
-            ROOM105_price.setText(String.valueOf(Rooms.get(4).getPrice()));
+            ROOM105_price.setText("$"+Rooms.get(4).getPrice());
 
             ROOM106_name.setText(Rooms.get(5).getRID());
-            ROOM106_price.setText(String.valueOf(Rooms.get(5).getPrice()));
+            ROOM106_price.setText("$"+Rooms.get(5).getPrice());
 
             ROOM107_name.setText(Rooms.get(6).getRID());
-            ROOM107_price.setText(String.valueOf(Rooms.get(6).getPrice()));
+            ROOM107_price.setText("$"+Rooms.get(6).getPrice());
 
             ROOM108_name.setText(Rooms.get(7).getRID());
-            ROOM108_price.setText(String.valueOf(Rooms.get(7).getPrice()));
+            ROOM108_price.setText("$"+Rooms.get(7).getPrice());
 
             ROOM109_name.setText(Rooms.get(8).getRID());
-            ROOM109_price.setText(String.valueOf(Rooms.get(8).getPrice()));
+            ROOM109_price.setText("$"+Rooms.get(8).getPrice());
 
             ROOM110_name.setText(Rooms.get(9).getRID());
-            ROOM110_price.setText(String.valueOf(Rooms.get(9).getPrice()));
+            ROOM110_price.setText("$"+Rooms.get(9).getPrice());
 
             ROOM111_name.setText(Rooms.get(10).getRID());
-            ROOM111_price.setText(String.valueOf(Rooms.get(10).getPrice()));
+            ROOM111_price.setText("$"+Rooms.get(10).getPrice());
 
             ROOM112_name.setText(Rooms.get(11).getRID());
-            ROOM112_price.setText(String.valueOf(Rooms.get(11).getPrice()));
+            ROOM112_price.setText("$"+Rooms.get(11).getPrice());
         }
     }
 }

@@ -57,7 +57,7 @@
                   </AnchorPane>
                   <AnchorPane layoutY="182.0" prefHeight="510.0" prefWidth="981.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
                      <children>
-                        <ScrollPane fitToWidth="true" prefHeight="691.0" prefWidth="980.0" vvalue="0.73" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane fitToWidth="true" prefHeight="691.0" prefWidth="980.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
                               <VBox alignment="TOP_CENTER" prefHeight="1122.0" prefWidth="966.0" spacing="20.0">
                                  <children>
@@ -84,7 +84,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM101_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #6fba3b; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -112,7 +112,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM102_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #2fb6c3; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -141,7 +141,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM103_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #fb9b41; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -170,7 +170,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM104_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #dc473c; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -199,7 +199,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM105_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #6fba3b; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -228,7 +228,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM106_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #2fb6c3; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -257,7 +257,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM107_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #fb9b41; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -286,7 +286,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM108_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #dc473c; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -315,7 +315,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM109_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #6fba3b; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -344,7 +344,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM110_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #2fb6c3; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -373,7 +373,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM111_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #fb9b41; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>
@@ -402,7 +402,7 @@
                                                    <top>
                                                       <Label fx:id="ROOM112_price" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #dc473c; -fx-border-color: #EEEBE0; -fx-border-width: 2;" text="\$N/A" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
                                                          <font>
-                                                            <Font name="System Bold" size="18.0" />
+                                                            <Font name="System Bold" size="16.5" />
                                                          </font>
                                                       </Label>
                                                    </top>

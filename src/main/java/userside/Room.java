@@ -1,5 +1,6 @@
 package main.java.userside;
 
+@SuppressWarnings("All")
 public class Room {
     private final String RID;
     private final float price;

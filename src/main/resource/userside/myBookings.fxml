@@ -70,12 +70,12 @@
                   </AnchorPane>
                   <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="980.0" style="-fx-background-color: #eeebe0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <JFXButton fx:id="myBookingDelete" alignment="CENTER" layoutX="888.0" layoutY="27.0" onAction="#onAction" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ec6a45;" text="DELETE" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                        <JFXButton fx:id="myBookingDelete" alignment="CENTER" disable="true" layoutX="888.0" layoutY="27.0" onAction="#onAction" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #ec6a45;" text="DELETE" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="myBookingUpdate" alignment="CENTER" layoutX="910.0" layoutY="10.0" onAction="#onAction" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #fb9b41;" text="UPDATE" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="20.0">
+                        <JFXButton fx:id="myBookingUpdate" alignment="CENTER" disable="true" layoutX="910.0" layoutY="10.0" onAction="#onAction" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #fb9b41;" text="UPDATE" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>

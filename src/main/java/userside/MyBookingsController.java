@@ -18,6 +18,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.java.db.DatabaseManager;
 import main.java.registration.User;
@@ -99,10 +100,11 @@ public class MyBookingsController{
     private TableColumn<MyBooking, String> status;
 
     @FXML
-    private void onAction(ActionEvent actionEvent) throws SQLException {
+    private void onAction(ActionEvent actionEvent) throws SQLException, IOException {
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         root = stage.getScene().getRoot();
         if (actionEvent.getSource().equals(Quit)) {
+            purgeConnection();
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(.4), rootStageUser);
             ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(.4), rootStageUser);
 
@@ -133,13 +135,16 @@ public class MyBookingsController{
             stage.setMaximized(!stage.isMaximized());
         }
         else if (actionEvent.getSource().equals(home)){
-
             root.setDisable(true);
             animateLoading("userside/userside.fxml", actionEvent);
         }
         else if (actionEvent.getSource().equals(invoices)) {
             root.setDisable(true);
             animateLoading("userside/invoice.fxml", actionEvent);
+        }
+        else if (actionEvent.getSource().equals(logout)){
+            purgeConnection();
+            logOut();
         }
 
         else if (actionEvent.getSource().equals(myBookingUpdate)){
@@ -155,7 +160,7 @@ public class MyBookingsController{
             alert.setContentText("Are you sure to delete "+ selected_roomName.getText()+"?");
             alert.showAndWait();
             if(alert.getResult().equals(ButtonType.OK)){
-                updateRoomStatus(selected_roomName.getText(),"NO");
+                updateRoomStatus(selected_roomName.getText());
                 if (deleteBooking()){
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("SUCCESS");
@@ -177,15 +182,14 @@ public class MyBookingsController{
         int result = preparedStatement.executeUpdate();
         return result>0;
     }
-    private boolean updateRoomStatus(String RoomID, String status) throws SQLException {
+    private void updateRoomStatus(String RoomID) throws SQLException {
         connection = databaseManager.connect();
         preparedStatement = connection.prepareStatement("UPDATE Room SET isBooked = ? WHERE RID=? ");
-        preparedStatement.setString(1,status);
+        preparedStatement.setString(1, "NO");
         preparedStatement.setString(2,RoomID);
         int result  = preparedStatement.executeUpdate();
         resultSet.close();
         preparedStatement.close();
-        return result >0;
     }
 
     @FXML
@@ -263,8 +267,8 @@ public class MyBookingsController{
             if (myBookingDelete.isDisable()){
                 myBookingDelete.setDisable(false);
             }
-            if (myBookingUpdate.isDisable()){
-                myBookingUpdate.setDisable(false);
+            if (!myBookingUpdate.isDisable()){
+                myBookingUpdate.setDisable(true);
             }
 
             selected_roomName.setText(room_id.getCellData(index).toUpperCase(Locale.ROOT));
@@ -304,6 +308,7 @@ public class MyBookingsController{
     }
 
     private void switchToScene(String fxml, ActionEvent actionEvent) throws IOException, SQLException {
+        purgeConnection();
 
         fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/"+fxml));
         root = fxmlLoader.load();
@@ -412,6 +417,26 @@ public class MyBookingsController{
             fadeTransitionIndicator.play();
 
         } else this.userName.setText("ANURAG");
+    }
+    private void logOut() throws IOException {
+        stage.close();
+        Parent root = FXMLLoader.load((Objects.requireNonNull(
+                getClass().getResource("/main/resource/login/Login_Scene.fxml"))));
+        scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        ScreenDragable.stageDragable(root, stage);
+        stage.show();
+    }
+
+    private void purgeConnection() throws SQLException {
+        if (!(connection ==null)){
+            connection.close();
+
+        }
+        connection = null;
     }
 
 }

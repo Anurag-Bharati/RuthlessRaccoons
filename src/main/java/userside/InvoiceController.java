@@ -21,6 +21,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.java.db.DatabaseManager;
 import main.java.registration.User;
@@ -98,10 +99,12 @@ public class InvoiceController{
     private TableColumn<MyBooking, String> status;
 
     @FXML
-    private void onAction(ActionEvent actionEvent){
+    private void onAction(ActionEvent actionEvent) throws SQLException, IOException {
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         root = stage.getScene().getRoot();
         if (actionEvent.getSource().equals(Quit)) {
+            purgeConnection();
+
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(.4), rootStageUser);
             ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(.4), rootStageUser);
 
@@ -138,6 +141,10 @@ public class InvoiceController{
         else if (actionEvent.getSource().equals(myBookings_btn)){
             root.setDisable(true);
             animateLoading("userside/myBookings.fxml", actionEvent);
+        }
+        else if (actionEvent.getSource().equals(logout)) {
+            purgeConnection();
+            logOut();
         }
 
 
@@ -188,7 +195,9 @@ public class InvoiceController{
         tableView.setItems(bookingList);
     }
 
-    private void animateLoading(String fxml, ActionEvent actionEvent){
+    private void animateLoading(String fxml, ActionEvent actionEvent) throws SQLException {
+        purgeConnection();
+
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = ((Node) actionEvent.getSource()).getScene();
 
@@ -326,5 +335,23 @@ public class InvoiceController{
 
         } else this.userName.setText("ANURAG");
     }
+    private void purgeConnection() throws SQLException {
+        if (!(connection ==null)){
+            connection.close();
 
+        }
+        connection = null;
+    }
+    private void logOut() throws IOException {
+        stage.close();
+        Parent root = FXMLLoader.load((Objects.requireNonNull(
+                getClass().getResource("/main/resource/login/Login_Scene.fxml"))));
+        scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        ScreenDragable.stageDragable(root, stage);
+        stage.show();
+    }
 }

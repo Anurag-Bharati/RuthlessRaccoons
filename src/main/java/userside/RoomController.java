@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,23 +15,21 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.java.db.DatabaseManager;
 import main.java.registration.User;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 //@SuppressWarnings("All")
 
-public class RoomController implements Initializable {
+public class RoomController{
     protected static Stage stage;
     protected static Scene scene;
     protected static Parent root;
@@ -50,7 +47,6 @@ public class RoomController implements Initializable {
     static MyBookingsController myBookingsController;
     static InvoiceController invoiceController;
 
-    static LocalDateTime dateTime;
     static Alert alert;
 
     private @FXML AnchorPane rootStageUser;
@@ -111,12 +107,13 @@ public class RoomController implements Initializable {
     }
 
     @FXML
-    private void onAction(ActionEvent actionEvent) throws SQLException {
+    private void onAction(ActionEvent actionEvent) throws SQLException, IOException {
 
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         root = stage.getScene().getRoot();
 
         if (actionEvent.getSource().equals(Quit)) {
+            purgeConnection();
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(.4), rootStageUser);
             ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(.4), rootStageUser);
 
@@ -203,6 +200,10 @@ public class RoomController implements Initializable {
         else if (actionEvent.getSource().equals(invoices)){
             root.setDisable(true);
             animateLoading("userside/invoice.fxml", actionEvent);
+        }
+        else if (actionEvent.getSource().equals(logout)) {
+            purgeConnection();
+            logOut();
         }
     }
     @FXML
@@ -546,9 +547,24 @@ public class RoomController implements Initializable {
             updateAmenity();
         }
     }
+    private void purgeConnection() throws SQLException {
+        if (!(connection ==null)){
+            connection.close();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+        }
+        connection = null;
+    }
+    private void logOut() throws IOException {
+        stage.close();
+        Parent root = FXMLLoader.load((Objects.requireNonNull(
+                getClass().getResource("/main/resource/login/Login_Scene.fxml"))));
+        scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        ScreenDragable.stageDragable(root, stage);
+        stage.show();
     }
 
 }

@@ -157,7 +157,7 @@
                   </AnchorPane>
                   <AnchorPane layoutY="182.0" prefHeight="510.0" prefWidth="981.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
                      <children>
-                        <ScrollPane fx:id="roomScrollPane" fitToWidth="true" prefHeight="691.0" prefWidth="980.0" vvalue="0.46" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane fx:id="roomScrollPane" fitToWidth="true" prefHeight="691.0" prefWidth="980.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
                               <VBox prefHeight="1361.0" prefWidth="965.0">
                                  <children>
