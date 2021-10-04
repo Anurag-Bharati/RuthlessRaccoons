@@ -13,11 +13,10 @@ import main.java.userside.ResizeHelper;
 import java.util.Objects;
 
 public class Main extends Application {
-
     static double  xOffset, yOffset;
     public static Scene scene;
     protected Stage stage;
-    final String LOGIN = "/main/resource/login/Login_Scene.fxml";
+    final String LOGIN = "/main/resource/adminside/adminside.fxml";
     final String USERSIDE = "/main/resource/userside/userside.fxml";
 
     public static void main(String[] args) {
@@ -27,9 +26,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try{
-
             Parent root = FXMLLoader.load((Objects.requireNonNull(
-                    getClass().getResource(USERSIDE))));
+                    getClass().getResource(LOGIN))));
             scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
