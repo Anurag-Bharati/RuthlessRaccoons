@@ -22,14 +22,11 @@ import javafx.util.Duration;
 import main.java.db.DatabaseManager;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class Guest implements Initializable {
+public class Invoice implements Initializable {
     protected Stage stage;
     protected Scene scene;
     protected Parent root;
@@ -37,6 +34,9 @@ public class Guest implements Initializable {
     Connection connection;
     PreparedStatement preparedStatement;
     ResultSet resultSet;
+    int Result;
+    int selected;
+    Alert at;
 
     private @FXML
     AnchorPane rootStageUser;
@@ -54,11 +54,12 @@ public class Guest implements Initializable {
     @FXML
     private TableColumn<AdminRoom, String> nameList;
     @FXML
-    private TableColumn<AdminRoom, String> genderList;
+    private TableColumn<AdminRoom, Date> dateList;
     @FXML
-    private TableColumn<AdminRoom, String> phonenoList;
+    private TableColumn<AdminRoom, Float> amountList;
     @FXML
-    private TableColumn<AdminRoom, String> gmailList;
+    private TableColumn<AdminRoom, String> statusList;
+
     private @FXML
     TableView tableView;
 
@@ -67,7 +68,7 @@ public class Guest implements Initializable {
 
     private @FXML
     Label userName, userStatus, hotelName;
-    private GuestList guestList;
+    private InvoiceList invoiceList;
 
 
     @FXML
@@ -106,47 +107,50 @@ public class Guest implements Initializable {
                 stage.setMaximized(!stage.isMaximized());
             }
         }
-
     }
 
+
     @FXML
-    public ObservableList<GuestList> getGuestList() throws SQLException {
-        ObservableList<GuestList> guests = FXCollections.observableArrayList();
+    public ObservableList<InvoiceList> getInvoiceList() throws SQLException {
+        ObservableList<InvoiceList> Invoices = FXCollections.observableArrayList();
         connection = databaseManager.connect();
 
         preparedStatement = connection.prepareStatement(
-                "select * from CustomerDetail");
+                "select cd.CID, cd.name, mb.departure ,mb.total_price, mb.status from CustomerDetail as cd , myBookings as mb where cd.CID =mb.CID and mb.status =? ");
+        preparedStatement.setString(1,"CHECKED OUT");
         try {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
 
-                guestList = new GuestList(
+                invoiceList = new InvoiceList(
                         resultSet.getInt("CID"), resultSet.getString("name"),
-                        resultSet.getString("gender"), resultSet.getString("phone"),
-                        resultSet.getString("gmail"));
+                        resultSet.getDate("departure"), resultSet.getFloat("total_price"),
+                        resultSet.getString("status")
+                );
 
-                guests.add(guestList);
+                Invoices.add(invoiceList);
             }
             resultSet.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return guests;
+        return Invoices;
     }
 
-    public void showGuests() throws SQLException {
+    public void showRooms() throws SQLException {
 
-        ObservableList<GuestList> GuestTable = getGuestList();
+        ObservableList<InvoiceList> invoiceList = getInvoiceList();
 
-        IDlist.setCellValueFactory(new PropertyValueFactory<>("guestID"));
-        nameList.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        genderList.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        phonenoList.setCellValueFactory(new PropertyValueFactory<>("phoneNo"));
-        gmailList.setCellValueFactory(new PropertyValueFactory<>("gmail"));
-        tableView.setItems(GuestTable);
+        IDlist.setCellValueFactory(new PropertyValueFactory<>("CID"));
+        nameList.setCellValueFactory(new PropertyValueFactory<>("name"));
+        dateList.setCellValueFactory(new PropertyValueFactory<>("date"));
+        amountList.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
+        statusList.setCellValueFactory(new PropertyValueFactory<>("status"));
+        tableView.setItems(invoiceList);
     }
+
 
     @FXML
     private void setOnHover() {
@@ -184,11 +188,11 @@ public class Guest implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            showGuests();
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+            showRooms();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }
+
 

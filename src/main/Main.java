@@ -17,7 +17,7 @@ public class Main extends Application {
     public static Scene scene;
     protected Stage stage;
     final String LOGIN = "/main/resource/login/Login_Scene.fxml";
-    final String USERSIDE = "/main/resource/adminside/Reservedrooms.fxml";
+    final String USERSIDE = "/main/resource/adminside/Invoices.fxml";
 
     public static void main(String[] args) {
         launch(args);
