@@ -1,7 +1,13 @@
 <!--
 *** Thanks othneildrew for providing this template
 -->
+<div align="center">
+  
+[![Contributors][contributors-shield]][contributors-url]
+[![size][size-shield]][size-url]
+[![LastCommit][lastCommit-shield]][size-url]
 
+</div>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -131,6 +137,13 @@ MEMBERS :
 
 1) Anurag Bharati  [ Coventry ID : 11494830 ]
 2) Bijay Gautam    [ Coventry ID : 11494944 ]
-2) Mohan Basnet    [ Coventry ID : 11495158 ]
-2) Rohan Khadka    [ Coventry ID : 11495387 ]
-2) Sanif Kandel    [ Coventry ID : 11495491 ]
+3) Mohan Basnet    [ Coventry ID : 11495158 ]
+4) Rohan Khadka    [ Coventry ID : 11495387 ]
+5) Sanif Kandel    [ Coventry ID : 11495491 ]
+  
+  
+[contributors-shield]:https://img.shields.io/github/contributors/Anurag-Bharati/RuthlessRaccoons?style=for-the-badge
+[contributors-url]: https://github.com/Anurag-Bharati/RuthlessRaccoons/graphs/contributors
+[size-shield]:https://img.shields.io/github/repo-size/anurag-bharati/RuthlessRaccoons?style=for-the-badge
+[size-url]: https://github.com/Anurag-Bharati/RuthlessRaccoons
+[lastCommit-shield]:https://img.shields.io/github/last-commit/anurag-bharati/RuthlessRaccoons?style=for-the-badge
