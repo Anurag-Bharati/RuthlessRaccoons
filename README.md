@@ -108,6 +108,7 @@ Here are the things you need to install to run this project:
 * [JavaFx](https://openjfx.io/)
 * [MySql](https://www.mysql.com/)
 * [JDBC](https://dev.mysql.com/downloads/connector/j/)
+* [ERD](https://github.com/Anurag-Bharati/RuthlessRaccoons/blob/master/doc/RaccoonsInnRoomDatabase.png)
 
 
 ### Installation
