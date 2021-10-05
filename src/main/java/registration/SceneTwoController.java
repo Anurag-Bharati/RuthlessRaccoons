@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.db.DatabaseManager;
+import main.java.userside.ScreenDragable;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -162,7 +163,7 @@ public class SceneTwoController {
         scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
-        Test1.stageDragable(root,stage);
+        ScreenDragable.stageDragable(root,stage);
         stage.show();
     }
     @FXML
@@ -177,7 +178,7 @@ public class SceneTwoController {
         scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
-        Test1.stageDragable(root,stage);
+        ScreenDragable.stageDragable(root,stage);
         stage.show();
     }
 

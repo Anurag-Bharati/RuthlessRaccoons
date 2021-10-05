@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="rootStage" fx:id="rootStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="950.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.registration.SceneTwoController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="526.0" prefWidth="935.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <AnchorPane layoutX="391.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="525.0" minWidth="525.0" prefHeight="420.0" prefWidth="525.0" style="-fx-background-color: WHITE; -fx-background-radius: 0 10 10 0;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <BorderPane layoutX="429.0" layoutY="10.0" prefHeight="400.0" prefWidth="489.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <right>
+                        <JFXButton id="btn_SignupQuit" fx:id="btn_SignupQuit" onAction="#onQuit" prefHeight="35.0" prefWidth="35.0" ripplerFill="#ff939c" style="-fx-background-color: #e43b44;" text="X" textFill="WHITE" BorderPane.alignment="TOP_LEFT">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </right>
+                     <bottom>
+                        <BorderPane prefHeight="98.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+                           <right>
+                              <JFXButton id="btn_SignUpDone" fx:id="btn_SignUpDone" onAction="#onDone" prefHeight="38.0" prefWidth="96.0" ripplerFill="#ade1a0" style="-fx-background-color: #63c74d;" text="Done" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow height="14.0" radius="6.5" width="14.0">
+                                       <color>
+                                          <Color red="0.378947377204895" green="0.0294736847281456" blue="0.052771929651498795" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <BorderPane.margin>
+                                    <Insets right="100.0" />
+                                 </BorderPane.margin>
+                              </JFXButton>
+                           </right>
+                           <center>
+                              <JFXButton id="btn_SignUpDone" fx:id="btn_SignUpBack" onAction="#switchToScene1" prefHeight="38.0" prefWidth="96.0" ripplerFill="#fccf8b" style="-fx-background-color: #feae34;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow height="14.0" radius="6.5" width="14.0">
+                                       <color>
+                                          <Color red="0.378947377204895" green="0.0294736847281456" blue="0.052771929651498795" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </JFXButton>
+                           </center>
+                           <top>
+                              <Label fx:id="validLabel" alignment="CENTER" prefHeight="18.0" prefWidth="400.0" text="Make sure you have provided valid gmail" textFill="#ff0000b8" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </top>
+                        </BorderPane>
+                     </bottom>
+                     <center>
+                        <VBox prefHeight="278.0" prefWidth="386.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="254.0" text="Sign up Verification">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="163.0" text="Password">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <PasswordField id="passwordField" fx:id="passwordField" prefHeight="40.0" prefWidth="386.0" promptText="Password must be 8 character long" style="-fx-background-color: white;">
+                                 <effect>
+                                    <DropShadow height="15.0" radius="7.0" width="15.0">
+                                       <color>
+                                          <Color red="0.7176470756530762" green="0.7176470756530762" blue="0.7176470756530762" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                              <Label layoutX="10.0" layoutY="60.0" prefHeight="28.0" prefWidth="163.0" text="Confirm Password">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <PasswordField id="passwordField" fx:id="confirmPassField" onMouseClicked="#onPassword" prefHeight="40.0" prefWidth="386.0" promptText="Retype your password" style="-fx-background-color: white;">
+                                 <effect>
+                                    <DropShadow height="15.0" radius="7.0" width="15.0">
+                                       <color>
+                                          <Color red="0.7176470756530762" green="0.7176470756530762" blue="0.7176470756530762" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                              <Label layoutX="10.0" layoutY="81.0" prefHeight="21.0" prefWidth="131.0" text="Auth Code">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField id="emailField" fx:id="authField" layoutX="10.0" layoutY="252.0" onMouseClicked="#authAlert" onMouseExited="#authAlert1" prefHeight="40.0" prefWidth="386.0" promptText="Check your gmail for 5 digit auth code" style="-fx-background-color: white;">
+                                 <effect>
+                                    <DropShadow height="15.0" radius="7.0" width="15.0">
+                                       <color>
+                                          <Color red="0.7176470756530762" green="0.7176470756530762" blue="0.7176470756530762" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets left="50.0" right="10.0" top="10.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="13.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="390.0" minWidth="390.0" prefHeight="470.0" prefWidth="390.0" style="-fx-background-color: linear-gradient(to bottom, #e43b44, #eb4a3d, #f05935, #f4672c, #f77622)linear-gradient(to bottom, #e43b44, #eb4a3d, #f05935, #f4672c, #f77622); -fx-background-color: linear-gradient(to bottom,#2193b0,#6dd5ed); -fx-background-radius: 10;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="25.0">
+               <children>
+                  <AnchorPane prefHeight="136.0" prefWidth="390.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-19.0" layoutY="-21.0" prefHeight="79.0" prefWidth="369.0" text="RUTHLESS RACCOONS" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="142.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="Dubai Bold" size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="256.0" fitWidth="291.0" layoutX="65.0" layoutY="125.0">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -9,15 +9,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.userside.ResizeHelper;
+import main.java.userside.ScreenDragable;
 
 import java.util.Objects;
 
 public class Main extends Application {
-    static double  xOffset, yOffset;
     public static Scene scene;
     protected Stage stage;
     final String LOGIN = "/main/resource/login/Login_Scene.fxml";
-    final String USERSIDE = "/main/resource/adminside/Invoices.fxml";
+    final String USERSIDE = "/main/resource/userside/userside.fxml";
+    final String BOOKINGS = "/main/resource/userside/myBookings.fxml";
 
     public static void main(String[] args) {
         launch(args);
@@ -27,15 +28,14 @@ public class Main extends Application {
     public void start(Stage stage) {
         try{
             Parent root = FXMLLoader.load((Objects.requireNonNull(
-                    getClass().getResource(USERSIDE))));
+                    getClass().getResource(LOGIN))));
             scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
-            if (root.getId().equals("rootStage")) {
-                stageDragable(root, stage);
-            }
-
             stage.setScene(scene);
+            if (root.getId().equals("rootStage")) {
+                ScreenDragable.stageDragable(root, stage);
+            }
             if (root.getId().equals("rootStageUser")){
                 ResizeHelper.addResizeListener(stage);
             }
@@ -48,17 +48,6 @@ public class Main extends Application {
             System.exit(0);
         }
 
-    }
-    public static void stageDragable(Parent root, Stage stage){
-        root.setOnMousePressed(mouseEvent -> {
-            xOffset = mouseEvent.getSceneX();
-            yOffset = mouseEvent.getSceneY();
-        });
-
-        root.setOnMouseDragged(mouseEvent -> {
-            stage.setX(mouseEvent.getScreenX()-xOffset);
-            stage.setY(mouseEvent.getScreenY()-yOffset);
-        });
     }
 
 }
