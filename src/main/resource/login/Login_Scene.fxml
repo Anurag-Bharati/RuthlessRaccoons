@@ -54,7 +54,7 @@
                                                   <Insets bottom="5.0" top="25.0" />
                                               </VBox.margin>
                                           </Label>
-                                          <TextField id="nameField" fx:id="gmailField" layoutX="10.0" layoutY="137.0" onAction="#switchToSignUp" prefHeight="40.0" prefWidth="375.0" promptText="Enter your gmail" style="-fx-background-color: white;">
+                                          <TextField id="nameField" fx:id="gmailField" layoutX="10.0" layoutY="137.0" onAction="#onClick" prefHeight="40.0" prefWidth="375.0" promptText="Enter your gmail" style="-fx-background-color: white;">
                                               <effect>
                                                   <DropShadow height="15.0" radius="7.0" width="15.0">
                                                       <color>

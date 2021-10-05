@@ -20,7 +20,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.db.DatabaseManager;
 import main.java.registration.User;
+import main.java.userside.OS;
 import main.java.userside.ResizeHelper;
+import main.java.userside.ScreenDragable;
 import main.java.userside.UserDashboardController;
 
 import java.io.IOException;
@@ -33,7 +35,7 @@ import java.time.LocalDate;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import static main.java.registration.Test1.stageDragable;
+
 
 @SuppressWarnings("All")
 public class Controller implements Initializable {
@@ -62,7 +64,7 @@ public class Controller implements Initializable {
             root = fxmlLoader.load();
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            stageDragable(root,stage);
+            ScreenDragable.stageDragable(root,stage);
             scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
             stage.show();
@@ -110,8 +112,6 @@ public class Controller implements Initializable {
                         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                         openUserSide(fetchUser());
 
-                        System.out.println("NICE");
-
                     } else actionOutput.setText("Incorrect login credential. Please, try again");
                 } else actionOutput.setText("Please, Provide a valid Gmail");
             }
@@ -157,26 +157,23 @@ public class Controller implements Initializable {
         root = fxmlLoader.load();
         scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
-        if (root.getId().equals("rootStage")) {
-            stageDragable(root, stage);
-        }
+
         stage.setScene(scene);
-        ResizeHelper.addResizeListener(stage);
+        if ((root.getId().equals("rootStage")) ||OS.isMac()){ScreenDragable.stageDragable(root, stage);}
+        if (OS.isWindows()||OS.isUnix()){ResizeHelper.addResizeListener(stage);}
         stage.show();
     }
 
-    private void openUserSide(User user) throws IOException {
+    private void openUserSide(User user) throws IOException, SQLException {
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/userside/userside.fxml"));
         root = fxmlLoader.load();
         scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         scene.setUserData(user);
-        if (root.getId().equals("rootStage")) {
-            stageDragable(root, stage);
-        }
         stage.setScene(scene);
-        ResizeHelper.addResizeListener(stage);
+        if ((root.getId().equals("rootStage")) ||OS.isMac()){ScreenDragable.stageDragable(root, stage);}
+        if (OS.isWindows()||OS.isUnix()){ResizeHelper.addResizeListener(stage);}
         UserDashboardController userDashboardController =  fxmlLoader.getController();
         userDashboardController.initUser(user);
         stage.show();
@@ -280,6 +277,7 @@ public class Controller implements Initializable {
         databaseManager.disconnect();
         return false;
     }
+
 }
 
 

@@ -1,18 +1,62 @@
 # RUTHLESS RACCOONS DATABASE QUERIES
 # COPY AND RUNIT IN WORKBENCH
 
+# Ruthless Raccoons Database Queries
 CREATE DATABASE Raccoons;
 USE Raccoons;
+#DROP TABLE CustomerDetail;
 
 CREATE TABLE CustomerDetail(
-    CID int auto_increment,
-    name varchar(30) not null,
-    gmail varchar(100) not null unique,
-    phone varchar(10) not null,
-    dob date not null,
-    gender varchar(25) not null,
-    pass varchar(30) not null,
-    CONSTRAINT pk_customerID PRIMARY KEY(CID)
+CID int auto_increment,
+name varchar(30) not null,
+gmail varchar(100) not null unique,
+phone varchar(10) not null,
+dob date not null,
+gender varchar(25) not null,
+pass varchar(30) not null,
+CONSTRAINT pk_customerID PRIMARY KEY(CID)
 );
 
-select * from CustomerDetail;
+
+CREATE TABLE myBookings (
+	BID int auto_increment,
+    CID int not null,
+    RID Varchar(10) not null,
+	arrival date not null,
+	departure date not null,
+    total_price float(10) not null,
+    booked_date timestamp default current_timestamp,
+    status varchar(50) not null,
+    constraint pk_booking primary key(BID),
+    constraint fk_customer foreign key(CID) references CustomerDetail(CID),
+    constraint fk_roomtype foreign key(RID) references Room(RID)
+);
+
+CREATE TABLE Room(
+RID varchar(10),
+type varchar(50) not null,
+class varchar(50) not null,
+amenity varchar(100) not null,
+price float(10) not null,
+floor_level int,
+rating float(10),
+short_desc varchar(50),
+isBooked varchar(3) NOT NULL DEFAULT "NO",
+constraint pk_room primary key(RID)
+);
+
+insert into Room
+values("ROOM101","Single","Economy","WF/LL/RD",4.99,0,7.2,"Acceptable Experience at Cheap Price","NO"),
+("ROOM102","Single","Balance","WF/LL/RD/FT",6.99,1,6.5,"Good Experience at Reasonable Price","NO"),
+("ROOM103","Single","Comfort","WF/LL/RD/FT/AT",9.99,2,8.2,"Better Experience at Expected Price","NO"),
+("ROOM104","Single","Delux","WF/LL/RD/FT/AT/AC",14.99,3,10,"Best Experience at Good Price","NO"),
+
+("ROOM105", "Double","Economy","WF/LL/RD",9.99,0,9.5,"Acceptable Experience at Cheap","NO"),
+("ROOM106", "Double","Balance","WF/LL/RD/FT",14.99,1,5.5,"Good Experience at Reasonable Price","NO"),
+("ROOM107", "Double","Comfort","WF/LL/RD/FT/AT",19.99,3,6.8,"Better Experience at Expected Price","NO"),
+("ROOM108", "Double","Delux","WF/LL/RD/FT/AT/AC",29.99,4,8.5,"Best Experience at Good Price","NO"),
+
+("ROOM109","Triple","Economy","WF/LL/RD",14.99,0,7.4,"Acceptable Experience at Cheap","NO"),
+("ROOM110","Triple","Balance","WF/LL/RD/FT",19.99,1,4.9,"Good Experience at Reasonable Price","NO"),
+("ROOM111","Triple","Comfort","WF/LL/RD/FT/AT",29.99,2,9.5,"Better Experience at Expected Price","NO"),
+("ROOM112","Triple","Delux","WF/LL/RD/FT/AT/AC",39.99,3,9.7,"Best Experience at Good Price","NO");

@@ -20,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import main.java.userside.ScreenDragable;
 
 import java.net.UnknownHostException;
 import java.time.LocalDate;
@@ -92,7 +93,7 @@ public class SceneOneController {
                     scene = new Scene(root);
                     scene.setFill(Color.TRANSPARENT);
                     stage.setScene(scene);
-                    Test1.stageDragable(root, stage);
+                    ScreenDragable.stageDragable(root, stage);
                     stage.show();
                 }
                 else actionOutput.setText("Please connect to a network and then proceed");
