@@ -159,8 +159,8 @@ public class Controller implements Initializable {
         scene.setFill(Color.TRANSPARENT);
 
         stage.setScene(scene);
-        if ((root.getId().equals("rootStage")) ||OS.isMac()){ScreenDragable.stageDragable(root, stage);}
-        if (OS.isWindows()||OS.isUnix()){ResizeHelper.addResizeListener(stage);}
+        if ((OS.isUnix()||OS.isMac())){ScreenDragable.stageDragable(root, stage);}
+        if (OS.isWindows()){ResizeHelper.addResizeListener(stage);}
         stage.show();
     }
 

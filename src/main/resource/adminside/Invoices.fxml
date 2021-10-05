@@ -36,7 +36,7 @@
             </AnchorPane>
             <AnchorPane fx:id="rootScene" prefHeight="690.0" prefWidth="980.0" style="-fx-background-color: #EEEBE0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                <children>
-                  <TableView fx:id="tableView" layoutX="22.0" layoutY="63.0" prefHeight="542.0" prefWidth="942.0" style="-fx-background-color: #ebf7fc#ebf7fc;">
+                  <TableView fx:id="tableView" layoutX="19.0" layoutY="63.0" prefHeight="542.0" prefWidth="942.0" style="-fx-background-color: #ebf7fc#ebf7fc;">
                      <columns>
                         <TableColumn fx:id="IDlist" prefWidth="92.38543701171875" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Customer ID" />
                         <TableColumn fx:id="nameList" prefWidth="166.614501953125" style="-fx-background-color: #a3e2ff#a3e2ff; -fx-border-color: white;" text="Customer Name" />
@@ -48,7 +48,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Text layoutX="438.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVOICES">
+                  <Text layoutX="427.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVOICES">
                      <font>
                         <Font size="35.0" />
                      </font>
@@ -71,7 +71,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Label fx:id="userName" alignment="TOP_LEFT" layoutX="84.0" layoutY="74.0" prefHeight="45.0" prefWidth="202.0" text="ADMIN" textFill="WHITE" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="63.0">
+                        <Label fx:id="userName" alignment="TOP_LEFT" layoutX="84.0" layoutY="74.0" prefHeight="45.0" prefWidth="202.0" text="ADMIN" textFill="#f0c04c" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="63.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -102,37 +102,37 @@
                            <content>
                               <VBox prefHeight="490.0" prefWidth="300.0" style="-fx-background-color: #25242a;">
                                  <children>
-                                    <JFXButton fx:id="home" alignment="BASELINE_LEFT" onAction="#onAction" prefHeight="56.0" prefWidth="298.0" text="HOME" textFill="#eeebe0" wrapText="true">
+                                    <JFXButton fx:id="dashboard" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="DASHBOARD" textFill="#eeebe0" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="myBooking" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="MyBOOKING" textFill="#eeebe0" wrapText="true">
+                                    <JFXButton fx:id="reservedRooms" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="RESERVED ROOMS" textFill="#eeebe0" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="orderFood" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="ORDER FOOD" textFill="#eeebe0" wrapText="true">
+                                    <JFXButton fx:id="ourGuests" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="OUR GUESTS" textFill="#eeebe0" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="services" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="SERVICES" textFill="#eeebe0" wrapText="true">
+                                    <JFXButton fx:id="services" alignment="BASELINE_LEFT" disable="true" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #331f1f;" text="SERVICES" textFill="#eeebe0" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="invoices" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="INVOICES" textFill="#eeebe0" wrapText="true">
+                                    <JFXButton fx:id="invoices" alignment="BASELINE_LEFT" onAction="#onAction" prefHeight="56.0" prefWidth="298.0" text="INVOICES" textFill="#eeebe0" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="settings" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="SETTINGS" textFill="#eeebe0" wrapText="true">
+                                    <JFXButton fx:id="settings" alignment="BASELINE_LEFT" disable="true" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #331f1f;" text="SETTINGS" textFill="#eeebe0" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="feedback" alignment="BASELINE_LEFT" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" text="FEEDBACK" textFill="#eeebe0" wrapText="true">
+                                    <JFXButton fx:id="feedback" alignment="BASELINE_LEFT" disable="true" onAction="#onAction" opacity="0.5" prefHeight="56.0" prefWidth="298.0" style="-fx-background-color: #331f1f;" text="FEEDBACK" textFill="#eeebe0" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
