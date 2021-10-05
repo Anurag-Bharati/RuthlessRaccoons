@@ -14,7 +14,6 @@ import main.java.userside.ScreenDragable;
 import java.util.Objects;
 
 public class Main extends Application {
-
     public static Scene scene;
     protected Stage stage;
     final String LOGIN = "/main/resource/login/Login_Scene.fxml";
@@ -28,7 +27,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try{
-
             Parent root = FXMLLoader.load((Objects.requireNonNull(
                     getClass().getResource(LOGIN))));
             scene = new Scene(root);
