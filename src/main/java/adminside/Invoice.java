@@ -33,6 +33,11 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * <h2>INVOICE CLASS</h2>
+ */
+
+@SuppressWarnings("All")
 public class Invoice implements Initializable {
     protected Stage stage;
     protected Scene scene;

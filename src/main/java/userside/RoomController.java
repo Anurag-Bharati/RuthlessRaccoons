@@ -27,8 +27,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 import java.util.Objects;
 
-//@SuppressWarnings("All")
 
+@SuppressWarnings("All")
 public class RoomController{
     protected static Stage stage;
     protected static Scene scene;

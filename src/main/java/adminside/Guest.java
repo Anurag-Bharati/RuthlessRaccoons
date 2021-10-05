@@ -36,6 +36,11 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * <h2>GUEST CONTROLLER</h2>
+ */
+
+@SuppressWarnings("All")
 public class Guest implements Initializable {
     protected Stage stage;
     protected Scene scene;

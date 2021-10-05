@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+/**
+ * <h2>Unit testing on User Details</h2>
+ */
 public class UnitTestUserDatabase {
     Connection connection;
     PreparedStatement preparedStatement;
@@ -23,7 +26,7 @@ public class UnitTestUserDatabase {
     @Before
     public void init() throws SQLException {
 
-        String GMAIL = "";
+        String GMAIL = "anuragbharati26@gmail.com";
 
         connection = databaseManager.connect();
         preparedStatement = connection.prepareStatement("Select * From CustomerDetail where gmail = ?");
@@ -43,6 +46,7 @@ public class UnitTestUserDatabase {
         connection.close();
 
     }
+
     @Test
     public void isUserExist(){
 
@@ -53,7 +57,7 @@ public class UnitTestUserDatabase {
     public void doesUserCredentialMatch(){
 
         // Given
-        String pass = "";
+        String pass = "abcd1234";
 
         // Test
         assertEquals(pass,user.getPassword());
@@ -62,11 +66,11 @@ public class UnitTestUserDatabase {
     public void isUserDetailsRight(){
 
         // Given
-        String name = "";
-        String gmail = "";
-        String gender = "";
-        String phone = "";
-        String dob = "";
+        String name = "Anurag";
+        String gmail = "anuragbharati26@gmail.com";
+        String gender = "Male";
+        String phone = "0123456789";
+        String dob = "2021-10-07";
 
         // Tests
         assertEquals(name,user.getName());

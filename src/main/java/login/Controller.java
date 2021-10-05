@@ -36,7 +36,10 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 
-
+/**
+ * <H1>LoginController</H1>
+ * <p>Used to communicate with GUI</p>
+ */
 @SuppressWarnings("All")
 public class Controller implements Initializable {
     private Stage stage;
@@ -56,11 +59,17 @@ public class Controller implements Initializable {
     @FXML private ComboBox comboBox;
     @FXML private Region loadbar;
 
-
+    /**
+     * <h2>Signup Scene Switch</h2>
+     * <p>This method is responsible for switching scenes</p>
+     * @param event is the mouse button press event
+     * @throws IOException if fxml file is missing
+     */
     @FXML
     public void switchToSignUp(ActionEvent event) throws IOException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resource/registration/Scene1.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+                    "../../resource/registration/Scene1.fxml"));
             root = fxmlLoader.load();
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -72,6 +81,13 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * <h2>Gmail Check</h2>
+     * <p>This method checks for gmail</p>
+     * @return true if check passes, false if not
+     * @throws IOException
+     */
     @FXML
     public Boolean onDone() throws IOException {
         if (gmailField.getLength() != 0) {
@@ -81,6 +97,13 @@ public class Controller implements Initializable {
             return false;
     }
 
+    /**
+     * <h2>Main Event Handler</h2>
+     * <p>This method handles all the events for login scene</p>
+     * @param e is the Button Event
+     * @throws SQLException if sth wrong w/ either sql query or w/ db
+     * @throws IOException if fxml file not found
+     */
     @FXML
     public void onClick(ActionEvent e) throws SQLException, IOException {
         if (comboBox.getValue().equals("Admin")){
@@ -119,6 +142,11 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * <H2>Quit Event Handler</H2>
+     * <P>Responsible for animating exit</P>
+     * @param actionEvent is quit Button event
+     */
     @FXML
     public void onQuit(ActionEvent actionEvent) {
 
@@ -144,16 +172,30 @@ public class Controller implements Initializable {
             Platform.exit();
             System.exit(0);
         });
-        }
+    }
+
+    /**
+     * <h2>Init</h2>
+     * <p>This method runs after all the fxml var done injecting</p>
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBox.getItems().addAll("Admin", "User");
         comboBox.getSelectionModel().select("User");
     }
+
+    /**
+     * <h2>Responsible for switching stage to Admin Side</h2>
+     * @param e Button event
+     * @throws IOException if fxml not found
+     */
     private void openAdminSide(ActionEvent e) throws IOException{
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/adminside/adminside.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+                "/main/resource/adminside/adminside.fxml"));
         root = fxmlLoader.load();
         scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -164,9 +206,16 @@ public class Controller implements Initializable {
         stage.show();
     }
 
+    /**
+     * <h2>Responsible for switching stage to Admin Side</h2>
+     * @param user object that is not null
+     * @throws IOException if fxml not found
+     * @throws SQLException if sth w/ with b/e
+     */
     private void openUserSide(User user) throws IOException, SQLException {
         stage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resource/userside/userside.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+                "/main/resource/userside/userside.fxml"));
         root = fxmlLoader.load();
         scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -178,6 +227,13 @@ public class Controller implements Initializable {
         userDashboardController.initUser(user);
         stage.show();
     }
+
+    /**
+     * <h2>Fetches data from database once login credential is valid</h2>
+     *
+     * @return user object
+     * @throws SQLException if sth wrong w/ b/e
+     */
     private User fetchUser() throws SQLException {
         User user = new User();
         Connection connection = databaseManager.connect();
@@ -204,10 +260,16 @@ public class Controller implements Initializable {
         return null;
 
     }
+
+    /**
+     * <h2>Gmail Domain Check</h2>
+     * <p>This function takes gmail as string and checks if the domain is gmail or not.<br>
+     *         If not it returns false and true if it is.</p>
+     * @param gMail
+     * @return
+     */
     public boolean checkGmail(String gMail) {
 
-        /*This function takes gmail as string and checks if the domain is gmail or not.
-        If not it returns false and true if it is.*/
 
         StringBuilder checkDomain = new StringBuilder();
 
@@ -226,7 +288,15 @@ public class Controller implements Initializable {
             }
         }
         return false;
-    }private boolean checkPass() throws SQLException {
+    }
+
+    /**
+     * <h2>Login validation</h2>
+     * <p> This method checks for login credential match</p>
+     * @return true if the credential matches and false if not or user not found
+     * @throws SQLException if sth wrong w/ b/e
+     */
+    private boolean checkPass() throws SQLException {
         Connection connection = databaseManager.connect();
 
         PreparedStatement checkGmail = connection.prepareStatement(

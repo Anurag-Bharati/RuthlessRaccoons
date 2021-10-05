@@ -1,5 +1,10 @@
 package main.java.adminside;
 
+
+/**
+ * <h2>A CLASS TO SAVE GUEST DETAILS</h2>
+ */
+@SuppressWarnings("All")
 public class GuestList {
     private final int guestID;
     private final String fullName;

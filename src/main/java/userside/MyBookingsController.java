@@ -28,7 +28,7 @@ import java.sql.*;
 import java.util.Locale;
 import java.util.Objects;
 
-
+@SuppressWarnings("All")
 public class MyBookingsController{
 
     protected static Stage stage;

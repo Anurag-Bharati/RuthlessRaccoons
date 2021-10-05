@@ -10,6 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+/**
+ * <h1>MAILING SYSTEM</h1>
+ * <p>This class is responsible for sending mail to the end users</p>
+ */
 public class MailVerify {
     public static int OTP;
     public static void sendMail(String name, String recepient) throws Exception{
@@ -43,6 +47,17 @@ public class MailVerify {
         System.out.println("A message has been Sent and the code is " + OTP);
 
     }
+
+    /**
+     * <h2>Message Packer</h2>
+     * <p>This method packages the message to be sent to end users</p>
+     * @param session is mailing session
+     * @param myAccountEmail is the senders gmail account
+     * @param recepient is the recepient gmail account
+     * @param OTP is the 5-digit auth code
+     * @param name is the recepient name
+     * @return Message
+     */
     private static Message prepareMsg(Session session, String myAccountEmail, String recepient, int OTP, String name){
 
         try {

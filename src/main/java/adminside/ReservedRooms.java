@@ -1,7 +1,10 @@
 package main.java.adminside;
 
 import java.sql.Date;
-
+/**
+ * <h2>A CLASS TO SAVE RESERVED ROOMS DETAILS</h2>
+ */
+@SuppressWarnings("All")
 public class ReservedRooms {
     private int RID;
     private String fullName;

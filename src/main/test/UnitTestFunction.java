@@ -10,6 +10,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * <h2>Unit testing on Fuctions</h2>
+ */
 @SuppressWarnings("ALL")
 public class UnitTestFunction {
     SceneOneController sceneOneController;
@@ -23,20 +26,20 @@ public class UnitTestFunction {
 
     @Test
     public void passwordStrengthCheck(){
-        String PASSWORD_WITH_NUMBER_AND_STRING = "";
+        String PASSWORD_WITH_NUMBER_AND_STRING = "abcd1234";
         assertTrue(sceneTwoController.checkPasswordStrength(PASSWORD_WITH_NUMBER_AND_STRING));
     }
 
     @Test
     public void gmailDomainCheck(){
-        String ANY_GMAIL_ADDRESS = "";
+        String ANY_GMAIL_ADDRESS = "anuragbharati26@gmail.com";
         assertTrue(sceneOneController.checkGmail(ANY_GMAIL_ADDRESS));
     }
 
     @Test
     public void gmailValidityCheck() throws Exception {
-        String YOUR_NAME = "";
-        String YOUR_GMAIL_ACCOUNT = "";
+        String YOUR_NAME = "Anurag";
+        String YOUR_GMAIL_ACCOUNT = "anruagbharati26@gmail.com";
         MailVerify.sendMail(YOUR_NAME,YOUR_GMAIL_ACCOUNT);
         assertNotNull(MailVerify.OTP);
     }

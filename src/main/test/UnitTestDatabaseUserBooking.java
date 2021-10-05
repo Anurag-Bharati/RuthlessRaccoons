@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * <h2>Unit testing on CustomerDetail table</h2>
+ */
 public class UnitTestDatabaseUserBooking {
 
     Connection connection;
@@ -26,7 +29,7 @@ public class UnitTestDatabaseUserBooking {
     @Before
     public void init() throws SQLException {
 
-        String GMAIL = "";
+        String GMAIL = "anuragbharati26@gmail.com";
 
         connection = databaseManager.connect();
         preparedStatement = connection.prepareStatement("Select * From CustomerDetail where gmail = ?");
@@ -39,6 +42,8 @@ public class UnitTestDatabaseUserBooking {
             USER_ID = resultSet.getInt("CID");
         }
     }
+
+
     @Test
     public void isUserExist(){
         assertNotNull(user);

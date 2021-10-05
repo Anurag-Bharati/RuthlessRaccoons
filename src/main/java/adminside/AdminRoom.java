@@ -1,5 +1,6 @@
 package main.java.adminside;
 
+@SuppressWarnings("All")
 public class AdminRoom {
     private final String RID;
     private final String Type;

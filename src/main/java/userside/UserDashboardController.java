@@ -31,8 +31,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-//@SuppressWarnings("All")
 
+@SuppressWarnings("All")
 public class UserDashboardController {
     protected static Stage stage;
     protected static Scene scene;

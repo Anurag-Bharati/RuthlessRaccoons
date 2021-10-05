@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Objects;
 
-
+@SuppressWarnings("All")
 public class InvoiceController{
 
     protected static Stage stage;

@@ -27,7 +27,7 @@ import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Objects;
 
-
+@SuppressWarnings("All")
 public class SceneOneController {
     protected Stage stage;
     protected Scene scene;

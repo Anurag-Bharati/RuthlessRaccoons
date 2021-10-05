@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+@SuppressWarnings("All")
 public class ResizeHelper {
     static boolean isScrollbar = false;
 

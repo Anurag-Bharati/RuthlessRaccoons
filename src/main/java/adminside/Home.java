@@ -34,6 +34,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+@SuppressWarnings("All")
 public class Home implements Initializable {
     protected Stage stage;
     protected Scene scene;

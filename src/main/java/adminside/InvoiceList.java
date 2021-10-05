@@ -2,6 +2,10 @@ package main.java.adminside;
 
 import java.sql.Date;
 
+/**
+ * <h2>A CLASS TO SAVE ALL THE INVOICE DETAILS</h2>
+ */
+@SuppressWarnings("All")
 public class InvoiceList {
     private int CID;
 

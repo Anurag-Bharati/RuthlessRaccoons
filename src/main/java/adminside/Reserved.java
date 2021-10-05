@@ -34,6 +34,10 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * <h2>ReservedRooms Controller</h2>
+ */
+@SuppressWarnings("All")
 public class Reserved implements Initializable {
 
     protected Stage stage;

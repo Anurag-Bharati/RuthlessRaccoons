@@ -13,6 +13,10 @@ import main.java.userside.ScreenDragable;
 
 import java.util.Objects;
 
+/**
+ * <h1>MAIN CLASS</h1>
+ */
+@SuppressWarnings("All")
 public class Main extends Application {
     public static Scene scene;
     protected Stage stage;

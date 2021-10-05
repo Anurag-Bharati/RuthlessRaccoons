@@ -2,6 +2,14 @@ package main.java.registration;
 
 import java.time.LocalDate;
 
+
+/**
+ * <h1>User Class</h1>
+ * <p>This class is responsible for creating instance of the user <br>
+ * and saving and providing the necessary data when requested
+ * </p>
+ */
+@SuppressWarnings("All")
 public class User {
 
     private String name, gmail, gmailOld, phone, gender, password,confirmPass, authCode;

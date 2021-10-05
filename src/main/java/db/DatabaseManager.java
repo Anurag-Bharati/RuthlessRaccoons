@@ -3,6 +3,11 @@ package main.java.db;
 import java.sql.*;
 import java.util.Properties;
 
+/**
+ * <h1>DATABASE CONNECTION PROVIDER</h1>
+ * <p>This class provides connection of the database</p>
+ */
+
 public class DatabaseManager {
     private Properties properties;
     private static final String MAX_POOL = "250";
