@@ -6,6 +6,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![size][size-shield]][size-url]
 [![LastCommit][lastCommit-shield]][size-url]
+![License][license-shield]
 
 </div>
 
@@ -148,3 +149,4 @@ MEMBERS :
 [size-shield]:https://img.shields.io/github/repo-size/anurag-bharati/RuthlessRaccoons?style=for-the-badge
 [size-url]: https://github.com/Anurag-Bharati/RuthlessRaccoons
 [lastCommit-shield]:https://img.shields.io/github/last-commit/anurag-bharati/RuthlessRaccoons?style=for-the-badge
+[license-shield]:https://img.shields.io/github/license/anurag-bharati/RuthlessRaccoons?style=for-the-badge
